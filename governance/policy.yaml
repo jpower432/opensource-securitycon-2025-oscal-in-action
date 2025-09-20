@@ -1,0 +1,16 @@
+metadata:
+  id: "security-policy-001"
+  title: "Example Security Policy"
+  objective: |
+   Define a policy for my example organization to define governance rules.
+  version: "1.0.0"
+  last-modified: "2025-09-20"
+  organization-id: "org-12345"
+  contacts:
+    author:
+      name: "Security Lead"
+      primary: true
+  mapping-references:
+scope:
+  technologies:
+    - "Cloud Computing"
