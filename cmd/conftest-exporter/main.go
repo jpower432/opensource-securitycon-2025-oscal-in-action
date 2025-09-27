@@ -64,7 +64,7 @@ func main() {
 		log.Fatal(err.Error())
 	}
 
-	var results ConftestFileResult
+	var results []ConftestFileResult
 	file, err := os.ReadFile(path)
 	if err != nil {
 		log.Fatal(err.Error())
@@ -73,10 +73,12 @@ func main() {
 	if err := json.Unmarshal(file, &results); err != nil {
 		log.Fatal(err.Error())
 	}
-	for _, finding := range results.Failures {
-		evidence := finding.ToOCSF()
-		if err := watcher.Log(context.Background(), evidence); err != nil {
-			log.Fatalf("failed to log evidence %v", err)
+	for _, result := range results {
+		for _, finding := range result.Failures {
+			evidence := finding.ToOCSF()
+			if err := watcher.Log(context.Background(), evidence); err != nil {
+				log.Fatalf("failed to log evidence %v", err)
+			}
 		}
 	}
 }
