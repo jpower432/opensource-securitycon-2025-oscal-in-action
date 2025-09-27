@@ -1,0 +1,85 @@
+metadata:
+  id: "org-policy-001"
+  title: "Organization Policy for Open Source Projects"
+  objective: "Ensure secure software development practices and mitigate risks in open-source projects"
+  version: "1.5.0"
+  last-modified: "2024-02-01"
+  organization-id: "org-67890"
+  author-notes: "Updated to align with SSDF recommendations"
+  mapping-references:
+    - id: SSDF
+      title: NIST Secure Software Development Framework (SP 800-218)
+      version: "1.1"
+      url: https://csrc.nist.gov/pubs/sp/800/218/final
+      description: |
+        The Secure Software Development Framework (SSDF) is a set of fundamental,
+        sound, and secure software development practices based on established
+        secure software development practice documents from organizations such as
+        BSA, OWASP, and SAFECode. Few software development life cycle (SDLC) models
+        explicitly address software security in detail, so practices like those in
+        the SSDF need to be added to and integrated with each SDLC implementation.
+        Following the SSDF practices should help software producers reduce the
+        number of vulnerabilities in released software, reduce the potential impact
+        of the exploitation of undetected or unaddressed vulnerabilities, and
+        address the root causes of vulnerabilities to prevent recurrences. Also,
+        because the SSDF provides a common language for describing secure software
+        development practices, software producers and acquirers can use it to foster
+        their communications for procurement processes and other management activities.
+    - id: OSPS-B
+      title: Open Source Project Security Baseline
+      version: "2025-02-25"
+      url: https://baseline.openssf.org/versions/2025-02-25.html
+      description: |
+        The Open Source Project Security (OSPS) Baseline is a set of security criteria that projects 
+        should meet to demonstrate a strong security posture. The controls are organized by maturity level 
+        and category. In the detailed subsections you will find the control, rationale, and details notes.
+
+  contacts:
+    author:
+      name: "Software Security Team"
+      primary: true
+      affiliation: "Product Security"
+      email: "security@company.com"
+    responsible:
+      - name: "Chief Information Security Officer"
+        primary: true
+        affiliation: "Information Security"
+        email: "ciso@company.com"
+    accountable:
+      - name: "VP of Engineering"
+        primary: true
+        affiliation: "Engineering"
+        email: "vp-eng@company.com"
+
+
+guidance-references:
+  - reference-id: "SSDF"
+    in-scope:
+      boundaries: ["United States"]
+    out-of-scope:
+      boundaries: ["International"]
+
+control-references:
+  - reference-id: "OSPS-B"
+    in-scope:
+      technologies: ["Open Source Projects"]
+      providers: ["GitHub"]
+    assessment-requirement-modifications:
+      - target-id: "OSPS-QA-07.01"
+        modification-type: "increase-strictness"
+        modification-rationale: "Requires two approvals from non-author contributors"
+        text: |
+          When a commit is made to the primary branch, the project's version
+          control system MUST require at least **two** non-author approval of the
+          changes before merging.
+        recommendation: |
+          Configure the project's version control system to require at least **two**
+          non-author approval of changes before merging into the release or
+          primary branch. This can be achieved by requiring a pull request to be
+          reviewed and approved by at least **two** other collaborators before it can
+          be merged.
+    parameter-modifications:
+      - target-id: "main_branch_min_approvals"
+        modification-type: "increase-strictness"
+        modification-rationale: "Requires two approvals from non-author contributors"
+        value: 2

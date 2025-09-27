@@ -1,0 +1,53 @@
+name: Create Audit Report
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - 'main'
+
+permissions: {}
+
+env:
+  AP: "./compliance/assessment-plan.json"
+
+jobs:
+  generate-posture:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: read
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        with:
+          persist-credentials: false
+
+      - name: Set up Go
+        uses: actions/setup-go@44694675825211faa026b3c33043df3e48a5fa00 # v6.0.0
+        with:
+          go-version: '1.24'
+          cache: false
+          check-latest: true
+
+      - name: Setup c2pcli
+        uses: jpower432/c2p-actions/actions/setup-c2pcli@0bc42f492f3a6854fe0afc99c50100db8f5e17c6 # main
+
+      - name: Setup plugin dir
+        run: mkdir -p c2p-plugins policies policy-results
+
+      - name: Install C2P plugins
+        uses: ./.github/actions/install-plugin
+        with:
+          install-dir: './c2p-plugins'
+
+      - name: Aggregate results
+        run: c2pcli result2oscal -c configs/c2p-config.yaml  -d "${AP}"
+
+      # Post summary on GitHub action summary
+      - name: Summary
+        run: |
+          wget https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-218/ver1/json/NIST_SP800-218_ver1_catalog.json -O catalog.json
+          c2pcli oscal2posture -c configs/c2p-config.yaml -r assessment-results.json -d "${AP}" --catalog catalog.json >> $GITHUB_STEP_SUMMARY

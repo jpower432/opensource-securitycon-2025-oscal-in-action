@@ -1,0 +1,64 @@
+name: Run Evaluation and Collect Evidence
+on:
+
+jobs:
+  run-checks:
+    runs-on: ubuntu-latest
+
+    services:
+      otel-collector:
+        # Replace with beacon distro
+        image: otel/opentelemetry-collector-contrib:latest
+        ports:
+          - 4317:4317
+          - 4318:4318
+        volumes:
+          - ${{ github.workspace }}/configs/collector.yaml:/etc/otelcol/config.yaml
+
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Setup snappy
+        uses: carabiner-dev/actions/install/snappy@e1c6f772cc46a2dce1def4b8a1545249b3af757e
+
+      - name: Set up Go
+        uses: actions/setup-go@44694675825211faa026b3c33043df3e48a5fa00 # v6.0.0
+        with:
+          go-version: '1.24'
+          cache: false
+          check-latest: true
+
+      - name: Retrieve data
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ORG: ${{ github.event.repository.owner.login }}
+          REPO: ${{ github.event.repository.name }}
+        run: |
+          snappy snap builtin:github/branch-rules.yaml -v ORG="$ORG" -v REPO="$REPO" -v BRANCH='main' > input.json
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install Conftest
+        run: |
+          wget https://github.com/open-policy-agent/conftest/releases/download/v0.62.0/conftest_0.62.0_Linux_x86_64.tar.gz
+          tar -xzf conftest_0.62.0_Linux_x86_64.tar.gz
+
+      - name: Pull bundle
+        env:
+          ORG: ${{ github.event.repository.owner.login }}
+        run: ./conftest pull "ghcr.io/$ORG/opa-bundle:dev"
+
+      - name: Run Conftest
+        continue-on-error: true
+        run: |
+          ./conftest test input.json --output json > github_branch_protection.json
+          go run ./cmd/conftest-exporter --endpoint http://otel-collector:4317 --skip-tls --path github_branch_protection.json
+          
+
+

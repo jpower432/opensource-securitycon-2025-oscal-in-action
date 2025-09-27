@@ -1,0 +1,866 @@
+{
+ "assessment-plan": {
+  "assessment-assets": {
+   "assessment-platforms": [
+    {
+     "title": "REPLACE_ME",
+     "uses-components": [
+      {
+       "component-uuid": "e3f3a583-71a7-49da-b65a-c24c81744f56"
+      }
+     ],
+     "uuid": "948d02ac-4d1b-4fc8-93cf-afd754c84f05"
+    }
+   ],
+   "components": [
+    {
+     "description": "",
+     "props": [
+      {
+       "name": "Rule_Id",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_0",
+       "value": "OSPS-QA-07.01"
+      },
+      {
+       "name": "Check_Id",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_0",
+       "value": "github_branch_protection"
+      },
+      {
+       "name": "Check_Description",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_0",
+       "value": "The procedure performs an automated check of the branch ruleset state in GitHub by creating a snapshot of the state from the API and checks the output with an OPA policy to ensure the outcome meets the baseline requirement."
+      }
+     ],
+     "status": {
+      "state": "operational"
+     },
+     "title": "opa",
+     "type": "validation",
+     "uuid": "e3f3a583-71a7-49da-b65a-c24c81744f56"
+    }
+   ]
+  },
+  "assessment-subjects": [
+   {
+    "include-subjects": [
+     {
+      "subject-uuid": "40ce33b0-6be7-4b46-a40c-a0cd401bd9c2",
+      "type": "component"
+     }
+    ],
+    "type": "component"
+   }
+  ],
+  "back-matter": {
+   "resources": [
+    {
+     "description": "The Secure Software Development Framework (SSDF) is a set of fundamental, sound, and secure software development practices based on established secure software development practice documents from organizations such as BSA, OWASP, and SAFECode. Few software development life cycle (SDLC) models explicitly address software security in detail, so practices like those in the SSDF need to be added to and integrated with each SDLC implementation. Following the SSDF practices should help software producers reduce the number of vulnerabilities in released software, reduce the potential impact of the exploitation of undetected or unaddressed vulnerabilities, and address the root causes of vulnerabilities to prevent recurrences. Also, because the SSDF provides a common language for describing secure software development practices, software producers and acquirers can use it to foster their communications for procurement processes and other management activities.",
+     "rlinks": [
+      {
+       "href": "https://csrc.nist.gov/pubs/sp/800/218/final",
+       "media-type": "application/oscal+json"
+      }
+     ],
+     "title": "SSDF",
+     "uuid": "9902ca56-ef7f-46bc-84da-8ef0f45c63c6"
+    }
+   ]
+  },
+  "import-ssp": {
+   "href": "REPLACE_ME"
+  },
+  "local-definitions": {
+   "activities": [
+    {
+     "description": "The version control system MUST contain a publicly readable record of\\nall changes made, who made the changes, and when the changes were\\nmade.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "ps.1"
+         },
+         {
+          "control-id": "ps.2"
+         },
+         {
+          "control-id": "ps.3"
+         },
+         {
+          "control-id": "pw.1.2"
+         },
+         {
+          "control-id": "pw.2.1"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "OSPS-QA-01.02",
+     "uuid": "d63ee90a-a456-4f2e-ae12-d3b9b1e0ba36"
+    },
+    {
+     "description": "When the project has made a release, all compiled released software\\nassets MUST be delivered with a software bill of materials.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "ps.3.2"
+         },
+         {
+          "control-id": "pw.4"
+         },
+         {
+          "control-id": "po.3.3"
+         },
+         {
+          "control-id": "ps.1"
+         },
+         {
+          "control-id": "ps.2"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "OSPS-QA-02.02",
+     "uuid": "97cdb0e7-85f2-4c8a-bbc3-e933498719a2"
+    },
+    {
+     "description": "While active, the project documentation MUST contain a list of any\\ncodebases that are considered subprojects.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "rv.1.2"
+         },
+         {
+          "control-id": "po.3.2"
+         },
+         {
+          "control-id": "po.4.1"
+         },
+         {
+          "control-id": "ps.1"
+         },
+         {
+          "control-id": "ps.2"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "OSPS-QA-04.01",
+     "uuid": "fff0b96f-0d54-4605-bb06-8589b6b3b4b1"
+    },
+    {
+     "description": "When the package management system supports it, the source code\\nrepository MUST contain a dependency list that accounts for the direct\\nlanguage dependencies.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "po.3.3"
+         },
+         {
+          "control-id": "ps.1"
+         },
+         {
+          "control-id": "ps.2"
+         },
+         {
+          "control-id": "ps.3.2"
+         },
+         {
+          "control-id": "pw.4"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "OSPS-QA-02.01",
+     "uuid": "e3102efc-d893-4905-ad48-e6f4c2907984"
+    },
+    {
+     "description": "When a commit is made to the primary branch, any automated status\\nchecks for commits MUST pass or be manually bypassed.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "ps.1"
+         },
+         {
+          "control-id": "ps.2"
+         },
+         {
+          "control-id": "rv.1.2"
+         },
+         {
+          "control-id": "po.4.1"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "OSPS-QA-03.01",
+     "uuid": "7f2d7559-390d-48fe-a5e1-306ad3ea57a9"
+    },
+    {
+     "description": "While active, the version control system MUST NOT contain unreviewable\\nbinary artifacts.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "ps.1"
+         },
+         {
+          "control-id": "ps.2"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "OSPS-QA-05.02",
+     "uuid": "26f5aede-335e-499d-b7e1-b1b856d08e4e"
+    },
+    {
+     "description": "While active, project's documentation MUST clearly document when and\\nhow tests are run.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "pw.8.2"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "OSPS-QA-06.02",
+     "uuid": "3496641e-9d75-41da-918b-0e8ce3801155"
+    },
+    {
+     "description": "While active, the project's source code repository MUST be publicly\\nreadable at a static URL.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "pw.1.2"
+         },
+         {
+          "control-id": "pw.2.1"
+         },
+         {
+          "control-id": "ps.1"
+         },
+         {
+          "control-id": "ps.2"
+         },
+         {
+          "control-id": "ps.3"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "OSPS-QA-01.01",
+     "uuid": "ec0f50af-1a1e-4c5a-a62b-a578b9711130"
+    },
+    {
+     "description": "While active, the version control system MUST NOT contain generated\\nexecutable artifacts.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "ps.1"
+         },
+         {
+          "control-id": "ps.2"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "OSPS-QA-05.01",
+     "uuid": "5696487d-5a1e-4d91-af25-0b1cfaf0aa10"
+    },
+    {
+     "description": "Prior to a commit being accepted, the project's CI/CD pipelines MUST\\nrun at least one automated test suite to ensure the changes meet\\nexpectations.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "pw.8.2"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "OSPS-QA-06.01",
+     "uuid": "81935926-56d3-4190-81a8-0515b4215566"
+    },
+    {
+     "description": "When the project has made a release comprising multiple source code\\nrepositories, all subprojects MUST enforce security requirements that\\nare as strict or stricter than the primary codebase.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "po.3.2"
+         },
+         {
+          "control-id": "po.4.1"
+         },
+         {
+          "control-id": "ps.1"
+         },
+         {
+          "control-id": "ps.2"
+         },
+         {
+          "control-id": "rv.1.2"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "OSPS-QA-04.02",
+     "uuid": "c5e3e99d-99e2-4336-8535-823a995a174f"
+    },
+    {
+     "description": "While active, the project's documentation MUST include a policy that\\nall major changes to the software produced by the project should add\\nor update tests of the functionality in an automated test suite.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "pw.8.2"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "OSPS-QA-06.03",
+     "uuid": "4e2fd8dc-6338-4fd2-b28d-ae022916df95"
+    }
+   ],
+   "components": [
+    {
+     "description": "",
+     "props": [
+      {
+       "name": "Rule_Id",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_0",
+       "value": "OSPS-QA-01.01"
+      },
+      {
+       "name": "Rule_Description",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_0",
+       "value": "While active, the project's source code repository MUST be publicly\\nreadable at a static URL.\\n"
+      },
+      {
+       "name": "Rule_Id",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_1",
+       "value": "OSPS-QA-01.02"
+      },
+      {
+       "name": "Rule_Description",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_1",
+       "value": "The version control system MUST contain a publicly readable record of\\nall changes made, who made the changes, and when the changes were\\nmade.\\n"
+      },
+      {
+       "name": "Rule_Id",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_2",
+       "value": "OSPS-QA-02.01"
+      },
+      {
+       "name": "Rule_Description",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_2",
+       "value": "When the package management system supports it, the source code\\nrepository MUST contain a dependency list that accounts for the direct\\nlanguage dependencies.\\n"
+      },
+      {
+       "name": "Rule_Id",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_3",
+       "value": "OSPS-QA-02.02"
+      },
+      {
+       "name": "Rule_Description",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_3",
+       "value": "When the project has made a release, all compiled released software\\nassets MUST be delivered with a software bill of materials.\\n"
+      },
+      {
+       "name": "Rule_Id",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_4",
+       "value": "OSPS-QA-03.01"
+      },
+      {
+       "name": "Rule_Description",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_4",
+       "value": "When a commit is made to the primary branch, any automated status\\nchecks for commits MUST pass or be manually bypassed.\\n"
+      },
+      {
+       "name": "Rule_Id",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_5",
+       "value": "OSPS-QA-04.01"
+      },
+      {
+       "name": "Rule_Description",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_5",
+       "value": "While active, the project documentation MUST contain a list of any\\ncodebases that are considered subprojects.\\n"
+      },
+      {
+       "name": "Rule_Id",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_6",
+       "value": "OSPS-QA-04.02"
+      },
+      {
+       "name": "Rule_Description",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_6",
+       "value": "When the project has made a release comprising multiple source code\\nrepositories, all subprojects MUST enforce security requirements that\\nare as strict or stricter than the primary codebase.\\n"
+      },
+      {
+       "name": "Rule_Id",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_7",
+       "value": "OSPS-QA-05.01"
+      },
+      {
+       "name": "Rule_Description",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_7",
+       "value": "While active, the version control system MUST NOT contain generated\\nexecutable artifacts.\\n"
+      },
+      {
+       "name": "Rule_Id",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_8",
+       "value": "OSPS-QA-05.02"
+      },
+      {
+       "name": "Rule_Description",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_8",
+       "value": "While active, the version control system MUST NOT contain unreviewable\\nbinary artifacts.\\n"
+      },
+      {
+       "name": "Rule_Id",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_9",
+       "value": "OSPS-QA-06.01"
+      },
+      {
+       "name": "Rule_Description",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_9",
+       "value": "Prior to a commit being accepted, the project's CI/CD pipelines MUST\\nrun at least one automated test suite to ensure the changes meet\\nexpectations.\\n"
+      },
+      {
+       "name": "Rule_Id",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_10",
+       "value": "OSPS-QA-06.02"
+      },
+      {
+       "name": "Rule_Description",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_10",
+       "value": "While active, project's documentation MUST clearly document when and\\nhow tests are run.\\n"
+      },
+      {
+       "name": "Rule_Id",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_11",
+       "value": "OSPS-QA-06.03"
+      },
+      {
+       "name": "Rule_Description",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_11",
+       "value": "While active, the project's documentation MUST include a policy that\\nall major changes to the software produced by the project should add\\nor update tests of the functionality in an automated test suite.\\n"
+      },
+      {
+       "name": "Rule_Id",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_12",
+       "value": "OSPS-QA-07.01"
+      },
+      {
+       "name": "Rule_Description",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_12",
+       "value": "When a commit is made to the primary branch, the project's version\\ncontrol system MUST require at least one non-author approval of the\\nchanges before merging.\\n"
+      },
+      {
+       "name": "Parameter_Value_Default_0",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_12",
+       "value": "1"
+      },
+      {
+       "name": "Parameter_Description_0",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_12",
+       "value": "Minimum approvals on the default branch"
+      },
+      {
+       "name": "Parameter_Id_0",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_12",
+       "value": "main_branch_min_approvals"
+      }
+     ],
+     "status": {
+      "state": "operational"
+     },
+     "title": "GitHub Repository",
+     "type": "software",
+     "uuid": "40ce33b0-6be7-4b46-a40c-a0cd401bd9c2"
+    }
+   ]
+  },
+  "metadata": {
+   "last-modified": "2025-09-27T04:39:12.476339974Z",
+   "oscal-version": "1.1.3",
+   "title": "REPLACE_ME",
+   "version": "0.1.0"
+  },
+  "reviewed-controls": {
+   "control-selections": [
+    {
+     "include-controls": [
+      {
+       "control-id": "ps.3.2"
+      },
+      {
+       "control-id": "pw.4"
+      },
+      {
+       "control-id": "po.4.1"
+      },
+      {
+       "control-id": "po.3.2"
+      },
+      {
+       "control-id": "pw.8.2"
+      },
+      {
+       "control-id": "ps.1"
+      },
+      {
+       "control-id": "ps.2"
+      },
+      {
+       "control-id": "ps.3"
+      },
+      {
+       "control-id": "pw.1.2"
+      },
+      {
+       "control-id": "po.3.3"
+      },
+      {
+       "control-id": "rv.1.2"
+      },
+      {
+       "control-id": "pw.2.1"
+      }
+     ]
+    }
+   ],
+   "links": [
+    {
+     "href": "#9902ca56-ef7f-46bc-84da-8ef0f45c63c6",
+     "rel": "includes-controls-from-source",
+     "text": "The reviewed controls are derived from the linked OSCAL profile."
+    }
+   ]
+  },
+  "tasks": [
+   {
+    "associated-activities": [
+     {
+      "activity-uuid": "d63ee90a-a456-4f2e-ae12-d3b9b1e0ba36",
+      "subjects": [
+       {
+        "include-subjects": [
+         {
+          "subject-uuid": "40ce33b0-6be7-4b46-a40c-a0cd401bd9c2",
+          "type": "component"
+         }
+        ],
+        "type": "component"
+       }
+      ]
+     },
+     {
+      "activity-uuid": "97cdb0e7-85f2-4c8a-bbc3-e933498719a2",
+      "subjects": [
+       {
+        "include-subjects": [
+         {
+          "subject-uuid": "40ce33b0-6be7-4b46-a40c-a0cd401bd9c2",
+          "type": "component"
+         }
+        ],
+        "type": "component"
+       }
+      ]
+     },
+     {
+      "activity-uuid": "fff0b96f-0d54-4605-bb06-8589b6b3b4b1",
+      "subjects": [
+       {
+        "include-subjects": [
+         {
+          "subject-uuid": "40ce33b0-6be7-4b46-a40c-a0cd401bd9c2",
+          "type": "component"
+         }
+        ],
+        "type": "component"
+       }
+      ]
+     },
+     {
+      "activity-uuid": "e3102efc-d893-4905-ad48-e6f4c2907984",
+      "subjects": [
+       {
+        "include-subjects": [
+         {
+          "subject-uuid": "40ce33b0-6be7-4b46-a40c-a0cd401bd9c2",
+          "type": "component"
+         }
+        ],
+        "type": "component"
+       }
+      ]
+     },
+     {
+      "activity-uuid": "7f2d7559-390d-48fe-a5e1-306ad3ea57a9",
+      "subjects": [
+       {
+        "include-subjects": [
+         {
+          "subject-uuid": "40ce33b0-6be7-4b46-a40c-a0cd401bd9c2",
+          "type": "component"
+         }
+        ],
+        "type": "component"
+       }
+      ]
+     },
+     {
+      "activity-uuid": "26f5aede-335e-499d-b7e1-b1b856d08e4e",
+      "subjects": [
+       {
+        "include-subjects": [
+         {
+          "subject-uuid": "40ce33b0-6be7-4b46-a40c-a0cd401bd9c2",
+          "type": "component"
+         }
+        ],
+        "type": "component"
+       }
+      ]
+     },
+     {
+      "activity-uuid": "3496641e-9d75-41da-918b-0e8ce3801155",
+      "subjects": [
+       {
+        "include-subjects": [
+         {
+          "subject-uuid": "40ce33b0-6be7-4b46-a40c-a0cd401bd9c2",
+          "type": "component"
+         }
+        ],
+        "type": "component"
+       }
+      ]
+     },
+     {
+      "activity-uuid": "ec0f50af-1a1e-4c5a-a62b-a578b9711130",
+      "subjects": [
+       {
+        "include-subjects": [
+         {
+          "subject-uuid": "40ce33b0-6be7-4b46-a40c-a0cd401bd9c2",
+          "type": "component"
+         }
+        ],
+        "type": "component"
+       }
+      ]
+     },
+     {
+      "activity-uuid": "5696487d-5a1e-4d91-af25-0b1cfaf0aa10",
+      "subjects": [
+       {
+        "include-subjects": [
+         {
+          "subject-uuid": "40ce33b0-6be7-4b46-a40c-a0cd401bd9c2",
+          "type": "component"
+         }
+        ],
+        "type": "component"
+       }
+      ]
+     },
+     {
+      "activity-uuid": "81935926-56d3-4190-81a8-0515b4215566",
+      "subjects": [
+       {
+        "include-subjects": [
+         {
+          "subject-uuid": "40ce33b0-6be7-4b46-a40c-a0cd401bd9c2",
+          "type": "component"
+         }
+        ],
+        "type": "component"
+       }
+      ]
+     },
+     {
+      "activity-uuid": "c5e3e99d-99e2-4336-8535-823a995a174f",
+      "subjects": [
+       {
+        "include-subjects": [
+         {
+          "subject-uuid": "40ce33b0-6be7-4b46-a40c-a0cd401bd9c2",
+          "type": "component"
+         }
+        ],
+        "type": "component"
+       }
+      ]
+     },
+     {
+      "activity-uuid": "4e2fd8dc-6338-4fd2-b28d-ae022916df95",
+      "subjects": [
+       {
+        "include-subjects": [
+         {
+          "subject-uuid": "40ce33b0-6be7-4b46-a40c-a0cd401bd9c2",
+          "type": "component"
+         }
+        ],
+        "type": "component"
+       }
+      ]
+     }
+    ],
+    "description": "Evaluation of defined rules for components.",
+    "subjects": [
+     {
+      "include-subjects": [
+       {
+        "subject-uuid": "40ce33b0-6be7-4b46-a40c-a0cd401bd9c2",
+        "type": "component"
+       }
+      ],
+      "type": "component"
+     }
+    ],
+    "title": "Automated Assessment",
+    "type": "action",
+    "uuid": "bb199cda-533e-48c3-a54d-a3edc2a578f4"
+   }
+  ],
+  "uuid": "8ce5de4d-d34f-4085-bba5-95c610c0b168"
+ }
+}

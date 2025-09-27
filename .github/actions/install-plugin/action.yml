@@ -1,0 +1,80 @@
+name: "install-opa-plugin"
+description: "Install C2P OPA Plugin"
+
+inputs:
+  install-dir:
+    description: 'Path to install the binary'
+    required: false
+    default: '$(go env GOPATH)/bin'
+
+runs:
+  using: "composite"
+  steps:
+    - name: Set up Go
+      uses: actions/setup-go@3041bf56c941b39c61721a86cd11f3bb1338122a # v5.2.0
+      with:
+        go-version: '1.24'
+        cache: false
+        check-latest: true
+
+    - name: Build
+      env:
+        INSTALL_DIR: ${{ inputs.install-dir }}
+      run: go build -o ${{ inputs.install-dir }}/opa-plugin ./cmd/plugin
+      shell: bash
+
+    - name: Add to path
+      env:
+        INSTALL_DIR: ${{ inputs.install-dir }}
+      run: echo "$INSTALL_DIR" >> $GITHUB_PATH
+      shell: bash
+
+    - name: Generate manifest
+      env:
+        INSTALL_DIR: ${{ inputs.install-dir }}
+      run: |
+        checksum=$(sha256sum "$INSTALL_DIR/opa-plugin" | cut -d ' ' -f 1 )
+        cat >  "$INSTALL_DIR/c2p-opa-manifest.json" << EOF
+        {
+          "metadata": {
+            "id": "opa",
+            "description": "OPA PVP Plugin",
+            "version": "0.0.1",
+            "types": [
+              "pvp"
+            ]
+          },
+          "executablePath": "opa-plugin",
+          "sha256": "$checksum",
+          "configuration": [
+            {
+              "name": "policy-templates",
+              "description": "A directory where Rego policies are located.",
+              "required": true
+            },
+            {
+              "name": "policy-output",
+              "description": "A directory to write OPA configuration data in JSON for checks.",
+              "required": false,
+              "default": "config.json"
+            },
+            {
+              "name": "policy-results",
+              "description": "A directory where OPA results are located.",
+              "required": true
+            },
+            {
+              "name": "bundle",
+              "description": "A location for an opa policy bundle. If unset, no bundle is created.",
+              "required": false
+            },
+            {
+              "name": "bundle-revision",
+              "description": "A bundle revision if a bundle is created.",
+              "required": false,
+              "default": "1.0"
+            }
+          ]
+        }
+        EOF
+      shell: bash

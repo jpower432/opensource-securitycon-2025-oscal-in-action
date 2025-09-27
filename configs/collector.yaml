@@ -1,0 +1,45 @@
+    # To limit exposure to denial-of-service attacks, change the host in endpoints below from 0.0.0.0 to a specific network interface.
+    # See https://github.com/open-telemetry/opentelemetry-collector/blob/main/docs/security-best-practices.md#safeguards-against-denial-of-service-attacks
+
+    receivers:
+      otlp:
+        protocols:
+          grpc:
+            endpoint: 0.0.0.0:4317
+          http:
+            endpoint: 0.0.0.0:4318
+
+    processors:
+      batch:
+      transform:
+        error_mode: ignore
+        log_statements:
+          - context: log
+            conditions:
+              - body != nil and Substring(body, 0, 2) == "{\""
+            statements:
+              - merge_maps(cache, ParseJSON(body), "upsert")
+              - set(observed_time, Now()) where observed_time_unix_nano == 0
+              - set(time, observed_time) where time_unix_nano == 0
+
+    exporters:
+      debug:
+        verbosity: detailed
+
+    service:
+      pipelines:
+        traces:
+          receivers: [otlp]
+          processors: [batch]
+          exporters: [debug]
+        metrics:
+          receivers: [ otlp ]
+          processors: [ batch ]
+          exporters: [ debug ]
+        logs:
+          # TODO: Grafana Cloud Free Tier
+          receivers: [ otlp ]
+          processors: [ batch, transform ]
+          exporters: [ debug ]
+
+
