@@ -4,10 +4,12 @@ import (
 	"context"
 	"crypto/tls"
 	"crypto/x509"
+	"encoding/json"
 	"errors"
 	"flag"
 	"fmt"
 	"log"
+	"os"
 	"time"
 
 	"github.com/complytime/complybeacon/proofwatch"
@@ -34,12 +36,13 @@ var (
 )
 
 func main() {
-	var endpoint string
+	var endpoint, path string
 	var skipTLS, skipTLSVerify bool
 
 	flag.StringVar(&endpoint, "endpoint", "", "The OTEL Collector Endpoint")
 	flag.BoolVar(&skipTLS, "skip-tls", false, "Do not connect with TLS")
 	flag.BoolVar(&skipTLSVerify, "skip-tls-verify", false, "Do not verify certificates")
+	flag.StringVar(&path, "path", "", "Path to results")
 	flag.Parse()
 
 	conn, err := newClient(endpoint, true, true)
@@ -62,6 +65,14 @@ func main() {
 	}
 
 	var results ConftestFileResult
+	file, err := os.ReadFile(path)
+	if err != nil {
+		log.Fatal(err.Error())
+	}
+
+	if err := json.Unmarshal(file, &results); err != nil {
+		log.Fatal(err.Error())
+	}
 	for _, finding := range results.Failures {
 		evidence := finding.ToOCSF()
 		if err := watcher.Log(context.Background(), evidence); err != nil {

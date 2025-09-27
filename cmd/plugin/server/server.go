@@ -42,6 +42,8 @@ func (p *Plugin) Configure(_ context.Context, m map[string]string) error {
 	return p.config.Validate()
 }
 
+// TODO: Fix
+
 func (p *Plugin) Generate(ctx context.Context, pl policy.Policy) error {
 	composer := server.NewComposer(p.config.PolicyTemplates, p.config.PolicyOutput)
 	if err := composer.GeneratePolicySet(pl, *p.config); err != nil {
@@ -57,6 +59,8 @@ func (p *Plugin) Generate(ctx context.Context, pl policy.Policy) error {
 
 	return nil
 }
+
+// TODO: Implement
 
 func (p *Plugin) GetResults(ctx context.Context, pl policy.Policy) (policy.PVPResult, error) {
 	panic("Implement me")

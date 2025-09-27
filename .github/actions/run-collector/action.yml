@@ -1,8 +1,0 @@
-name: run-collector
-author: jennpower
-description: run-collector
-runs:
-  using: "composite"
-  steps:
-    - name:
-      id:

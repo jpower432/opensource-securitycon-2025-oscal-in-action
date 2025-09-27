@@ -19,16 +19,8 @@
               - body != nil and Substring(body, 0, 2) == "{\""
             statements:
               - merge_maps(cache, ParseJSON(body), "upsert")
-              - set(attributes["policy.id"], cache["policy"]["uid"])
-              - set(attributes["policy.evaluation.status"], cache["status"])
-              - set(attributes["policy.source"], cache["metadata"]["product"]["name"])
-              - set(attributes["policy.enforcement.action"], cache["action"])
-              - set(attributes["category.id"], cache["category_uid"])
-              - set(attributes["class.id"], cache["class_uid"])
               - set(observed_time, Now()) where observed_time_unix_nano == 0
               - set(time, observed_time) where time_unix_nano == 0
-              - flatten(cache, "")
-              - merge_maps(attributes, cache, "upsert")
 
     exporters:
       debug:

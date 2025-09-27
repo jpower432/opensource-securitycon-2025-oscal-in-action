@@ -18,6 +18,8 @@ type ConftestFileResult struct {
 	Failures []ConftestFinding `json:"failures"`
 }
 
+// TODO: Implement
+
 func (f ConftestFinding) ToOCSF() proofwatch.Evidence {
 	return proofwatch.Evidence{}
 }
