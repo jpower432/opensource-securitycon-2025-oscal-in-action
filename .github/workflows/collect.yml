@@ -1,5 +1,7 @@
 name: Run Evaluation and Collect Evidence
+
 on:
+  workflow_dispatch:
 
 jobs:
   run-checks:
