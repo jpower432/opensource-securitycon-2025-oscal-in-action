@@ -7,6 +7,9 @@ jobs:
   run-checks:
     runs-on: ubuntu-latest
 
+    container:
+      image: ubuntu:latest
+
     services:
       otel-collector:
         # Replace with beacon distro
@@ -19,7 +22,6 @@ jobs:
 
     permissions:
       contents: read
-      packages: read
     steps:
       - name: Check out code
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
@@ -65,7 +67,7 @@ jobs:
         continue-on-error: true
         run: |
           ./conftest test input.json --output json > github_branch_protection.json
-          go run ./cmd/conftest-exporter --endpoint http://localhost:4317 --skip-tls --path github_branch_protection.json
+          go run ./cmd/conftest-exporter --endpoint http://otel-collector:4317 --skip-tls --path github_branch_protection.json
           
 
 
