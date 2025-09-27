@@ -70,7 +70,7 @@ jobs:
       - name: Export
         working-directory: export
         run: |
-          go run ./cmd/conftest-exporter --endpoint http://otel-collector:4317 --skip-tls --path github_branch_protection.json
+          go run ./cmd/conftest-exporter --endpoint http://otel-collector:4317 --skip-tls --path ${{ github.workspace }}/github_branch_protection.json
           
 
 
