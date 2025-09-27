@@ -1,1 +1,5 @@
 plugins:
+  opa:
+    policy-templates: ./checks
+    policy-output: ./policies
+    policy-results: ./policy-results
