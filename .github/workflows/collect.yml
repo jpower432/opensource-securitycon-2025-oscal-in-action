@@ -28,6 +28,9 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Install curl
+        run: apt update && apt install -y curl
+
       - name: Setup snappy
         uses: carabiner-dev/actions/install/snappy@e1c6f772cc46a2dce1def4b8a1545249b3af757e
 
