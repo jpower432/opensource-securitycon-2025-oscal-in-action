@@ -53,7 +53,7 @@ jobs:
       - name: Pull bundle
         env:
           ORG: ${{ github.event.repository.owner.login }}
-        run: ./conftest pull "ghcr.io/$ORG/opa-bundle:dev"
+        run: ./conftest pull "ghcr.io/$ORG/policy-bundle:dev"
 
       - name: Run Conftest
         continue-on-error: true
