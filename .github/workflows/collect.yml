@@ -65,7 +65,7 @@ jobs:
         continue-on-error: true
         run: |
           ./conftest test input.json --output json > github_branch_protection.json
-          go run ./cmd/conftest-exporter --endpoint http://otel-collector:4317 --skip-tls --path github_branch_protection.json
+          go run ./cmd/conftest-exporter --endpoint http://localhost:4317 --skip-tls --path github_branch_protection.json
           
 
 
