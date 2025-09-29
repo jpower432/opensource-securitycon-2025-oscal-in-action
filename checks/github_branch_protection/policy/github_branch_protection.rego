@@ -37,7 +37,7 @@ deny contains result if {
     rule.type == "pull_request"
     rule.parameters.required_approving_review_count < required_count
 
-     chain := rego.metadata.chain()
+    chain := rego.metadata.chain()
     annotations := chain[0].annotations
 
     result := {
