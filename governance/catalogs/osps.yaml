@@ -632,8 +632,3 @@ control-families:
             primary branch. This can be achieved by requiring a pull request to be
             reviewed and approved by at least one other collaborator before it can
             be merged.
-          # Note: this below section has been added for testing purposes
-          recommended-parameters:
-            - id: main_branch_min_approvals
-              description: Minimum approvals on the default branch
-              default: 1
