@@ -75,7 +75,10 @@ func main() {
 	}
 	for _, result := range results {
 		for _, finding := range result.Failures {
-			evidence := finding.ToOCSF()
+			evidence, err := finding.ToOCSF(result.FileName)
+			if err != nil {
+				log.Fatal(err.Error())
+			}
 			if err := watcher.Log(context.Background(), evidence); err != nil {
 				log.Fatalf("failed to log evidence %v", err)
 			}
