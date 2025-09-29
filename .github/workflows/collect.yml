@@ -64,13 +64,18 @@ jobs:
         run: ./conftest pull "oci://ghcr.io/$ORG/policy-bundle:dev"
 
       - name: Run Conftest
-        run: ./conftest test input.json --output json | tee github_branch_protection.json
+        run: |
+          ./conftest test input.json --output json | tee output.json
+          exit_code=${PIPESTATUS[0]}
+          if [ $exit_code -ne 0 ]; then
+            exit $exit_code
+          fi
 
       - name: Export
         if: always()
         working-directory: export
         run: |
-          go run ./cmd/conftest-exporter --endpoint localhost:4317 --skip-tls --path ${{ github.workspace }}/github_branch_protection.json
+          go run ./cmd/conftest-exporter --endpoint localhost:4317 --skip-tls --path ${{ github.workspace }}/output.json
           
 
 
