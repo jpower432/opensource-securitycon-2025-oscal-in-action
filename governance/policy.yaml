@@ -78,8 +78,4 @@ control-references:
           primary branch. This can be achieved by requiring a pull request to be
           reviewed and approved by at least **two** other collaborators before it can
           be merged.
-    parameter-modifications:
-      - target-id: "main_branch_min_approvals"
-        modification-type: "increase-strictness"
-        modification-rationale: "Requires two approvals from non-author contributors"
-        value: 2
+

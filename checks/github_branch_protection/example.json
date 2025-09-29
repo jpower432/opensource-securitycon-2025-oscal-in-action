@@ -1,1 +1,32 @@
-{}
+{
+  "id": "github.com/example/example@main",
+  "name": "github.com/example/example@main",
+  "url": "git+https://github.com/example/example/@main",
+  "type": "http://github.com/carabiner-dev/snappy/specs/branch-rules.yaml",
+  "metadata": {
+    "date": "2025-09-04T19:43:49.734330992Z",
+    "endpoint": "repos/example/example/rules/branches/main",
+    "method": "GET"
+  },
+  "values": [
+    {
+      "parameters": {
+        "allowed_merge_methods": [
+          "merge",
+          "squash",
+          "rebase"
+        ],
+        "automatic_copilot_code_review_enabled": false,
+        "dismiss_stale_reviews_on_push": false,
+        "require_code_owner_review": false,
+        "require_last_push_approval": false,
+        "required_approving_review_count": 0,
+        "required_review_thread_resolution": false
+      },
+      "ruleset_id": 7767121,
+      "ruleset_source": "example",
+      "ruleset_source_type": "Repository",
+      "type": "pull_request"
+    }
+  ]
+}
