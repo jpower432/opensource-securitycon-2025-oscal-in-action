@@ -41,7 +41,7 @@ jobs:
           install-dir: './c2p-plugins'
 
       - name: Aggregate results
-        run: c2pcli result2oscal -c configs/c2p-config.yaml  -d "${AP}"
+        run: c2pcli result2oscal -c configs/c2p-config.yaml -a "${AP}"
 
       # Post summary on GitHub action summary
       - name: Summary
