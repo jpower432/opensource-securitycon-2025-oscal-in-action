@@ -1,0 +1,1021 @@
+# Content is originating from the original Cloud Native Security Control Catalog
+# https://github.com/cncf/tag-security/blob/main/community/working-groups/archive/controls/phase-one-announcement.md
+# SPDX-License-Identifier: Apache-2.0
+# Assisted by: Cursor Agent
+metadata:
+  id: CNSCC
+  title: Cloud Native Security Controls Catalog
+  version: "1.0"
+  description: |
+    The controls catalog ensures the usability of CNCF deliverables by GRC professionals and Auditors of Cloud Native systems. 
+    The primary goal is to support quickly identifying the controls status of cloud-native environments, and methods to share the output of those assessments in machine readable formats (OSCAL, JSON, etc.). 
+    These outputs should also map to existing frameworks and regulations (CSA, NIST, FedRAMP, SOX, GDPR, etc.), and provide guidance to properly validate and verify administrative and technical controls.
+  applicability-categories:
+    - id: tlp_clear
+      title: TLP:Clear
+      description: |
+        Information may be shared without restriction.
+    - id: tlp_green
+      title: TLP:Green
+      description: |
+        Information may be shared with partners and restricted to the
+        organization.
+    - id: tlp_amber
+      title: TLP:Amber
+      description: |
+        Information may be shared with partners and restricted to the
+        organization.
+    - id: tlp_red
+      title: TLP:Red
+      description: |
+        Information is restricted to the organization.
+  mapping-references:
+    - id: 800-53
+      title: NIST Special Publication 800-53 - Cybersecurity Supply Chain Risk Management Practices for Systems and Organizations
+      version: r5
+      url: https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-53r5.pdf
+      description: |
+        This publication provides a catalog of security and privacy controls for information systems and organizations to protect 
+        organizational operations and assets, individuals, other organizations, and the Nation from a diverse set of threats and risks, 
+        including hostile attacks, human errors, natural disasters, structural failures, foreign intelligence entities, and privacy risks.
+control-families:
+  - title: Securing the Source Code
+    id: SSC
+    description: |
+      Controls for securing source code repositories, 
+      including access management, code review processes, and 
+      protection of sensitive information in source code.
+    controls:
+      - id: CNSCC-SSC-01
+        title: Use branch protection rules
+        objective: |
+          SCM platforms allow the configuration and restriction of source 
+          code operations on individual branches. Protection rules can be used 
+          to enforce the usage of pull requests with specified precondition 
+          and approval rules, ensuring that a human code review process is 
+          followed or an automated status checking of a branch occurs. 
+          Additionally, protected branches can be used to disallow dangerous 
+          use of force pushes, preventing the overwrite of  commit histories and 
+          potential obfuscation of code changes.
+        guideline-mappings:
+          - reference-id: 800-53
+            entries:
+              - reference-id: SA-8
+        assessment-requirements:
+          - id: CNSCC-SSC-01.01
+            text: |
+               SCM platforms allow the configuration and restriction of source 
+               code operations on individual branches. Protection rules can be used 
+               to enforce the usage of pull requests with specified precondition 
+               and approval rules, ensuring that a human code review process is 
+               followed or an automated status checking of a branch occurs. 
+               Additionally, protected branches can be used to disallow dangerous 
+               use of force pushes, preventing the overwrite of  commit histories and 
+               potential obfuscation of code changes.
+            applicability:
+              - tlp_clear
+              - tlp_green
+              - tlp_amber
+              - tlp_red
+            recommendation: Use branch protection rules
+
+      - id: CNSCC-SSC-02
+        title: Commits and tags are signed
+        objective: |
+          GPG keys or S/MIME certificates are used to sign the source code to ensure authenticity 
+          and integrity of commits and tags.
+        guideline-mappings:
+          - reference-id: 800-53
+            entries:
+              - reference-id: SI-7
+        assessment-requirements:
+          - id: CNSCC-SSC-02.01
+            text: |
+              GPG keys or S/MIME certificates are used to sign the source code.
+              This ensures authenticity and integrity of commits and tags.
+            applicability:
+              - tlp_clear
+              - tlp_green
+              - tlp_amber
+              - tlp_red
+            recommendation: Implement GPG or S/MIME signing for commits and tags
+
+      - id: CNSCC-SSC-03
+        title: Enforce full attestation and verification for protected branches
+        objective: |
+          Branch protection is enabled on the mainline and release branches with force push disabled
+          to ensure proper review and verification processes.
+        guideline-mappings:
+          - reference-id: 800-53
+            entries:
+              - reference-id: AC-6(3)
+        assessment-requirements:
+          - id: CNSCC-SSC-03.01
+            text: |
+              Branch protection is enabled on the mainline and release branches with force push disabled.
+              This ensures proper review and verification processes are followed.
+            applicability:
+              - tlp_clear
+              - tlp_green
+              - tlp_amber
+              - tlp_red
+            recommendation: Enable branch protection with force push disabled
+
+      - id: CNSCC-SSC-04
+        title: Secrets are not committed to the source code repository unless encrypted
+        objective: |
+          Implement tooling to detect secrets or to prevent certain files from being pushed which may contain 
+          plaintext sensitive materials, such as via a .gitignore and/or .gitattributes file, client-side hook 
+          (pre-commit), server-side hook (pre-receive or update), and/or as a step in the CI process.
+        guideline-mappings:
+          - reference-id: 800-53
+            entries:
+              - reference-id: SC-12(3)
+        assessment-requirements:
+          - id: CNSCC-SSC-04.01
+            text: |
+              Implement tooling to detect secrets or to prevent certain files from being pushed which may contain 
+              plaintext sensitive materials, such as via a .gitignore and/or .gitattributes file, client-side hook 
+              (pre-commit), server-side hook (pre-receive or update), and/or as a step in the CI process.
+            applicability:
+              - tlp_clear
+              - tlp_green
+              - tlp_amber
+              - tlp_red
+            recommendation: Implement secret detection and prevention tools
+
+      - id: CNSCC-SSC-05
+        title: The individuals or teams with write access to a repository are defined
+        objective: |
+          Implement codeowners (or equivalent) to clearly define who has write access 
+          to different parts of the repository.
+        guideline-mappings:
+          - reference-id: 800-53
+            entries:
+              - reference-id: PL-1
+        assessment-requirements:
+          - id: CNSCC-SSC-05.01
+            text: |
+              Implement codeowners (or equivalent) to clearly define who has write access 
+              to different parts of the repository.
+            applicability:
+              - tlp_clear
+              - tlp_green
+              - tlp_amber
+              - tlp_red
+            recommendation: Use CODEOWNERS file or equivalent mechanism
+
+      - id: CNSCC-SSC-06
+        title: Automate software security scanning and testing
+        objective: |
+          Security specific scans should be performed, including Static Application Security Tests (SAST) 
+          and Dynamic Application Security Tests (DAST). Both the coverage and results of these tests 
+          should be published as part of the repository information to help downstream consumers of 
+          software better assess the stability, reliability, and/or suitability of a product or library.
+        guideline-mappings:
+          - reference-id: 800-53
+            entries:
+              - reference-id: RA-5
+        assessment-requirements:
+          - id: CNSCC-SSC-06.01
+            text: |
+              Security specific scans should be performed, including Static Application Security Tests (SAST) 
+              and Dynamic Application Security Tests (DAST). Both the coverage and results of these tests 
+              should be published as part of the repository information.
+            applicability:
+              - tlp_clear
+              - tlp_green
+              - tlp_amber
+              - tlp_red
+            recommendation: Implement automated SAST and DAST scanning
+
+      - id: CNSCC-SSC-07
+        title: Establish and adhere to contribution policies
+        objective: |
+          Define configuration options or configuration rules within SCM platforms allow repository 
+          administrators to enforce security, hygiene and operational policies.
+        guideline-mappings:
+          - reference-id: 800-53
+            entries:
+              - reference-id: PL-1
+        assessment-requirements:
+          - id: CNSCC-SSC-07.01
+            text: |
+              Define configuration options or configuration rules within SCM platforms allow repository 
+              administrators to enforce security, hygiene and operational policies.
+            applicability:
+              - tlp_clear
+              - tlp_green
+              - tlp_amber
+              - tlp_red
+            recommendation: Establish and enforce contribution policies
+
+      - id: CNSCC-SSC-08
+        title: Define roles aligned to functional responsibilities
+        objective: |
+          Define roles by using principle of least privileges to provide access based on function 
+          such as Developer, Maintainer, Owner, Reviewer, Approver, and Guest.
+        guideline-mappings:
+          - reference-id: 800-53
+            entries:
+              - reference-id: PL-1
+        assessment-requirements:
+          - id: CNSCC-SSC-08.01
+            text: |
+              Define roles by using principle of least privileges to provide access based on function 
+              such as Developer, Maintainer, Owner, Reviewer, Approver, and Guest.
+            applicability:
+              - tlp_clear
+              - tlp_green
+              - tlp_amber
+              - tlp_red
+            recommendation: Implement role-based access control with least privilege
+
+      - id: CNSCC-SSC-09
+        title: Enforce an independent four-eyes principle
+        objective: |
+          The author(s) of a request may not also be the approver of the request. At least two reviewers 
+          with equal or greater expertise should review & approve the request.
+        guideline-mappings:
+          - reference-id: 800-53
+            entries:
+              - reference-id: SA-11
+        assessment-requirements:
+          - id: CNSCC-SSC-09.01
+            text: |
+              The author(s) of a request may not also be the approver of the request. At least two reviewers 
+              with equal or greater expertise should review & approve the request.
+            applicability:
+              - tlp_clear
+              - tlp_green
+              - tlp_amber
+              - tlp_red
+            recommendation: Require independent review and approval
+
+      - id: CNSCC-SSC-10
+        title: Enforce MFA for accessing source code repositories
+        objective: |
+          Multi-factor authentication should be enforced for all users accessing source code repositories
+          to prevent unauthorized access.
+        guideline-mappings:
+          - reference-id: 800-53
+            entries:
+              - reference-id: IA-2(1)
+        assessment-requirements:
+          - id: CNSCC-SSC-10.01
+            text: |
+              Multi-factor authentication should be enforced for all users accessing source code repositories
+              to prevent unauthorized access.
+            applicability:
+              - tlp_clear
+              - tlp_green
+              - tlp_amber
+              - tlp_red
+            recommendation: Enable MFA for repository access
+
+      - id: CNSCC-SSC-11
+        title: Use SSH keys to provide developers access to source code repositories
+        objective: |
+          SSH keys should be used instead of passwords to provide secure access to source code repositories.
+        guideline-mappings:
+          - reference-id: 800-53
+            entries:
+              - reference-id: AC-1
+        assessment-requirements:
+          - id: CNSCC-SSC-11.01
+            text: |
+              SSH keys should be used instead of passwords to provide secure access to source code repositories.
+            applicability:
+              - tlp_clear
+              - tlp_green
+              - tlp_amber
+              - tlp_red
+            recommendation: Use SSH keys for repository access
+
+      - id: CNSCC-SSC-12
+        title: Have a key rotation policy
+        objective: |
+          It is recommended to implement a key rotation policy to ensure that compromised keys will cease 
+          to be usable after a certain period of time. When a private key is known to have been compromised, 
+          it should be revoked and replaced immediately to shut off access for any unauthorized user.
+        guideline-mappings:
+          - reference-id: 800-53
+            entries:
+              - reference-id: AC-2(1)
+        assessment-requirements:
+          - id: CNSCC-SSC-12.01
+            text: |
+              It is recommended to implement a key rotation policy to ensure that compromised keys will cease 
+              to be usable after a certain period of time. When a private key is known to have been compromised, 
+              it should be revoked and replaced immediately.
+            applicability:
+              - tlp_clear
+              - tlp_green
+              - tlp_amber
+              - tlp_red
+            recommendation: Implement key rotation policy
+
+      - id: CNSCC-SSC-13
+        title: Use short-lived/ephemeral credentials for machine/service access
+        objective: |
+          Short-life credential issuance encourages the use of fine grained permissions and automation in 
+          provisioning access tokens. For CI/CD pipeline agents, short-lived access tokens should be considered 
+          instead of password-based credentials.
+        guideline-mappings:
+          - reference-id: 800-53
+            entries:
+              - reference-id: AC-2(1)
+        assessment-requirements:
+          - id: CNSCC-SSC-13.01
+            text: |
+              Short-life credential issuance encourages the use of fine grained permissions and automation in 
+              provisioning access tokens. For CI/CD pipeline agents, short-lived access tokens should be considered 
+              instead of password-based credentials.
+            applicability:
+              - tlp_clear
+              - tlp_green
+              - tlp_amber
+              - tlp_red
+            recommendation: Use short-lived credentials for automated access
+
+  - title: Access
+    id: ACC
+    description: |
+      Controls for managing access to cloud native systems, including authentication, 
+      authorization, secrets management, and identity federation.
+
+    controls:
+      - id: CNSCC-ACC-01
+        title: Secrets are injected at runtime, such as environment variables or as a file
+        objective: |
+          Secrets should be injected at runtime rather than embedded in the application code
+          to prevent exposure of sensitive information in source code or configuration files.
+        guideline-mappings:
+          - reference-id: 800-53
+            entries:
+              - reference-id: IA-5(7)
+        assessment-requirements:
+          - id: CNSCC-ACC-01.01
+            text: |
+              Secrets are injected at runtime, such as environment variables or as a file,
+              rather than being embedded in the application code.
+            applicability:
+              - tlp_clear
+              - tlp_green
+              - tlp_amber
+              - tlp_red
+            recommendation: Use runtime secret injection mechanisms
+
+      - id: CNSCC-ACC-02
+        title: Applications and workloads are explicitly authorized to communicate with each other using mutual authentication
+        objective: |
+          Applications and workloads should use mutual authentication to verify each other's
+          identity before establishing communication channels.
+        guideline-mappings:
+          - reference-id: 800-53
+            entries:
+              - reference-id: IA-9
+        assessment-requirements:
+          - id: CNSCC-ACC-02.01
+            text: |
+              Applications and workloads are explicitly authorized to communicate with each other 
+              using mutual authentication.
+            applicability:
+              - tlp_clear
+              - tlp_green
+              - tlp_amber
+              - tlp_red
+            recommendation: Implement mutual authentication between services
+
+      - id: CNSCC-ACC-03
+        title: Keys are rotated frequently
+        objective: |
+          Cryptographic keys should be rotated frequently to limit the exposure window
+          in case of key compromise.
+        guideline-mappings:
+          - reference-id: 800-53
+            entries:
+              - reference-id: SC-12
+        assessment-requirements:
+          - id: CNSCC-ACC-03.01
+            text: |
+              Keys are rotated frequently to limit the exposure window in case of key compromise.
+            applicability:
+              - tlp_clear
+              - tlp_green
+              - tlp_amber
+              - tlp_red
+            recommendation: Implement automated key rotation
+
+      - id: CNSCC-ACC-04
+        title: Key lifespan is short
+        objective: |
+          Cryptographic keys should have short lifespans to minimize the impact of potential
+          key compromise and reduce the attack surface.
+        guideline-mappings:
+          - reference-id: 800-53
+            entries:
+              - reference-id: SC-12(3)
+        assessment-requirements:
+          - id: CNSCC-ACC-04.01
+            text: |
+              Key lifespan is short to minimize the impact of potential key compromise 
+              and reduce the attack surface.
+            applicability:
+              - tlp_clear
+              - tlp_green
+              - tlp_amber
+              - tlp_red
+            recommendation: Use short-lived cryptographic keys
+
+      - id: CNSCC-ACC-05
+        title: Credentials and keys protecting sensitive workloads are customer managed
+        objective: |
+          Credentials and keys protecting sensitive workloads (health/finance/etc) are customer managed 
+          (e.g. generated and managed independent of a cloud service provider). KMS and HMS are common 
+          technologies to achieve this. FIPS 140-2 compliance is strongly suggested.
+        guideline-mappings:
+          - reference-id: 800-53
+            entries:
+              - reference-id: IA-2(12)
+        assessment-requirements:
+          - id: CNSCC-ACC-05.01
+            text: |
+              Credentials and keys protecting sensitive workloads (health/finance/etc) are customer managed 
+              (e.g. generated and managed independent of a cloud service provider). KMS and HMS are common 
+              technologies to achieve this. FIPS 140-2 compliance is strongly suggested.
+            applicability:
+              - tlp_clear
+              - tlp_green
+              - tlp_amber
+              - tlp_red
+            recommendation: Use customer-managed key management systems
+
+      - id: CNSCC-ACC-06
+        title: Authentication and authorization are determined independently
+        objective: |
+          Authentication (verifying identity) and authorization (determining permissions) 
+          should be determined independently to provide better security isolation.
+        guideline-mappings:
+          - reference-id: 800-53
+            entries:
+              - reference-id: IA-2(6)
+        assessment-requirements:
+          - id: CNSCC-ACC-06.01
+            text: |
+              Authentication and authorization are determined independently to provide 
+              better security isolation.
+            applicability:
+              - tlp_clear
+              - tlp_green
+              - tlp_amber
+              - tlp_red
+            recommendation: Separate authentication and authorization systems
+
+      - id: CNSCC-ACC-07
+        title: Authentication and authorization are enforced independently
+        objective: |
+          Authentication (verifying identity) and authorization (determining permissions) 
+          should be enforced independently to provide better security isolation.
+        guideline-mappings:
+          - reference-id: 800-53
+            entries:
+              - reference-id: IA-2(6)
+        assessment-requirements:
+          - id: CNSCC-ACC-07.01
+            text: |
+              Authentication and authorization are enforced independently to provide 
+              better security isolation.
+            applicability:
+              - tlp_clear
+              - tlp_green
+              - tlp_amber
+              - tlp_red
+            recommendation: Enforce authentication and authorization independently
+
+      - id: CNSCC-ACC-08
+        title: Access control and file permissions are updated in real-time
+        objective: |
+          Access control and file permissions are updated in real-time, where possible as 
+          caching may permit unauthorized access.
+        guideline-mappings:
+          - reference-id: 800-53
+            entries:
+              - reference-id: SI-4(2)
+        assessment-requirements:
+          - id: CNSCC-ACC-08.01
+            text: |
+              Access control and file permissions are updated in real-time, where possible as 
+              caching may permit unauthorized access.
+            applicability:
+              - tlp_clear
+              - tlp_green
+              - tlp_amber
+              - tlp_red
+            recommendation: Implement real-time access control updates
+
+      - id: CNSCC-ACC-09
+        title: Authorization for workloads is granted based on attributes and roles/permissions previously assigned
+        objective: |
+          Authorization for workloads should be granted based on attributes and roles/permissions 
+          previously assigned to ensure proper access control.
+        guideline-mappings:
+          - reference-id: 800-53
+            entries:
+              - reference-id: AC-3(13)
+        assessment-requirements:
+          - id: CNSCC-ACC-09.01
+            text: |
+              Authorization for workloads is granted based on attributes and roles/permissions 
+              previously assigned.
+            applicability:
+              - tlp_clear
+              - tlp_green
+              - tlp_amber
+              - tlp_red
+            recommendation: Use attribute-based access control for workloads
+
+      - id: CNSCC-ACC-10
+        title: ABAC and RBAC are used
+        objective: |
+          Both Attribute-Based Access Control (ABAC) and Role-Based Access Control (RBAC) 
+          should be used to provide comprehensive access control mechanisms.
+        guideline-mappings:
+          - reference-id: 800-53
+            entries:
+              - reference-id: AC-3(13)
+              - reference-id: AC-3(7)
+        assessment-requirements:
+          - id: CNSCC-ACC-10.01
+            text: |
+              Both Attribute-Based Access Control (ABAC) and Role-Based Access Control (RBAC) 
+              are used to provide comprehensive access control mechanisms.
+            applicability:
+              - tlp_clear
+              - tlp_green
+              - tlp_amber
+              - tlp_red
+            recommendation: Implement both ABAC and RBAC systems
+
+  - title: Compute
+    id: COM
+    description: |
+      Controls for securing compute resources in cloud native environments, including 
+      container security, orchestration, and runtime protection.
+
+    controls:
+      - id: CNSCC-COM-01
+        title: Bootstrapping is employed to verify correct physical and logical location of compute
+        objective: |
+          Secure Boot with TPM 2.0 or similar control should be employed to verify the correct 
+          physical and logical location of compute resources.
+        guideline-mappings:
+          - reference-id: 800-53
+            entries:
+              - reference-id: SI-7(9)
+        assessment-requirements:
+          - id: CNSCC-COM-01.01
+            text: |
+              Secure Boot with TPM 2.0 or similar control is employed to verify the correct 
+              physical and logical location of compute resources.
+            applicability:
+              - tlp_clear
+              - tlp_green
+              - tlp_amber
+              - tlp_red
+            recommendation: Implement Secure Boot with TPM 2.0
+
+      - id: CNSCC-COM-02
+        title: Disparate data sensitive workloads are not run on the same host OS kernel
+        objective: |
+          There are at least three implementing controls possible: workloads may be separated by running 
+          in a separate cluster, on a separate node, or by implementing pods in independent VMs. 
+          It is also possible to emulate the kernel via an application kernel (e.g. gvisor).
+        guideline-mappings:
+          - reference-id: 800-53
+            entries:
+              - reference-id: SC-7
+        assessment-requirements:
+          - id: CNSCC-COM-02.01
+            text: |
+              Disparate data sensitive workloads are not run on the same host OS kernel.
+              Workloads may be separated by running in a separate cluster, on a separate node, 
+              or by implementing pods in independent VMs.
+            applicability:
+              - tlp_clear
+              - tlp_green
+              - tlp_amber
+              - tlp_red
+            recommendation: Separate sensitive workloads using isolation mechanisms
+
+      - id: CNSCC-COM-03
+        title: Monitor and detect any changes to the initial configurations made in runtime
+        objective: |
+          Preventative controls should be the primary control. Detective controls monitoring 
+          filesystem changes should be used to verify primary controls are operating properly.
+        guideline-mappings:
+          - reference-id: 800-53
+            entries:
+              - reference-id: CM-2(2)
+              - reference-id: CM-3(7)
+        assessment-requirements:
+          - id: CNSCC-COM-03.01
+            text: |
+              Monitor and detect any changes to the initial configurations made in runtime.
+              Preventative controls should be the primary control. Detective controls monitoring 
+              filesystem changes should be used to verify primary controls are operating properly.
+            applicability:
+              - tlp_clear
+              - tlp_green
+              - tlp_amber
+              - tlp_red
+            recommendation: Implement configuration change monitoring
+
+      - id: CNSCC-COM-04
+        title: API auditing is enabled with a filter for a specific set of API Groups or verbs
+        objective: |
+          API audits of the application, kubernetes API server, and kernel should be implemented
+          to track and monitor API usage and potential security issues.
+        guideline-mappings:
+          - reference-id: 800-53
+            entries:
+              - reference-id: AU-2
+        assessment-requirements:
+          - id: CNSCC-COM-04.01
+            text: |
+              API auditing is enabled with a filter for a specific set of API Groups or verbs.
+              API audits of the application, kubernetes API server, and kernel should be implemented.
+            applicability:
+              - tlp_clear
+              - tlp_green
+              - tlp_amber
+              - tlp_red
+            recommendation: Enable comprehensive API auditing
+
+      - id: CNSCC-COM-05
+        title: Container specific operating systems are in use
+        objective: |
+          A read-only OS with other services disabled should be used. This provides isolation 
+          and resource confinement that enables developers to run isolated applications on a shared host kernel.
+        guideline-mappings:
+          - reference-id: 800-53
+            entries:
+              - reference-id: CM-2
+              - reference-id: CM-7
+        assessment-requirements:
+          - id: CNSCC-COM-05.01
+            text: |
+              Container specific operating systems are in use - a read-only OS with other services disabled.
+              This provides isolation and resource confinement that enables developers to run isolated 
+              applications on a shared host kernel.
+            applicability:
+              - tlp_clear
+              - tlp_green
+              - tlp_amber
+              - tlp_red
+            recommendation: Use minimal, read-only container OS
+
+      - id: CNSCC-COM-06
+        title: The hardware root of trust is based in a Trusted Platform Module (TPM) or virtual TPM (vTPM)
+        objective: |
+          Ensure HW root of trust extends to the host OS kernel, modules, system images, 
+          container runtimes, and all software on the system.
+        guideline-mappings:
+          - reference-id: 800-53
+            entries:
+              - reference-id: SI-7
+        assessment-requirements:
+          - id: CNSCC-COM-06.01
+            text: |
+              The hardware root of trust is based in a Trusted Platform Module (TPM) or virtual TPM (vTPM).
+              Ensure HW root of trust extends to the host OS kernel, modules, system images, 
+              container runtimes, and all software on the system.
+            applicability:
+              - tlp_clear
+              - tlp_green
+              - tlp_amber
+              - tlp_red
+            recommendation: Implement TPM-based hardware root of trust
+
+      - id: CNSCC-COM-07
+        title: Minimize administrative access to the control plane
+        objective: |
+          Ensure both users and pods have the minimum necessary access to the control plane
+          to reduce the attack surface and potential for privilege escalation.
+        guideline-mappings:
+          - reference-id: 800-53
+            entries:
+              - reference-id: AC-6
+        assessment-requirements:
+          - id: CNSCC-COM-07.01
+            text: |
+              Minimize administrative access to the control plane. Ensure both users and pods 
+              have the minimum necessary access.
+            applicability:
+              - tlp_clear
+              - tlp_green
+              - tlp_amber
+              - tlp_red
+            recommendation: Implement least privilege access to control plane
+
+      - id: CNSCC-COM-08
+        title: Object level and resource requests and limits are controlled through cgroups
+        objective: |
+          Helps prevent exhaustion of node and cluster level resources by one misbehaving workload 
+          due to an intentional (e.g., fork bomb attack or cryptocurrency mining) or unintentional 
+          (e.g., reading a large file in memory without input validation, horizontal autoscaling to 
+          exhaust compute resources) issue.
+        guideline-mappings:
+          - reference-id: 800-53
+            entries:
+              - reference-id: SI-7(16)
+        assessment-requirements:
+          - id: CNSCC-COM-08.01
+            text: |
+              Object level and resource requests and limits are controlled through cgroups.
+              This helps prevent exhaustion of node and cluster level resources by one misbehaving workload.
+            applicability:
+              - tlp_clear
+              - tlp_green
+              - tlp_amber
+              - tlp_red
+            recommendation: Implement resource limits through cgroups
+
+      - id: CNSCC-COM-09
+        title: Systems processing alerts are periodically tuned for false positives
+        objective: |
+          To avoid alert flooding, fatigue, and false negatives after security incidents 
+          that were not detected by the system.
+        guideline-mappings:
+          - reference-id: 800-53
+            entries:
+              - reference-id: SI-4(13)
+        assessment-requirements:
+          - id: CNSCC-COM-09.01
+            text: |
+              Systems processing alerts are periodically tuned for false positives to avoid 
+              alert flooding, fatigue, and false negatives after security incidents that were 
+              not detected by the system.
+            applicability:
+              - tlp_clear
+              - tlp_green
+              - tlp_amber
+              - tlp_red
+            recommendation: Regularly tune alert systems to reduce false positives
+
+      - id: CNSCC-COM-10
+        title: All orchestrator control plane components are configured to communicate via mutual authentication and certificate validation with a periodically rotated certificate
+        objective: |
+          In unfederated clusters, the CA should be used exclusively for the current cluster.
+          All control plane components should use mutual authentication with rotated certificates.
+        guideline-mappings:
+          - reference-id: 800-53
+            entries:
+              - reference-id: AC-3
+        assessment-requirements:
+          - id: CNSCC-COM-10.01
+            text: |
+              All orchestrator control plane components are configured to communicate via mutual 
+              authentication and certificate validation with a periodically rotated certificate.
+              In unfederated clusters, the CA should be used exclusively for the current cluster.
+            applicability:
+              - tlp_clear
+              - tlp_green
+              - tlp_amber
+              - tlp_red
+            recommendation: Implement mutual authentication with certificate rotation
+
+  - title: Securing Build Pipelines
+    id: SBP
+    description: |
+      Controls for securing CI/CD build pipelines, including cryptographic guarantees, 
+      environment validation, and reproducible builds.
+
+    controls:
+      - id: CNSCC-SBP-01
+        title: Cryptographically guarantee policy adherence
+        objective: |
+          The presence and output of each build step should be attested during the build. 
+          The CNCF maintains the in-toto project that can be used to secure a chain of pipeline 
+          stages end-to-end with cryptographic guarantees. Build metadata should be evaluated 
+          against the policy template by using tools such as Open Policy Agent.
+        guideline-mappings:
+          - reference-id: 800-53
+            entries:
+              - reference-id: CM-3(6)
+        assessment-requirements:
+          - id: CNSCC-SBP-01.01
+            text: |
+              The presence and output of each build step should be attested during the build.
+              The CNCF maintains the in-toto project that can be used to secure a chain of pipeline 
+              stages end-to-end with cryptographic guarantees.
+            applicability:
+              - tlp_clear
+              - tlp_green
+              - tlp_amber
+              - tlp_red
+            recommendation: Implement cryptographic attestation for build steps
+
+      - id: CNSCC-SBP-02
+        title: Validate environments and dependencies before usage
+        objective: |
+          The build environment's sources and dependencies must come from a secure, trusted source of truth. 
+          Checksums and any signatures should be validated both in the downloading or ingestion process, 
+          and again by the build worker. This should include validating package manager signatures, 
+          checking out specific Git commit hashes, and verifying SHA sums of input sources and binaries.
+        guideline-mappings:
+          - reference-id: 800-53
+            entries:
+              - reference-id: CM-3(2)
+        assessment-requirements:
+          - id: CNSCC-SBP-02.01
+            text: |
+              The build environment's sources and dependencies must come from a secure, trusted source of truth.
+              Checksums and any signatures should be validated both in the downloading or ingestion process, 
+              and again by the build worker.
+            applicability:
+              - tlp_clear
+              - tlp_green
+              - tlp_amber
+              - tlp_red
+            recommendation: Validate all build dependencies and sources
+
+      - id: CNSCC-SBP-03
+        title: Validate runtime security of build workers
+        objective: |
+          Out-of-band verification of runtime environment security, as defined by execution of policies 
+          using tools such as seccomp, AppArmor, and SELinux, provides defense in depth against attacks 
+          on build infrastructure. High privilege kernel capabilities such as debugger, device, and 
+          network attachments should be restricted and monitored.
+        guideline-mappings:
+          - reference-id: 800-53
+            entries:
+              - reference-id: CM-3(4)
+        assessment-requirements:
+          - id: CNSCC-SBP-03.01
+            text: |
+              Out-of-band verification of runtime environment security, as defined by execution of policies 
+              using tools such as seccomp, AppArmor, and SELinux, provides defense in depth against attacks 
+              on build infrastructure.
+            applicability:
+              - tlp_clear
+              - tlp_green
+              - tlp_amber
+              - tlp_red
+            recommendation: Implement runtime security validation for build workers
+
+      - id: CNSCC-SBP-04
+        title: Validate build artefacts through verifiably reproducible builds
+        objective: |
+          A verifiably reproducible build is a build process where, given a source code commit hash 
+          and a set of build instructions, an end user should be able to reproduce the built artefact bit for bit.
+        guideline-mappings:
+          - reference-id: 800-53
+            entries:
+              - reference-id: CM-3(4)
+        assessment-requirements:
+          - id: CNSCC-SBP-04.01
+            text: |
+              A verifiably reproducible build is a build process where, given a source code commit hash 
+              and a set of build instructions, an end user should be able to reproduce the built artefact bit for bit.
+            applicability:
+              - tlp_clear
+              - tlp_green
+              - tlp_amber
+              - tlp_red
+            recommendation: Implement verifiably reproducible builds
+
+      - id: CNSCC-SBP-05
+        title: Lock and Verify External Requirements from the build process
+        objective: |
+          External requirements and dependencies should be locked to specific versions and verified
+          to ensure build reproducibility and security.
+        guideline-mappings:
+          - reference-id: 800-53
+            entries:
+              - reference-id: CM-3(2)
+        assessment-requirements:
+          - id: CNSCC-SBP-05.01
+            text: |
+              External requirements and dependencies should be locked to specific versions and verified
+              to ensure build reproducibility and security.
+            applicability:
+              - tlp_clear
+              - tlp_green
+              - tlp_amber
+              - tlp_red
+            recommendation: Lock and verify external build requirements
+
+  - title: Storage
+    id: STO
+    description: |
+      Controls for securing storage systems in cloud native environments, including 
+      data protection, encryption, and availability.
+
+    controls:
+      - id: CNSCC-STO-01
+        title: Storage control plane management interface requires mutual authentication and TLS for connections
+        objective: |
+          Storage control plane management interfaces should require mutual authentication 
+          and TLS encryption for all connections to ensure secure communication.
+        guideline-mappings:
+          - reference-id: 800-53
+            entries:
+              - reference-id: SC-8
+        assessment-requirements:
+          - id: CNSCC-STO-01.01
+            text: |
+              Storage control plane management interface requires mutual authentication 
+              and TLS for connections to ensure secure communication.
+            applicability:
+              - tlp_clear
+              - tlp_green
+              - tlp_amber
+              - tlp_red
+            recommendation: Implement mutual authentication and TLS for storage management
+
+      - id: CNSCC-STO-02
+        title: Data availability is achieved through parity or mirroring, erasure coding or replicas
+        objective: |
+          Data availability should be achieved through redundancy mechanisms such as parity, 
+          mirroring, erasure coding, or replicas to ensure data remains accessible even 
+          in case of hardware failures.
+        guideline-mappings:
+          - reference-id: 800-53
+            entries:
+              - reference-id: SI-13
+        assessment-requirements:
+          - id: CNSCC-STO-02.01
+            text: |
+              Data availability is achieved through parity or mirroring, erasure coding or replicas
+              to ensure data remains accessible even in case of hardware failures.
+            applicability:
+              - tlp_clear
+              - tlp_green
+              - tlp_amber
+              - tlp_red
+            recommendation: Implement data redundancy mechanisms
+
+      - id: CNSCC-STO-03
+        title: Hashing and checksums are added to blocks, objects or files
+        objective: |
+          Hashing and checksums are primarily designed to detect and recover from corrupted data, 
+          but can also add a layer of protection against the tampering of data.
+        guideline-mappings:
+          - reference-id: 800-53
+            entries:
+              - reference-id: CM-7
+        assessment-requirements:
+          - id: CNSCC-STO-03.01
+            text: |
+              Hashing and checksums are added to blocks, objects or files to detect and recover 
+              from corrupted data and provide protection against tampering.
+            applicability:
+              - tlp_clear
+              - tlp_green
+              - tlp_amber
+              - tlp_red
+            recommendation: Implement data integrity checksums
+
+      - id: CNSCC-STO-04
+        title: Data backup storage and data source storage should have same security controls
+        objective: |
+          Data backup storage and data source storage should have the same security controls
+          to ensure consistent protection of data across all storage locations.
+        guideline-mappings:
+          - reference-id: 800-53
+            entries:
+              - reference-id: SA-9
+        assessment-requirements:
+          - id: CNSCC-STO-04.01
+            text: |
+              Data backup storage and data source storage should have the same security controls
+              to ensure consistent protection of data across all storage locations.
+            applicability:
+              - tlp_clear
+              - tlp_green
+              - tlp_amber
+              - tlp_red
+            recommendation: Apply consistent security controls to backup storage
+
+      - id: CNSCC-STO-05
+        title: Secure erasure adhering to OPAL standards is employed for returned or non-functional devices
+        objective: |
+          Secure erasure adhering to OPAL standards should be employed for returned or 
+          non-functional devices to ensure data cannot be recovered from decommissioned storage.
+        guideline-mappings:
+          - reference-id: 800-53
+            entries:
+              - reference-id: SC-28
+        assessment-requirements:
+          - id: CNSCC-STO-05.01
+            text: |
+              Secure erasure adhering to OPAL standards is employed for returned or non-functional devices
+              to ensure data cannot be recovered from decommissioned storage.
+            applicability:
+              - tlp_clear
+              - tlp_green
+              - tlp_amber
+              - tlp_red
+            recommendation: Implement OPAL-compliant secure erasure
+

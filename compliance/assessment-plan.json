@@ -6,10 +6,10 @@
      "title": "REPLACE_ME",
      "uses-components": [
       {
-       "component-uuid": "724ed7ee-b0c5-4307-9a01-39e925c38b0f"
+       "component-uuid": "adb20b9c-b5f3-473a-bada-4438a53429bb"
       }
      ],
-     "uuid": "a375dd43-e00f-46b6-9af3-c077012b2145"
+     "uuid": "8f463ae3-d3f5-4b66-a1cb-179692e3382a"
     }
    ],
    "components": [
@@ -20,7 +20,7 @@
        "name": "Rule_Id",
        "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
        "remarks": "rule_set_0",
-       "value": "OSPS-QA-07.01"
+       "value": "CNSCC-SSC-01.01"
       },
       {
        "name": "Check_Id",
@@ -32,7 +32,7 @@
        "name": "Check_Description",
        "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
        "remarks": "rule_set_0",
-       "value": "The procedure performs an automated check of the branch ruleset state in GitHub by creating a snapshot of the state from the API and checks the output with an OPA policy to ensure the outcome meets the baseline requirement."
+       "value": "The procedure performs an automated check of the branch ruleset state in GitHub by creating a snapshot of the state from the API and checks the output with an OPA policy to ensure the outcome meets the baseline requirement.\n"
       }
      ],
      "status": {
@@ -40,7 +40,7 @@
      },
      "title": "opa",
      "type": "validation",
-     "uuid": "724ed7ee-b0c5-4307-9a01-39e925c38b0f"
+     "uuid": "adb20b9c-b5f3-473a-bada-4438a53429bb"
     }
    ]
   },
@@ -48,7 +48,7 @@
    {
     "include-subjects": [
      {
-      "subject-uuid": "a0fc3d26-2ab4-4aca-927d-063e1238e534",
+      "subject-uuid": "d451f7f1-b34f-4300-8983-70d02e25377b",
       "type": "component"
      }
     ],
@@ -58,15 +58,15 @@
   "back-matter": {
    "resources": [
     {
-     "description": "The Secure Software Development Framework (SSDF) is a set of fundamental, sound, and secure software development practices based on established secure software development practice documents from organizations such as BSA, OWASP, and SAFECode. Few software development life cycle (SDLC) models explicitly address software security in detail, so practices like those in the SSDF need to be added to and integrated with each SDLC implementation. Following the SSDF practices should help software producers reduce the number of vulnerabilities in released software, reduce the potential impact of the exploitation of undetected or unaddressed vulnerabilities, and address the root causes of vulnerabilities to prevent recurrences. Also, because the SSDF provides a common language for describing secure software development practices, software producers and acquirers can use it to foster their communications for procurement processes and other management activities.",
+     "description": "This publication provides a catalog of security and privacy controls for information systems and organizations to protect \norganizational operations and assets, individuals, other organizations, and the Nation from a diverse set of threats and risks, \nincluding hostile attacks, human errors, natural disasters, structural failures, foreign intelligence entities, and privacy risks.\n",
      "rlinks": [
       {
-       "href": "https://csrc.nist.gov/pubs/sp/800/218/final",
+       "href": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-53r5.pdf",
        "media-type": "application/oscal+json"
       }
      ],
-     "title": "SSDF",
-     "uuid": "ec8f4ed5-eb0b-41d5-aa14-b37b7f1f99d8"
+     "title": "800-53",
+     "uuid": "f0f478db-6d25-4673-9d33-d598172974f0"
     }
    ]
   },
@@ -76,7 +76,7 @@
   "local-definitions": {
    "activities": [
     {
-     "description": "When a commit is made to the primary branch, the project's version\\ncontrol system MUST require at least one non-author approval of the\\nchanges before merging.\\n",
+     "description": "Multi-factor authentication should be enforced for all users accessing source code repositories\\nto prevent unauthorized access.\\n",
      "props": [
       {
        "name": "method",
@@ -88,7 +88,425 @@
        {
         "include-controls": [
          {
-          "control-id": "ps.1"
+          "control-id": "ia-2.1"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "CNSCC-SSC-10.01",
+     "uuid": "2888ade4-3fc6-483d-a7a9-dc6ff20a0f9b"
+    },
+    {
+     "description": "GPG keys or S/MIME certificates are used to sign the source code.\\nThis ensures authenticity and integrity of commits and tags.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "si-7"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "CNSCC-SSC-02.01",
+     "uuid": "9915cb6b-a91a-4f4f-8d72-ce2bc3ea5d74"
+    },
+    {
+     "description": "Security specific scans should be performed, including Static Application Security Tests (SAST) \\nand Dynamic Application Security Tests (DAST). Both the coverage and results of these tests \\nshould be published as part of the repository information.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "ra-5"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "CNSCC-SSC-06.01",
+     "uuid": "19168922-9c73-4ec7-b613-92ff6559e247"
+    },
+    {
+     "description": "A verifiably reproducible build is a build process where, given a source code commit hash \\nand a set of build instructions, an end user should be able to reproduce the built artefact bit for bit.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "cm-3.4"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "CNSCC-SBP-04.01",
+     "uuid": "2eae22cb-d015-4fdf-9a3b-3e3b46803728"
+    },
+    {
+     "description": "External requirements and dependencies should be locked to specific versions and verified\\nto ensure build reproducibility and security.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "cm-3.2"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "CNSCC-SBP-05.01",
+     "uuid": "d020dab0-1b98-44fc-aa9d-56ef28635b74"
+    },
+    {
+     "description": "Implement tooling to detect secrets or to prevent certain files from being pushed which may contain \\nplaintext sensitive materials, such as via a .gitignore and/or .gitattributes file, client-side hook \\n(pre-commit), server-side hook (pre-receive or update), and/or as a step in the CI process.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "sc-12.3"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "CNSCC-SSC-04.01",
+     "uuid": "b5836ad0-d0b4-49bb-8982-1db07a511738"
+    },
+    {
+     "description": "Data availability is achieved through parity or mirroring, erasure coding or replicas\\nto ensure data remains accessible even in case of hardware failures.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "si-13"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "CNSCC-STO-02.01",
+     "uuid": "55701500-8e21-4c58-bee8-7e8487e97737"
+    },
+    {
+     "description": "Secrets are injected at runtime, such as environment variables or as a file,\\nrather than being embedded in the application code.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "ia-5.7"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "CNSCC-ACC-01.01",
+     "uuid": "9bb01f7b-89cf-4259-ba26-f7695c6db502"
+    },
+    {
+     "description": "Data backup storage and data source storage should have the same security controls\\nto ensure consistent protection of data across all storage locations.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "sa-9"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "CNSCC-STO-04.01",
+     "uuid": "6412567b-a065-45c5-8cf5-dd36f865f532"
+    },
+    {
+     "description": "Credentials and keys protecting sensitive workloads (health/finance/etc) are customer managed \\n(e.g. generated and managed independent of a cloud service provider). KMS and HMS are common \\ntechnologies to achieve this. FIPS 140-2 compliance is strongly suggested.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "ia-2.12"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "CNSCC-ACC-05.01",
+     "uuid": "3f9565aa-10b2-42fc-a961-6d4767e104d2"
+    },
+    {
+     "description": "Implement codeowners (or equivalent) to clearly define who has write access \\nto different parts of the repository.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "pl-1"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "CNSCC-SSC-05.01",
+     "uuid": "61f855db-be8a-4631-bf0a-da0731555ace"
+    },
+    {
+     "description": "Storage control plane management interface requires mutual authentication \\nand TLS for connections to ensure secure communication.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "sc-8"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "CNSCC-STO-01.01",
+     "uuid": "62e8be16-2272-4e03-b1fa-5762db15b6ea"
+    },
+    {
+     "description": "The presence and output of each build step should be attested during the build.\\nThe CNCF maintains the in-toto project that can be used to secure a chain of pipeline \\nstages end-to-end with cryptographic guarantees.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "cm-3.6"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "CNSCC-SBP-01.01",
+     "uuid": "b0defbfd-5b48-446c-bd02-5675ae9ab3af"
+    },
+    {
+     "description": "Access control and file permissions are updated in real-time, where possible as \\ncaching may permit unauthorized access.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "si-4.2"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "CNSCC-ACC-08.01",
+     "uuid": "5d5f8f87-163f-438c-9dea-57ee2576514b"
+    },
+    {
+     "description": "Short-life credential issuance encourages the use of fine grained permissions and automation in \\nprovisioning access tokens. For CI/CD pipeline agents, short-lived access tokens should be considered \\ninstead of password-based credentials.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "ac-2.1"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "CNSCC-SSC-13.01",
+     "uuid": "5656da0c-5e05-4a5a-a59f-0d53848d9880"
+    },
+    {
+     "description": "Define roles by using principle of least privileges to provide access based on function \\nsuch as Developer, Maintainer, Owner, Reviewer, Approver, and Guest.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "pl-1"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "CNSCC-SSC-08.01",
+     "uuid": "d343393e-ef5d-48ae-9cd1-4c30115e2526"
+    },
+    {
+     "description": "Define configuration options or configuration rules within SCM platforms allow repository \\nadministrators to enforce security, hygiene and operational policies.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "pl-1"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "CNSCC-SSC-07.01",
+     "uuid": "30be25ff-024a-45e1-b561-35a452f0e81d"
+    },
+    {
+     "description": "The hardware root of trust is based in a Trusted Platform Module (TPM) or virtual TPM (vTPM).\\nEnsure HW root of trust extends to the host OS kernel, modules, system images, \\ncontainer runtimes, and all software on the system.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "si-7"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "CNSCC-COM-06.01",
+     "uuid": "7a89b669-e803-4278-bfee-aa7bee443bb9"
+    },
+    {
+     "description": "The build environment's sources and dependencies must come from a secure, trusted source of truth.\\nChecksums and any signatures should be validated both in the downloading or ingestion process, \\nand again by the build worker.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "cm-3.2"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "CNSCC-SBP-02.01",
+     "uuid": "d4dbfddf-1807-4abb-b55d-c0ecab834b19"
+    },
+    {
+     "description": "SCM platforms allow the configuration and restriction of source \\ncode operations on individual branches. Protection rules can be used \\nto enforce the usage of pull requests with specified precondition \\nand approval rules, ensuring that a human code review process is \\nfollowed or an automated status checking of a branch occurs. \\nAdditionally, protected branches can be used to disallow dangerous \\nuse of force pushes, preventing the overwrite of  commit histories and \\npotential obfuscation of code changes.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "sa-8"
          }
         ]
        }
@@ -96,16 +514,16 @@
      },
      "steps": [
       {
-       "description": "The procedure performs an automated check of the branch ruleset state in GitHub by creating a snapshot of the state from the API and checks the output with an OPA policy to ensure the outcome meets the baseline requirement.",
+       "description": "The procedure performs an automated check of the branch ruleset state in GitHub by creating a snapshot of the state from the API and checks the output with an OPA policy to ensure the outcome meets the baseline requirement.\n",
        "title": "github_branch_protection",
-       "uuid": "8ad1c6b0-89b2-4de0-8820-30011fcf35b1"
+       "uuid": "91960ae9-3d71-46c6-924f-3ea0600a5c43"
       }
      ],
-     "title": "OSPS-QA-07.01",
-     "uuid": "c70f1d0b-c765-4836-9bce-52a34fccdd6c"
+     "title": "CNSCC-SSC-01.01",
+     "uuid": "6766ab45-3c97-4aae-938f-2942fe782594"
     },
     {
-     "description": "When the package management system supports it, the source code\\nrepository MUST contain a dependency list that accounts for the direct\\nlanguage dependencies.\\n",
+     "description": "Container specific operating systems are in use - a read-only OS with other services disabled.\\nThis provides isolation and resource confinement that enables developers to run isolated \\napplications on a shared host kernel.\\n",
      "props": [
       {
        "name": "method",
@@ -117,29 +535,20 @@
        {
         "include-controls": [
          {
-          "control-id": "ps.1"
+          "control-id": "cm-2"
          },
          {
-          "control-id": "ps.2"
-         },
-         {
-          "control-id": "ps.3.2"
-         },
-         {
-          "control-id": "pw.4"
-         },
-         {
-          "control-id": "po.3.3"
+          "control-id": "cm-7"
          }
         ]
        }
       ]
      },
-     "title": "OSPS-QA-02.01",
-     "uuid": "6fadef96-5da8-4978-803a-5ea5e6acd072"
+     "title": "CNSCC-COM-05.01",
+     "uuid": "36a1e54a-3dac-4972-8731-bc106327070a"
     },
     {
-     "description": "When the project has made a release, all compiled released software\\nassets MUST be delivered with a software bill of materials.\\n",
+     "description": "Applications and workloads are explicitly authorized to communicate with each other \\nusing mutual authentication.\\n",
      "props": [
       {
        "name": "method",
@@ -151,29 +560,17 @@
        {
         "include-controls": [
          {
-          "control-id": "ps.1"
-         },
-         {
-          "control-id": "ps.2"
-         },
-         {
-          "control-id": "ps.3.2"
-         },
-         {
-          "control-id": "pw.4"
-         },
-         {
-          "control-id": "po.3.3"
+          "control-id": "ia-9"
          }
         ]
        }
       ]
      },
-     "title": "OSPS-QA-02.02",
-     "uuid": "e2749f35-1be8-472d-a140-e4eef81d2177"
+     "title": "CNSCC-ACC-02.01",
+     "uuid": "7028ab0a-4f7b-42c8-bfd7-b424c80f15d0"
     },
     {
-     "description": "When the project has made a release comprising multiple source code\\nrepositories, all subprojects MUST enforce security requirements that\\nare as strict or stricter than the primary codebase.\\n",
+     "description": "Branch protection is enabled on the mainline and release branches with force push disabled.\\nThis ensures proper review and verification processes are followed.\\n",
      "props": [
       {
        "name": "method",
@@ -185,29 +582,17 @@
        {
         "include-controls": [
          {
-          "control-id": "po.4.1"
-         },
-         {
-          "control-id": "ps.1"
-         },
-         {
-          "control-id": "ps.2"
-         },
-         {
-          "control-id": "rv.1.2"
-         },
-         {
-          "control-id": "po.3.2"
+          "control-id": "ac-6.3"
          }
         ]
        }
       ]
      },
-     "title": "OSPS-QA-04.02",
-     "uuid": "a4e763dc-91c1-42d8-8d94-e902fedaaadf"
+     "title": "CNSCC-SSC-03.01",
+     "uuid": "870f092f-27dc-44b2-8c56-2ef856ac9351"
     },
     {
-     "description": "While active, project's documentation MUST clearly document when and\\nhow tests are run.\\n",
+     "description": "Both Attribute-Based Access Control (ABAC) and Role-Based Access Control (RBAC) \\nare used to provide comprehensive access control mechanisms.\\n",
      "props": [
       {
        "name": "method",
@@ -219,17 +604,20 @@
        {
         "include-controls": [
          {
-          "control-id": "pw.8.2"
+          "control-id": "ac-3.13"
+         },
+         {
+          "control-id": "ac-3.7"
          }
         ]
        }
       ]
      },
-     "title": "OSPS-QA-06.02",
-     "uuid": "f6baf190-aa61-4823-8303-e4f3767a7fe8"
+     "title": "CNSCC-ACC-10.01",
+     "uuid": "ad484a80-4f1c-40b6-a593-6cefad924fc3"
     },
     {
-     "description": "While active, the project's documentation MUST include a policy that\\nall major changes to the software produced by the project should add\\nor update tests of the functionality in an automated test suite.\\n",
+     "description": "Hashing and checksums are added to blocks, objects or files to detect and recover \\nfrom corrupted data and provide protection against tampering.\\n",
      "props": [
       {
        "name": "method",
@@ -241,17 +629,17 @@
        {
         "include-controls": [
          {
-          "control-id": "pw.8.2"
+          "control-id": "cm-7"
          }
         ]
        }
       ]
      },
-     "title": "OSPS-QA-06.03",
-     "uuid": "47468140-8f72-48dc-b640-c316d9910bf5"
+     "title": "CNSCC-STO-03.01",
+     "uuid": "9804c88f-b751-4bb8-a545-aa092fae26a0"
     },
     {
-     "description": "The version control system MUST contain a publicly readable record of\\nall changes made, who made the changes, and when the changes were\\nmade.\\n",
+     "description": "Authentication and authorization are determined independently to provide \\nbetter security isolation.\\n",
      "props": [
       {
        "name": "method",
@@ -263,29 +651,17 @@
        {
         "include-controls": [
          {
-          "control-id": "ps.1"
-         },
-         {
-          "control-id": "ps.2"
-         },
-         {
-          "control-id": "ps.3"
-         },
-         {
-          "control-id": "pw.1.2"
-         },
-         {
-          "control-id": "pw.2.1"
+          "control-id": "ia-2.6"
          }
         ]
        }
       ]
      },
-     "title": "OSPS-QA-01.02",
-     "uuid": "0624d2bf-0196-4862-b9e7-868bc2aa745d"
+     "title": "CNSCC-ACC-06.01",
+     "uuid": "919dece4-ba4e-46af-996c-3ff751f7437c"
     },
     {
-     "description": "While active, the project documentation MUST contain a list of any\\ncodebases that are considered subprojects.\\n",
+     "description": "Systems processing alerts are periodically tuned for false positives to avoid \\nalert flooding, fatigue, and false negatives after security incidents that were \\nnot detected by the system.\\n",
      "props": [
       {
        "name": "method",
@@ -297,29 +673,17 @@
        {
         "include-controls": [
          {
-          "control-id": "po.3.2"
-         },
-         {
-          "control-id": "po.4.1"
-         },
-         {
-          "control-id": "ps.1"
-         },
-         {
-          "control-id": "ps.2"
-         },
-         {
-          "control-id": "rv.1.2"
+          "control-id": "si-4.13"
          }
         ]
        }
       ]
      },
-     "title": "OSPS-QA-04.01",
-     "uuid": "426b83f5-18a9-4341-81d5-0eb71394d20a"
+     "title": "CNSCC-COM-09.01",
+     "uuid": "f43e6549-1347-4b90-8d78-cef76ba441c7"
     },
     {
-     "description": "When a commit is made to the primary branch, any automated status\\nchecks for commits MUST pass or be manually bypassed.\\n",
+     "description": "SSH keys should be used instead of passwords to provide secure access to source code repositories.\\n",
      "props": [
       {
        "name": "method",
@@ -331,26 +695,17 @@
        {
         "include-controls": [
          {
-          "control-id": "po.4.1"
-         },
-         {
-          "control-id": "ps.1"
-         },
-         {
-          "control-id": "ps.2"
-         },
-         {
-          "control-id": "rv.1.2"
+          "control-id": "ac-1"
          }
         ]
        }
       ]
      },
-     "title": "OSPS-QA-03.01",
-     "uuid": "7cf0c4b0-9e78-4b9d-b4bf-22da8c1e3454"
+     "title": "CNSCC-SSC-11.01",
+     "uuid": "a2bc0137-c097-4474-a2b0-9fe721aeb604"
     },
     {
-     "description": "While active, the version control system MUST NOT contain generated\\nexecutable artifacts.\\n",
+     "description": "Secure Boot with TPM 2.0 or similar control is employed to verify the correct \\nphysical and logical location of compute resources.\\n",
      "props": [
       {
        "name": "method",
@@ -362,20 +717,17 @@
        {
         "include-controls": [
          {
-          "control-id": "ps.1"
-         },
-         {
-          "control-id": "ps.2"
+          "control-id": "si-7.9"
          }
         ]
        }
       ]
      },
-     "title": "OSPS-QA-05.01",
-     "uuid": "b2872dd9-8bd4-44a1-8722-6461383dbb32"
+     "title": "CNSCC-COM-01.01",
+     "uuid": "cb82417f-98cf-4bd9-852f-04fb3b3df215"
     },
     {
-     "description": "While active, the version control system MUST NOT contain unreviewable\\nbinary artifacts.\\n",
+     "description": "Key lifespan is short to minimize the impact of potential key compromise \\nand reduce the attack surface.\\n",
      "props": [
       {
        "name": "method",
@@ -387,20 +739,17 @@
        {
         "include-controls": [
          {
-          "control-id": "ps.1"
-         },
-         {
-          "control-id": "ps.2"
+          "control-id": "sc-12.3"
          }
         ]
        }
       ]
      },
-     "title": "OSPS-QA-05.02",
-     "uuid": "8e75eabb-f262-4a63-a324-d82013ab802e"
+     "title": "CNSCC-ACC-04.01",
+     "uuid": "d636dc06-b2a9-4e88-a937-3f8a728ed105"
     },
     {
-     "description": "While active, the project's source code repository MUST be publicly\\nreadable at a static URL.\\n",
+     "description": "Object level and resource requests and limits are controlled through cgroups.\\nThis helps prevent exhaustion of node and cluster level resources by one misbehaving workload.\\n",
      "props": [
       {
        "name": "method",
@@ -412,29 +761,17 @@
        {
         "include-controls": [
          {
-          "control-id": "ps.1"
-         },
-         {
-          "control-id": "ps.2"
-         },
-         {
-          "control-id": "ps.3"
-         },
-         {
-          "control-id": "pw.1.2"
-         },
-         {
-          "control-id": "pw.2.1"
+          "control-id": "si-7.16"
          }
         ]
        }
       ]
      },
-     "title": "OSPS-QA-01.01",
-     "uuid": "dbe991d4-1137-47a2-a48f-7fc831e852bb"
+     "title": "CNSCC-COM-08.01",
+     "uuid": "98cf6d33-1460-4d09-80eb-39a15abe051e"
     },
     {
-     "description": "Prior to a commit being accepted, the project's CI/CD pipelines MUST\\nrun at least one automated test suite to ensure the changes meet\\nexpectations.\\n",
+     "description": "Secure erasure adhering to OPAL standards is employed for returned or non-functional devices\\nto ensure data cannot be recovered from decommissioned storage.\\n",
      "props": [
       {
        "name": "method",
@@ -446,14 +783,259 @@
        {
         "include-controls": [
          {
-          "control-id": "pw.8.2"
+          "control-id": "sc-28"
          }
         ]
        }
       ]
      },
-     "title": "OSPS-QA-06.01",
-     "uuid": "2339efb6-4232-4889-a5ea-b4d5293581eb"
+     "title": "CNSCC-STO-05.01",
+     "uuid": "8d5c68ec-7c76-4fc2-a986-d3d2f81feec9"
+    },
+    {
+     "description": "Keys are rotated frequently to limit the exposure window in case of key compromise.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "sc-12"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "CNSCC-ACC-03.01",
+     "uuid": "e2fe5135-7e86-4ad4-9811-88699fa4995b"
+    },
+    {
+     "description": "Minimize administrative access to the control plane. Ensure both users and pods \\nhave the minimum necessary access.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "ac-6"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "CNSCC-COM-07.01",
+     "uuid": "4b79e4a9-f036-47c1-8b12-eba119065a4c"
+    },
+    {
+     "description": "API auditing is enabled with a filter for a specific set of API Groups or verbs.\\nAPI audits of the application, kubernetes API server, and kernel should be implemented.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "au-2"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "CNSCC-COM-04.01",
+     "uuid": "1ae4dc9e-011a-47cd-9b8a-96d661466e81"
+    },
+    {
+     "description": "All orchestrator control plane components are configured to communicate via mutual \\nauthentication and certificate validation with a periodically rotated certificate.\\nIn unfederated clusters, the CA should be used exclusively for the current cluster.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "ac-3"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "CNSCC-COM-10.01",
+     "uuid": "893c15bd-ca5c-412f-838e-371faf6bad70"
+    },
+    {
+     "description": "Authentication and authorization are enforced independently to provide \\nbetter security isolation.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "ia-2.6"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "CNSCC-ACC-07.01",
+     "uuid": "8d3db4ae-34b6-4e23-a0eb-48eeef017664"
+    },
+    {
+     "description": "The author(s) of a request may not also be the approver of the request. At least two reviewers \\nwith equal or greater expertise should review \u0026 approve the request.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "sa-11"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "CNSCC-SSC-09.01",
+     "uuid": "09fd6874-97de-482b-8db9-970e21599007"
+    },
+    {
+     "description": "Out-of-band verification of runtime environment security, as defined by execution of policies \\nusing tools such as seccomp, AppArmor, and SELinux, provides defense in depth against attacks \\non build infrastructure.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "cm-3.4"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "CNSCC-SBP-03.01",
+     "uuid": "689d8036-0a00-4f77-98c1-05466a60fdc5"
+    },
+    {
+     "description": "It is recommended to implement a key rotation policy to ensure that compromised keys will cease \\nto be usable after a certain period of time. When a private key is known to have been compromised, \\nit should be revoked and replaced immediately.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "ac-2.1"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "CNSCC-SSC-12.01",
+     "uuid": "62bb4a36-6fcb-4f15-beb4-fb50e72ccd6d"
+    },
+    {
+     "description": "Disparate data sensitive workloads are not run on the same host OS kernel.\\nWorkloads may be separated by running in a separate cluster, on a separate node, \\nor by implementing pods in independent VMs.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "sc-7"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "CNSCC-COM-02.01",
+     "uuid": "722ea435-7c50-4c3a-b015-6edf8a4967ff"
+    },
+    {
+     "description": "Authorization for workloads is granted based on attributes and roles/permissions \\npreviously assigned.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "ac-3.13"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "CNSCC-ACC-09.01",
+     "uuid": "6848bf51-8bdc-4fe9-98e7-551a0d539bee"
+    },
+    {
+     "description": "Monitor and detect any changes to the initial configurations made in runtime.\\nPreventative controls should be the primary control. Detective controls monitoring \\nfilesystem changes should be used to verify primary controls are operating properly.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "cm-2.2"
+         },
+         {
+          "control-id": "cm-3.7"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "CNSCC-COM-03.01",
+     "uuid": "d9579ee4-4116-4d3d-b12e-97892662f5ef"
     }
    ],
    "components": [
@@ -464,157 +1046,517 @@
        "name": "Rule_Id",
        "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
        "remarks": "rule_set_0",
-       "value": "OSPS-QA-01.01"
+       "value": "CNSCC-SSC-01.01"
       },
       {
        "name": "Rule_Description",
        "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
        "remarks": "rule_set_0",
-       "value": "While active, the project's source code repository MUST be publicly\\nreadable at a static URL.\\n"
+       "value": "SCM platforms allow the configuration and restriction of source \\ncode operations on individual branches. Protection rules can be used \\nto enforce the usage of pull requests with specified precondition \\nand approval rules, ensuring that a human code review process is \\nfollowed or an automated status checking of a branch occurs. \\nAdditionally, protected branches can be used to disallow dangerous \\nuse of force pushes, preventing the overwrite of  commit histories and \\npotential obfuscation of code changes.\\n"
       },
       {
        "name": "Rule_Id",
        "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
        "remarks": "rule_set_1",
-       "value": "OSPS-QA-01.02"
+       "value": "CNSCC-SSC-02.01"
       },
       {
        "name": "Rule_Description",
        "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
        "remarks": "rule_set_1",
-       "value": "The version control system MUST contain a publicly readable record of\\nall changes made, who made the changes, and when the changes were\\nmade.\\n"
+       "value": "GPG keys or S/MIME certificates are used to sign the source code.\\nThis ensures authenticity and integrity of commits and tags.\\n"
       },
       {
        "name": "Rule_Id",
        "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
        "remarks": "rule_set_2",
-       "value": "OSPS-QA-02.01"
+       "value": "CNSCC-SSC-03.01"
       },
       {
        "name": "Rule_Description",
        "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
        "remarks": "rule_set_2",
-       "value": "When the package management system supports it, the source code\\nrepository MUST contain a dependency list that accounts for the direct\\nlanguage dependencies.\\n"
+       "value": "Branch protection is enabled on the mainline and release branches with force push disabled.\\nThis ensures proper review and verification processes are followed.\\n"
       },
       {
        "name": "Rule_Id",
        "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
        "remarks": "rule_set_3",
-       "value": "OSPS-QA-02.02"
+       "value": "CNSCC-SSC-04.01"
       },
       {
        "name": "Rule_Description",
        "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
        "remarks": "rule_set_3",
-       "value": "When the project has made a release, all compiled released software\\nassets MUST be delivered with a software bill of materials.\\n"
+       "value": "Implement tooling to detect secrets or to prevent certain files from being pushed which may contain \\nplaintext sensitive materials, such as via a .gitignore and/or .gitattributes file, client-side hook \\n(pre-commit), server-side hook (pre-receive or update), and/or as a step in the CI process.\\n"
       },
       {
        "name": "Rule_Id",
        "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
        "remarks": "rule_set_4",
-       "value": "OSPS-QA-03.01"
+       "value": "CNSCC-SSC-05.01"
       },
       {
        "name": "Rule_Description",
        "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
        "remarks": "rule_set_4",
-       "value": "When a commit is made to the primary branch, any automated status\\nchecks for commits MUST pass or be manually bypassed.\\n"
+       "value": "Implement codeowners (or equivalent) to clearly define who has write access \\nto different parts of the repository.\\n"
       },
       {
        "name": "Rule_Id",
        "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
        "remarks": "rule_set_5",
-       "value": "OSPS-QA-04.01"
+       "value": "CNSCC-SSC-06.01"
       },
       {
        "name": "Rule_Description",
        "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
        "remarks": "rule_set_5",
-       "value": "While active, the project documentation MUST contain a list of any\\ncodebases that are considered subprojects.\\n"
+       "value": "Security specific scans should be performed, including Static Application Security Tests (SAST) \\nand Dynamic Application Security Tests (DAST). Both the coverage and results of these tests \\nshould be published as part of the repository information.\\n"
       },
       {
        "name": "Rule_Id",
        "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
        "remarks": "rule_set_6",
-       "value": "OSPS-QA-04.02"
+       "value": "CNSCC-SSC-07.01"
       },
       {
        "name": "Rule_Description",
        "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
        "remarks": "rule_set_6",
-       "value": "When the project has made a release comprising multiple source code\\nrepositories, all subprojects MUST enforce security requirements that\\nare as strict or stricter than the primary codebase.\\n"
+       "value": "Define configuration options or configuration rules within SCM platforms allow repository \\nadministrators to enforce security, hygiene and operational policies.\\n"
       },
       {
        "name": "Rule_Id",
        "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
        "remarks": "rule_set_7",
-       "value": "OSPS-QA-05.01"
+       "value": "CNSCC-SSC-08.01"
       },
       {
        "name": "Rule_Description",
        "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
        "remarks": "rule_set_7",
-       "value": "While active, the version control system MUST NOT contain generated\\nexecutable artifacts.\\n"
+       "value": "Define roles by using principle of least privileges to provide access based on function \\nsuch as Developer, Maintainer, Owner, Reviewer, Approver, and Guest.\\n"
       },
       {
        "name": "Rule_Id",
        "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
        "remarks": "rule_set_8",
-       "value": "OSPS-QA-05.02"
+       "value": "CNSCC-SSC-09.01"
       },
       {
        "name": "Rule_Description",
        "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
        "remarks": "rule_set_8",
-       "value": "While active, the version control system MUST NOT contain unreviewable\\nbinary artifacts.\\n"
+       "value": "The author(s) of a request may not also be the approver of the request. At least two reviewers \\nwith equal or greater expertise should review \u0026 approve the request.\\n"
       },
       {
        "name": "Rule_Id",
        "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
        "remarks": "rule_set_9",
-       "value": "OSPS-QA-06.01"
+       "value": "CNSCC-SSC-10.01"
       },
       {
        "name": "Rule_Description",
        "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
        "remarks": "rule_set_9",
-       "value": "Prior to a commit being accepted, the project's CI/CD pipelines MUST\\nrun at least one automated test suite to ensure the changes meet\\nexpectations.\\n"
+       "value": "Multi-factor authentication should be enforced for all users accessing source code repositories\\nto prevent unauthorized access.\\n"
       },
       {
        "name": "Rule_Id",
        "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
        "remarks": "rule_set_10",
-       "value": "OSPS-QA-06.02"
+       "value": "CNSCC-SSC-11.01"
       },
       {
        "name": "Rule_Description",
        "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
        "remarks": "rule_set_10",
-       "value": "While active, project's documentation MUST clearly document when and\\nhow tests are run.\\n"
+       "value": "SSH keys should be used instead of passwords to provide secure access to source code repositories.\\n"
       },
       {
        "name": "Rule_Id",
        "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
        "remarks": "rule_set_11",
-       "value": "OSPS-QA-06.03"
+       "value": "CNSCC-SSC-12.01"
       },
       {
        "name": "Rule_Description",
        "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
        "remarks": "rule_set_11",
-       "value": "While active, the project's documentation MUST include a policy that\\nall major changes to the software produced by the project should add\\nor update tests of the functionality in an automated test suite.\\n"
+       "value": "It is recommended to implement a key rotation policy to ensure that compromised keys will cease \\nto be usable after a certain period of time. When a private key is known to have been compromised, \\nit should be revoked and replaced immediately.\\n"
       },
       {
        "name": "Rule_Id",
        "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
        "remarks": "rule_set_12",
-       "value": "OSPS-QA-07.01"
+       "value": "CNSCC-SSC-13.01"
       },
       {
        "name": "Rule_Description",
        "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
        "remarks": "rule_set_12",
-       "value": "When a commit is made to the primary branch, the project's version\\ncontrol system MUST require at least one non-author approval of the\\nchanges before merging.\\n"
+       "value": "Short-life credential issuance encourages the use of fine grained permissions and automation in \\nprovisioning access tokens. For CI/CD pipeline agents, short-lived access tokens should be considered \\ninstead of password-based credentials.\\n"
+      },
+      {
+       "name": "Rule_Id",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_13",
+       "value": "CNSCC-ACC-01.01"
+      },
+      {
+       "name": "Rule_Description",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_13",
+       "value": "Secrets are injected at runtime, such as environment variables or as a file,\\nrather than being embedded in the application code.\\n"
+      },
+      {
+       "name": "Rule_Id",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_14",
+       "value": "CNSCC-ACC-02.01"
+      },
+      {
+       "name": "Rule_Description",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_14",
+       "value": "Applications and workloads are explicitly authorized to communicate with each other \\nusing mutual authentication.\\n"
+      },
+      {
+       "name": "Rule_Id",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_15",
+       "value": "CNSCC-ACC-03.01"
+      },
+      {
+       "name": "Rule_Description",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_15",
+       "value": "Keys are rotated frequently to limit the exposure window in case of key compromise.\\n"
+      },
+      {
+       "name": "Rule_Id",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_16",
+       "value": "CNSCC-ACC-04.01"
+      },
+      {
+       "name": "Rule_Description",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_16",
+       "value": "Key lifespan is short to minimize the impact of potential key compromise \\nand reduce the attack surface.\\n"
+      },
+      {
+       "name": "Rule_Id",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_17",
+       "value": "CNSCC-ACC-05.01"
+      },
+      {
+       "name": "Rule_Description",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_17",
+       "value": "Credentials and keys protecting sensitive workloads (health/finance/etc) are customer managed \\n(e.g. generated and managed independent of a cloud service provider). KMS and HMS are common \\ntechnologies to achieve this. FIPS 140-2 compliance is strongly suggested.\\n"
+      },
+      {
+       "name": "Rule_Id",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_18",
+       "value": "CNSCC-ACC-06.01"
+      },
+      {
+       "name": "Rule_Description",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_18",
+       "value": "Authentication and authorization are determined independently to provide \\nbetter security isolation.\\n"
+      },
+      {
+       "name": "Rule_Id",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_19",
+       "value": "CNSCC-ACC-07.01"
+      },
+      {
+       "name": "Rule_Description",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_19",
+       "value": "Authentication and authorization are enforced independently to provide \\nbetter security isolation.\\n"
+      },
+      {
+       "name": "Rule_Id",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_20",
+       "value": "CNSCC-ACC-08.01"
+      },
+      {
+       "name": "Rule_Description",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_20",
+       "value": "Access control and file permissions are updated in real-time, where possible as \\ncaching may permit unauthorized access.\\n"
+      },
+      {
+       "name": "Rule_Id",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_21",
+       "value": "CNSCC-ACC-09.01"
+      },
+      {
+       "name": "Rule_Description",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_21",
+       "value": "Authorization for workloads is granted based on attributes and roles/permissions \\npreviously assigned.\\n"
+      },
+      {
+       "name": "Rule_Id",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_22",
+       "value": "CNSCC-ACC-10.01"
+      },
+      {
+       "name": "Rule_Description",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_22",
+       "value": "Both Attribute-Based Access Control (ABAC) and Role-Based Access Control (RBAC) \\nare used to provide comprehensive access control mechanisms.\\n"
+      },
+      {
+       "name": "Rule_Id",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_23",
+       "value": "CNSCC-COM-01.01"
+      },
+      {
+       "name": "Rule_Description",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_23",
+       "value": "Secure Boot with TPM 2.0 or similar control is employed to verify the correct \\nphysical and logical location of compute resources.\\n"
+      },
+      {
+       "name": "Rule_Id",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_24",
+       "value": "CNSCC-COM-02.01"
+      },
+      {
+       "name": "Rule_Description",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_24",
+       "value": "Disparate data sensitive workloads are not run on the same host OS kernel.\\nWorkloads may be separated by running in a separate cluster, on a separate node, \\nor by implementing pods in independent VMs.\\n"
+      },
+      {
+       "name": "Rule_Id",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_25",
+       "value": "CNSCC-COM-03.01"
+      },
+      {
+       "name": "Rule_Description",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_25",
+       "value": "Monitor and detect any changes to the initial configurations made in runtime.\\nPreventative controls should be the primary control. Detective controls monitoring \\nfilesystem changes should be used to verify primary controls are operating properly.\\n"
+      },
+      {
+       "name": "Rule_Id",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_26",
+       "value": "CNSCC-COM-04.01"
+      },
+      {
+       "name": "Rule_Description",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_26",
+       "value": "API auditing is enabled with a filter for a specific set of API Groups or verbs.\\nAPI audits of the application, kubernetes API server, and kernel should be implemented.\\n"
+      },
+      {
+       "name": "Rule_Id",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_27",
+       "value": "CNSCC-COM-05.01"
+      },
+      {
+       "name": "Rule_Description",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_27",
+       "value": "Container specific operating systems are in use - a read-only OS with other services disabled.\\nThis provides isolation and resource confinement that enables developers to run isolated \\napplications on a shared host kernel.\\n"
+      },
+      {
+       "name": "Rule_Id",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_28",
+       "value": "CNSCC-COM-06.01"
+      },
+      {
+       "name": "Rule_Description",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_28",
+       "value": "The hardware root of trust is based in a Trusted Platform Module (TPM) or virtual TPM (vTPM).\\nEnsure HW root of trust extends to the host OS kernel, modules, system images, \\ncontainer runtimes, and all software on the system.\\n"
+      },
+      {
+       "name": "Rule_Id",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_29",
+       "value": "CNSCC-COM-07.01"
+      },
+      {
+       "name": "Rule_Description",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_29",
+       "value": "Minimize administrative access to the control plane. Ensure both users and pods \\nhave the minimum necessary access.\\n"
+      },
+      {
+       "name": "Rule_Id",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_30",
+       "value": "CNSCC-COM-08.01"
+      },
+      {
+       "name": "Rule_Description",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_30",
+       "value": "Object level and resource requests and limits are controlled through cgroups.\\nThis helps prevent exhaustion of node and cluster level resources by one misbehaving workload.\\n"
+      },
+      {
+       "name": "Rule_Id",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_31",
+       "value": "CNSCC-COM-09.01"
+      },
+      {
+       "name": "Rule_Description",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_31",
+       "value": "Systems processing alerts are periodically tuned for false positives to avoid \\nalert flooding, fatigue, and false negatives after security incidents that were \\nnot detected by the system.\\n"
+      },
+      {
+       "name": "Rule_Id",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_32",
+       "value": "CNSCC-COM-10.01"
+      },
+      {
+       "name": "Rule_Description",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_32",
+       "value": "All orchestrator control plane components are configured to communicate via mutual \\nauthentication and certificate validation with a periodically rotated certificate.\\nIn unfederated clusters, the CA should be used exclusively for the current cluster.\\n"
+      },
+      {
+       "name": "Rule_Id",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_33",
+       "value": "CNSCC-SBP-01.01"
+      },
+      {
+       "name": "Rule_Description",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_33",
+       "value": "The presence and output of each build step should be attested during the build.\\nThe CNCF maintains the in-toto project that can be used to secure a chain of pipeline \\nstages end-to-end with cryptographic guarantees.\\n"
+      },
+      {
+       "name": "Rule_Id",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_34",
+       "value": "CNSCC-SBP-02.01"
+      },
+      {
+       "name": "Rule_Description",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_34",
+       "value": "The build environment's sources and dependencies must come from a secure, trusted source of truth.\\nChecksums and any signatures should be validated both in the downloading or ingestion process, \\nand again by the build worker.\\n"
+      },
+      {
+       "name": "Rule_Id",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_35",
+       "value": "CNSCC-SBP-03.01"
+      },
+      {
+       "name": "Rule_Description",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_35",
+       "value": "Out-of-band verification of runtime environment security, as defined by execution of policies \\nusing tools such as seccomp, AppArmor, and SELinux, provides defense in depth against attacks \\non build infrastructure.\\n"
+      },
+      {
+       "name": "Rule_Id",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_36",
+       "value": "CNSCC-SBP-04.01"
+      },
+      {
+       "name": "Rule_Description",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_36",
+       "value": "A verifiably reproducible build is a build process where, given a source code commit hash \\nand a set of build instructions, an end user should be able to reproduce the built artefact bit for bit.\\n"
+      },
+      {
+       "name": "Rule_Id",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_37",
+       "value": "CNSCC-SBP-05.01"
+      },
+      {
+       "name": "Rule_Description",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_37",
+       "value": "External requirements and dependencies should be locked to specific versions and verified\\nto ensure build reproducibility and security.\\n"
+      },
+      {
+       "name": "Rule_Id",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_38",
+       "value": "CNSCC-STO-01.01"
+      },
+      {
+       "name": "Rule_Description",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_38",
+       "value": "Storage control plane management interface requires mutual authentication \\nand TLS for connections to ensure secure communication.\\n"
+      },
+      {
+       "name": "Rule_Id",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_39",
+       "value": "CNSCC-STO-02.01"
+      },
+      {
+       "name": "Rule_Description",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_39",
+       "value": "Data availability is achieved through parity or mirroring, erasure coding or replicas\\nto ensure data remains accessible even in case of hardware failures.\\n"
+      },
+      {
+       "name": "Rule_Id",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_40",
+       "value": "CNSCC-STO-03.01"
+      },
+      {
+       "name": "Rule_Description",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_40",
+       "value": "Hashing and checksums are added to blocks, objects or files to detect and recover \\nfrom corrupted data and provide protection against tampering.\\n"
+      },
+      {
+       "name": "Rule_Id",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_41",
+       "value": "CNSCC-STO-04.01"
+      },
+      {
+       "name": "Rule_Description",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_41",
+       "value": "Data backup storage and data source storage should have the same security controls\\nto ensure consistent protection of data across all storage locations.\\n"
+      },
+      {
+       "name": "Rule_Id",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_42",
+       "value": "CNSCC-STO-05.01"
+      },
+      {
+       "name": "Rule_Description",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_42",
+       "value": "Secure erasure adhering to OPAL standards is employed for returned or non-functional devices\\nto ensure data cannot be recovered from decommissioned storage.\\n"
       }
      ],
      "status": {
@@ -622,12 +1564,12 @@
      },
      "title": "GitHub Repository",
      "type": "software",
-     "uuid": "a0fc3d26-2ab4-4aca-927d-063e1238e534"
+     "uuid": "d451f7f1-b34f-4300-8983-70d02e25377b"
     }
    ]
   },
   "metadata": {
-   "last-modified": "2025-09-29T12:42:46.366849179-04:00",
+   "last-modified": "2025-09-30T18:40:20.320243859-04:00",
    "oscal-version": "1.1.3",
    "title": "REPLACE_ME",
    "version": "0.1.0"
@@ -637,47 +1579,119 @@
     {
      "include-controls": [
       {
-       "control-id": "ps.1"
+       "control-id": "ia-2.1"
       },
       {
-       "control-id": "ps.2"
+       "control-id": "ac-2.1"
       },
       {
-       "control-id": "ps.3"
+       "control-id": "ra-5"
       },
       {
-       "control-id": "po.3.3"
+       "control-id": "sc-7"
       },
       {
-       "control-id": "ps.3.2"
+       "control-id": "cm-2.2"
       },
       {
-       "control-id": "pw.4"
+       "control-id": "cm-3.7"
       },
       {
-       "control-id": "rv.1.2"
+       "control-id": "si-7.16"
       },
       {
-       "control-id": "pw.8.2"
+       "control-id": "cm-3.6"
       },
       {
-       "control-id": "pw.1.2"
+       "control-id": "sa-8"
       },
       {
-       "control-id": "pw.2.1"
+       "control-id": "ia-5.7"
       },
       {
-       "control-id": "po.4.1"
+       "control-id": "ac-6"
       },
       {
-       "control-id": "po.3.2"
+       "control-id": "ia-2.12"
+      },
+      {
+       "control-id": "au-2"
+      },
+      {
+       "control-id": "cm-7"
+      },
+      {
+       "control-id": "ac-3"
+      },
+      {
+       "control-id": "si-7"
+      },
+      {
+       "control-id": "ac-3.7"
+      },
+      {
+       "control-id": "cm-3.4"
+      },
+      {
+       "control-id": "si-4.13"
+      },
+      {
+       "control-id": "ac-6.3"
+      },
+      {
+       "control-id": "sa-11"
+      },
+      {
+       "control-id": "ac-1"
+      },
+      {
+       "control-id": "ia-9"
+      },
+      {
+       "control-id": "si-7.9"
+      },
+      {
+       "control-id": "sc-12.3"
+      },
+      {
+       "control-id": "si-4.2"
+      },
+      {
+       "control-id": "cm-2"
+      },
+      {
+       "control-id": "sc-8"
+      },
+      {
+       "control-id": "sa-9"
+      },
+      {
+       "control-id": "pl-1"
+      },
+      {
+       "control-id": "sc-12"
+      },
+      {
+       "control-id": "ia-2.6"
+      },
+      {
+       "control-id": "ac-3.13"
+      },
+      {
+       "control-id": "cm-3.2"
+      },
+      {
+       "control-id": "si-13"
+      },
+      {
+       "control-id": "sc-28"
       }
      ]
     }
    ],
    "links": [
     {
-     "href": "#ec8f4ed5-eb0b-41d5-aa14-b37b7f1f99d8",
+     "href": "#f0f478db-6d25-4673-9d33-d598172974f0",
      "rel": "includes-controls-from-source",
      "text": "The reviewed controls are derived from the linked OSCAL profile."
     }
@@ -687,12 +1701,12 @@
    {
     "associated-activities": [
      {
-      "activity-uuid": "c70f1d0b-c765-4836-9bce-52a34fccdd6c",
+      "activity-uuid": "2888ade4-3fc6-483d-a7a9-dc6ff20a0f9b",
       "subjects": [
        {
         "include-subjects": [
          {
-          "subject-uuid": "a0fc3d26-2ab4-4aca-927d-063e1238e534",
+          "subject-uuid": "d451f7f1-b34f-4300-8983-70d02e25377b",
           "type": "component"
          }
         ],
@@ -701,12 +1715,12 @@
       ]
      },
      {
-      "activity-uuid": "6fadef96-5da8-4978-803a-5ea5e6acd072",
+      "activity-uuid": "9915cb6b-a91a-4f4f-8d72-ce2bc3ea5d74",
       "subjects": [
        {
         "include-subjects": [
          {
-          "subject-uuid": "a0fc3d26-2ab4-4aca-927d-063e1238e534",
+          "subject-uuid": "d451f7f1-b34f-4300-8983-70d02e25377b",
           "type": "component"
          }
         ],
@@ -715,12 +1729,12 @@
       ]
      },
      {
-      "activity-uuid": "e2749f35-1be8-472d-a140-e4eef81d2177",
+      "activity-uuid": "19168922-9c73-4ec7-b613-92ff6559e247",
       "subjects": [
        {
         "include-subjects": [
          {
-          "subject-uuid": "a0fc3d26-2ab4-4aca-927d-063e1238e534",
+          "subject-uuid": "d451f7f1-b34f-4300-8983-70d02e25377b",
           "type": "component"
          }
         ],
@@ -729,12 +1743,12 @@
       ]
      },
      {
-      "activity-uuid": "a4e763dc-91c1-42d8-8d94-e902fedaaadf",
+      "activity-uuid": "2eae22cb-d015-4fdf-9a3b-3e3b46803728",
       "subjects": [
        {
         "include-subjects": [
          {
-          "subject-uuid": "a0fc3d26-2ab4-4aca-927d-063e1238e534",
+          "subject-uuid": "d451f7f1-b34f-4300-8983-70d02e25377b",
           "type": "component"
          }
         ],
@@ -743,12 +1757,12 @@
       ]
      },
      {
-      "activity-uuid": "f6baf190-aa61-4823-8303-e4f3767a7fe8",
+      "activity-uuid": "d020dab0-1b98-44fc-aa9d-56ef28635b74",
       "subjects": [
        {
         "include-subjects": [
          {
-          "subject-uuid": "a0fc3d26-2ab4-4aca-927d-063e1238e534",
+          "subject-uuid": "d451f7f1-b34f-4300-8983-70d02e25377b",
           "type": "component"
          }
         ],
@@ -757,12 +1771,12 @@
       ]
      },
      {
-      "activity-uuid": "47468140-8f72-48dc-b640-c316d9910bf5",
+      "activity-uuid": "b5836ad0-d0b4-49bb-8982-1db07a511738",
       "subjects": [
        {
         "include-subjects": [
          {
-          "subject-uuid": "a0fc3d26-2ab4-4aca-927d-063e1238e534",
+          "subject-uuid": "d451f7f1-b34f-4300-8983-70d02e25377b",
           "type": "component"
          }
         ],
@@ -771,12 +1785,12 @@
       ]
      },
      {
-      "activity-uuid": "0624d2bf-0196-4862-b9e7-868bc2aa745d",
+      "activity-uuid": "55701500-8e21-4c58-bee8-7e8487e97737",
       "subjects": [
        {
         "include-subjects": [
          {
-          "subject-uuid": "a0fc3d26-2ab4-4aca-927d-063e1238e534",
+          "subject-uuid": "d451f7f1-b34f-4300-8983-70d02e25377b",
           "type": "component"
          }
         ],
@@ -785,12 +1799,12 @@
       ]
      },
      {
-      "activity-uuid": "426b83f5-18a9-4341-81d5-0eb71394d20a",
+      "activity-uuid": "9bb01f7b-89cf-4259-ba26-f7695c6db502",
       "subjects": [
        {
         "include-subjects": [
          {
-          "subject-uuid": "a0fc3d26-2ab4-4aca-927d-063e1238e534",
+          "subject-uuid": "d451f7f1-b34f-4300-8983-70d02e25377b",
           "type": "component"
          }
         ],
@@ -799,12 +1813,12 @@
       ]
      },
      {
-      "activity-uuid": "7cf0c4b0-9e78-4b9d-b4bf-22da8c1e3454",
+      "activity-uuid": "6412567b-a065-45c5-8cf5-dd36f865f532",
       "subjects": [
        {
         "include-subjects": [
          {
-          "subject-uuid": "a0fc3d26-2ab4-4aca-927d-063e1238e534",
+          "subject-uuid": "d451f7f1-b34f-4300-8983-70d02e25377b",
           "type": "component"
          }
         ],
@@ -813,12 +1827,12 @@
       ]
      },
      {
-      "activity-uuid": "b2872dd9-8bd4-44a1-8722-6461383dbb32",
+      "activity-uuid": "3f9565aa-10b2-42fc-a961-6d4767e104d2",
       "subjects": [
        {
         "include-subjects": [
          {
-          "subject-uuid": "a0fc3d26-2ab4-4aca-927d-063e1238e534",
+          "subject-uuid": "d451f7f1-b34f-4300-8983-70d02e25377b",
           "type": "component"
          }
         ],
@@ -827,12 +1841,12 @@
       ]
      },
      {
-      "activity-uuid": "8e75eabb-f262-4a63-a324-d82013ab802e",
+      "activity-uuid": "61f855db-be8a-4631-bf0a-da0731555ace",
       "subjects": [
        {
         "include-subjects": [
          {
-          "subject-uuid": "a0fc3d26-2ab4-4aca-927d-063e1238e534",
+          "subject-uuid": "d451f7f1-b34f-4300-8983-70d02e25377b",
           "type": "component"
          }
         ],
@@ -841,12 +1855,12 @@
       ]
      },
      {
-      "activity-uuid": "dbe991d4-1137-47a2-a48f-7fc831e852bb",
+      "activity-uuid": "62e8be16-2272-4e03-b1fa-5762db15b6ea",
       "subjects": [
        {
         "include-subjects": [
          {
-          "subject-uuid": "a0fc3d26-2ab4-4aca-927d-063e1238e534",
+          "subject-uuid": "d451f7f1-b34f-4300-8983-70d02e25377b",
           "type": "component"
          }
         ],
@@ -855,12 +1869,432 @@
       ]
      },
      {
-      "activity-uuid": "2339efb6-4232-4889-a5ea-b4d5293581eb",
+      "activity-uuid": "b0defbfd-5b48-446c-bd02-5675ae9ab3af",
       "subjects": [
        {
         "include-subjects": [
          {
-          "subject-uuid": "a0fc3d26-2ab4-4aca-927d-063e1238e534",
+          "subject-uuid": "d451f7f1-b34f-4300-8983-70d02e25377b",
+          "type": "component"
+         }
+        ],
+        "type": "component"
+       }
+      ]
+     },
+     {
+      "activity-uuid": "5d5f8f87-163f-438c-9dea-57ee2576514b",
+      "subjects": [
+       {
+        "include-subjects": [
+         {
+          "subject-uuid": "d451f7f1-b34f-4300-8983-70d02e25377b",
+          "type": "component"
+         }
+        ],
+        "type": "component"
+       }
+      ]
+     },
+     {
+      "activity-uuid": "5656da0c-5e05-4a5a-a59f-0d53848d9880",
+      "subjects": [
+       {
+        "include-subjects": [
+         {
+          "subject-uuid": "d451f7f1-b34f-4300-8983-70d02e25377b",
+          "type": "component"
+         }
+        ],
+        "type": "component"
+       }
+      ]
+     },
+     {
+      "activity-uuid": "d343393e-ef5d-48ae-9cd1-4c30115e2526",
+      "subjects": [
+       {
+        "include-subjects": [
+         {
+          "subject-uuid": "d451f7f1-b34f-4300-8983-70d02e25377b",
+          "type": "component"
+         }
+        ],
+        "type": "component"
+       }
+      ]
+     },
+     {
+      "activity-uuid": "30be25ff-024a-45e1-b561-35a452f0e81d",
+      "subjects": [
+       {
+        "include-subjects": [
+         {
+          "subject-uuid": "d451f7f1-b34f-4300-8983-70d02e25377b",
+          "type": "component"
+         }
+        ],
+        "type": "component"
+       }
+      ]
+     },
+     {
+      "activity-uuid": "7a89b669-e803-4278-bfee-aa7bee443bb9",
+      "subjects": [
+       {
+        "include-subjects": [
+         {
+          "subject-uuid": "d451f7f1-b34f-4300-8983-70d02e25377b",
+          "type": "component"
+         }
+        ],
+        "type": "component"
+       }
+      ]
+     },
+     {
+      "activity-uuid": "d4dbfddf-1807-4abb-b55d-c0ecab834b19",
+      "subjects": [
+       {
+        "include-subjects": [
+         {
+          "subject-uuid": "d451f7f1-b34f-4300-8983-70d02e25377b",
+          "type": "component"
+         }
+        ],
+        "type": "component"
+       }
+      ]
+     },
+     {
+      "activity-uuid": "6766ab45-3c97-4aae-938f-2942fe782594",
+      "subjects": [
+       {
+        "include-subjects": [
+         {
+          "subject-uuid": "d451f7f1-b34f-4300-8983-70d02e25377b",
+          "type": "component"
+         }
+        ],
+        "type": "component"
+       }
+      ]
+     },
+     {
+      "activity-uuid": "36a1e54a-3dac-4972-8731-bc106327070a",
+      "subjects": [
+       {
+        "include-subjects": [
+         {
+          "subject-uuid": "d451f7f1-b34f-4300-8983-70d02e25377b",
+          "type": "component"
+         }
+        ],
+        "type": "component"
+       }
+      ]
+     },
+     {
+      "activity-uuid": "7028ab0a-4f7b-42c8-bfd7-b424c80f15d0",
+      "subjects": [
+       {
+        "include-subjects": [
+         {
+          "subject-uuid": "d451f7f1-b34f-4300-8983-70d02e25377b",
+          "type": "component"
+         }
+        ],
+        "type": "component"
+       }
+      ]
+     },
+     {
+      "activity-uuid": "870f092f-27dc-44b2-8c56-2ef856ac9351",
+      "subjects": [
+       {
+        "include-subjects": [
+         {
+          "subject-uuid": "d451f7f1-b34f-4300-8983-70d02e25377b",
+          "type": "component"
+         }
+        ],
+        "type": "component"
+       }
+      ]
+     },
+     {
+      "activity-uuid": "ad484a80-4f1c-40b6-a593-6cefad924fc3",
+      "subjects": [
+       {
+        "include-subjects": [
+         {
+          "subject-uuid": "d451f7f1-b34f-4300-8983-70d02e25377b",
+          "type": "component"
+         }
+        ],
+        "type": "component"
+       }
+      ]
+     },
+     {
+      "activity-uuid": "9804c88f-b751-4bb8-a545-aa092fae26a0",
+      "subjects": [
+       {
+        "include-subjects": [
+         {
+          "subject-uuid": "d451f7f1-b34f-4300-8983-70d02e25377b",
+          "type": "component"
+         }
+        ],
+        "type": "component"
+       }
+      ]
+     },
+     {
+      "activity-uuid": "919dece4-ba4e-46af-996c-3ff751f7437c",
+      "subjects": [
+       {
+        "include-subjects": [
+         {
+          "subject-uuid": "d451f7f1-b34f-4300-8983-70d02e25377b",
+          "type": "component"
+         }
+        ],
+        "type": "component"
+       }
+      ]
+     },
+     {
+      "activity-uuid": "f43e6549-1347-4b90-8d78-cef76ba441c7",
+      "subjects": [
+       {
+        "include-subjects": [
+         {
+          "subject-uuid": "d451f7f1-b34f-4300-8983-70d02e25377b",
+          "type": "component"
+         }
+        ],
+        "type": "component"
+       }
+      ]
+     },
+     {
+      "activity-uuid": "a2bc0137-c097-4474-a2b0-9fe721aeb604",
+      "subjects": [
+       {
+        "include-subjects": [
+         {
+          "subject-uuid": "d451f7f1-b34f-4300-8983-70d02e25377b",
+          "type": "component"
+         }
+        ],
+        "type": "component"
+       }
+      ]
+     },
+     {
+      "activity-uuid": "cb82417f-98cf-4bd9-852f-04fb3b3df215",
+      "subjects": [
+       {
+        "include-subjects": [
+         {
+          "subject-uuid": "d451f7f1-b34f-4300-8983-70d02e25377b",
+          "type": "component"
+         }
+        ],
+        "type": "component"
+       }
+      ]
+     },
+     {
+      "activity-uuid": "d636dc06-b2a9-4e88-a937-3f8a728ed105",
+      "subjects": [
+       {
+        "include-subjects": [
+         {
+          "subject-uuid": "d451f7f1-b34f-4300-8983-70d02e25377b",
+          "type": "component"
+         }
+        ],
+        "type": "component"
+       }
+      ]
+     },
+     {
+      "activity-uuid": "98cf6d33-1460-4d09-80eb-39a15abe051e",
+      "subjects": [
+       {
+        "include-subjects": [
+         {
+          "subject-uuid": "d451f7f1-b34f-4300-8983-70d02e25377b",
+          "type": "component"
+         }
+        ],
+        "type": "component"
+       }
+      ]
+     },
+     {
+      "activity-uuid": "8d5c68ec-7c76-4fc2-a986-d3d2f81feec9",
+      "subjects": [
+       {
+        "include-subjects": [
+         {
+          "subject-uuid": "d451f7f1-b34f-4300-8983-70d02e25377b",
+          "type": "component"
+         }
+        ],
+        "type": "component"
+       }
+      ]
+     },
+     {
+      "activity-uuid": "e2fe5135-7e86-4ad4-9811-88699fa4995b",
+      "subjects": [
+       {
+        "include-subjects": [
+         {
+          "subject-uuid": "d451f7f1-b34f-4300-8983-70d02e25377b",
+          "type": "component"
+         }
+        ],
+        "type": "component"
+       }
+      ]
+     },
+     {
+      "activity-uuid": "4b79e4a9-f036-47c1-8b12-eba119065a4c",
+      "subjects": [
+       {
+        "include-subjects": [
+         {
+          "subject-uuid": "d451f7f1-b34f-4300-8983-70d02e25377b",
+          "type": "component"
+         }
+        ],
+        "type": "component"
+       }
+      ]
+     },
+     {
+      "activity-uuid": "1ae4dc9e-011a-47cd-9b8a-96d661466e81",
+      "subjects": [
+       {
+        "include-subjects": [
+         {
+          "subject-uuid": "d451f7f1-b34f-4300-8983-70d02e25377b",
+          "type": "component"
+         }
+        ],
+        "type": "component"
+       }
+      ]
+     },
+     {
+      "activity-uuid": "893c15bd-ca5c-412f-838e-371faf6bad70",
+      "subjects": [
+       {
+        "include-subjects": [
+         {
+          "subject-uuid": "d451f7f1-b34f-4300-8983-70d02e25377b",
+          "type": "component"
+         }
+        ],
+        "type": "component"
+       }
+      ]
+     },
+     {
+      "activity-uuid": "8d3db4ae-34b6-4e23-a0eb-48eeef017664",
+      "subjects": [
+       {
+        "include-subjects": [
+         {
+          "subject-uuid": "d451f7f1-b34f-4300-8983-70d02e25377b",
+          "type": "component"
+         }
+        ],
+        "type": "component"
+       }
+      ]
+     },
+     {
+      "activity-uuid": "09fd6874-97de-482b-8db9-970e21599007",
+      "subjects": [
+       {
+        "include-subjects": [
+         {
+          "subject-uuid": "d451f7f1-b34f-4300-8983-70d02e25377b",
+          "type": "component"
+         }
+        ],
+        "type": "component"
+       }
+      ]
+     },
+     {
+      "activity-uuid": "689d8036-0a00-4f77-98c1-05466a60fdc5",
+      "subjects": [
+       {
+        "include-subjects": [
+         {
+          "subject-uuid": "d451f7f1-b34f-4300-8983-70d02e25377b",
+          "type": "component"
+         }
+        ],
+        "type": "component"
+       }
+      ]
+     },
+     {
+      "activity-uuid": "62bb4a36-6fcb-4f15-beb4-fb50e72ccd6d",
+      "subjects": [
+       {
+        "include-subjects": [
+         {
+          "subject-uuid": "d451f7f1-b34f-4300-8983-70d02e25377b",
+          "type": "component"
+         }
+        ],
+        "type": "component"
+       }
+      ]
+     },
+     {
+      "activity-uuid": "722ea435-7c50-4c3a-b015-6edf8a4967ff",
+      "subjects": [
+       {
+        "include-subjects": [
+         {
+          "subject-uuid": "d451f7f1-b34f-4300-8983-70d02e25377b",
+          "type": "component"
+         }
+        ],
+        "type": "component"
+       }
+      ]
+     },
+     {
+      "activity-uuid": "6848bf51-8bdc-4fe9-98e7-551a0d539bee",
+      "subjects": [
+       {
+        "include-subjects": [
+         {
+          "subject-uuid": "d451f7f1-b34f-4300-8983-70d02e25377b",
+          "type": "component"
+         }
+        ],
+        "type": "component"
+       }
+      ]
+     },
+     {
+      "activity-uuid": "d9579ee4-4116-4d3d-b12e-97892662f5ef",
+      "subjects": [
+       {
+        "include-subjects": [
+         {
+          "subject-uuid": "d451f7f1-b34f-4300-8983-70d02e25377b",
           "type": "component"
          }
         ],
@@ -874,7 +2308,7 @@
      {
       "include-subjects": [
        {
-        "subject-uuid": "a0fc3d26-2ab4-4aca-927d-063e1238e534",
+        "subject-uuid": "d451f7f1-b34f-4300-8983-70d02e25377b",
         "type": "component"
        }
       ],
@@ -883,9 +2317,9 @@
     ],
     "title": "Automated Assessment",
     "type": "action",
-    "uuid": "f3c1afd1-cb31-4e40-9232-7f0edd6a4807"
+    "uuid": "29a4439c-a1af-4917-952e-c04066f62bc9"
    }
   ],
-  "uuid": "57b93a06-fe41-4a67-96e1-b811f4440534"
+  "uuid": "c001cc7f-36b6-496f-be7f-fd4a7321b79e"
  }
 }
