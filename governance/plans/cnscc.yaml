@@ -1,0 +1,14 @@
+metadata:
+  id: CNSSC-Plan
+  version: 0.1.0
+  evaluator:
+    name: opa
+plans:
+  - control-id: CNSCC-SSC-01
+    assessments:
+      - requirement-id: CNSCC-SSC-01.01
+        procedures:
+          - id: "github_branch_protection"
+            name: "GitHub API Verifications for Branch Protection"
+            description: |
+              The procedure performs an automated check of the branch ruleset state in GitHub by creating a snapshot of the state from the API and checks the output with an OPA policy to ensure the outcome meets the baseline requirement.

@@ -94,8 +94,8 @@ func NewPlanCommand() *cobra.Command {
 	}
 
 	flags := command.Flags()
-	flags.StringVarP(&catalogPath, "catalog-path", "c", "./governance/catalogs/osps.yaml", "Path to L2 Catalog to transform")
-	flags.StringVarP(&evaluationsPath, "evaluation-path", "e", "./governance/plans/osps.yaml", "Path to Layer 4 Evaluation Plan to transform")
+	flags.StringVarP(&catalogPath, "catalog-path", "c", "./governance/catalogs/cnscc.yaml", "Path to L2 Catalog to transform")
+	flags.StringVarP(&evaluationsPath, "evaluation-path", "e", "./governance/plans/cnscc.yaml", "Path to Layer 4 Evaluation Plan to transform")
 	flags.StringVarP(&targetComponent, "target-component", "t", "", "Title for target component for evaluation")
 	flags.StringVar(&componentType, "component-type", "software", "Component type (based on valid OSCAL component types)")
 	flags.StringVarP(&policyPath, "policy-path", "p", "./governance/policy.yaml", "Path to Layer 3 policy")

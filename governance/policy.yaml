@@ -7,32 +7,24 @@ metadata:
   organization-id: "org-67890"
   author-notes: "Updated to align with SSDF recommendations"
   mapping-references:
-    - id: SSDF
-      title: NIST Secure Software Development Framework (SP 800-218)
-      version: "1.1"
-      url: https://csrc.nist.gov/pubs/sp/800/218/final
+    - id: 800-53
+      title: NIST Special Publication 800-53 - Cybersecurity Supply Chain Risk Management Practices for Systems and Organizations
+      version: r5
+      url: https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-53r5.pdf
       description: |
-        The Secure Software Development Framework (SSDF) is a set of fundamental,
-        sound, and secure software development practices based on established
-        secure software development practice documents from organizations such as
-        BSA, OWASP, and SAFECode. Few software development life cycle (SDLC) models
-        explicitly address software security in detail, so practices like those in
-        the SSDF need to be added to and integrated with each SDLC implementation.
-        Following the SSDF practices should help software producers reduce the
-        number of vulnerabilities in released software, reduce the potential impact
-        of the exploitation of undetected or unaddressed vulnerabilities, and
-        address the root causes of vulnerabilities to prevent recurrences. Also,
-        because the SSDF provides a common language for describing secure software
-        development practices, software producers and acquirers can use it to foster
-        their communications for procurement processes and other management activities.
-    - id: OSPS-B
-      title: Open Source Project Security Baseline
-      version: "2025-02-25"
-      url: https://baseline.openssf.org/versions/2025-02-25.html
+        This publication provides a catalog of security and privacy controls for information systems and organizations to protect 
+        organizational operations and assets, individuals, other organizations, and the Nation from a diverse set of threats and risks, 
+        including hostile attacks, human errors, natural disasters, structural failures, foreign intelligence entities, and privacy risks.
+    - id: CNSCC
+      title: Cloud Native Security Controls Catalog
+      version: "1.0"
+      url: https://github.com/cloud-native-security-controls/controls-catalog/blob/main/controls/controls_catalog.csv
       description: |
-        The Open Source Project Security (OSPS) Baseline is a set of security criteria that projects 
-        should meet to demonstrate a strong security posture. The controls are organized by maturity level 
-        and category. In the detailed subsections you will find the control, rationale, and details notes.
+        The controls catalog ensures the usability of CNCF deliverables by GRC professionals and Auditors of Cloud Native systems. 
+        The primary goal is to support quickly identifying the controls status of cloud-native environments, and 
+        methods to share the output of those assessments in machine readable formats (OSCAL, JSON, etc.).
+        These outputs should also map to existing frameworks and regulations (CSA, NIST, FedRAMP, SOX, GDPR, etc.), 
+        and provide guidance to properly validate and verify administrative and technical controls.
 
   contacts:
     author:
@@ -53,29 +45,30 @@ metadata:
 
 
 guidance-references:
-  - reference-id: "SSDF"
+  - reference-id: "800-53"
     in-scope:
       boundaries: ["United States"]
     out-of-scope:
       boundaries: ["International"]
 
 control-references:
-  - reference-id: "OSPS-B"
+  - reference-id: "CNSCC"
     in-scope:
-      technologies: ["Open Source Projects"]
+      technologies: ["Source Code Management Platform"]
       providers: ["GitHub"]
     assessment-requirement-modifications:
-      - target-id: "OSPS-QA-07.01"
-        modification-type: "increase-strictness"
+      - target-id: "CNSCC-SSC-01.01"
+        modification-type: "clarify"
         modification-rationale: "Requires two approvals from non-author contributors"
         text: |
-          When a commit is made to the primary branch, the project's version
-          control system MUST require at least **two** non-author approval of the
-          changes before merging.
+          SCM platforms allow the configuration and restriction of source code 
+          operations on individual branches. Protection rules can be used to enforce 
+          the usage of pull requests with specified precondition and approval rules, 
+          ensuring that a human code review process is followed or an automated status 
+          checking of a branch occurs. Additionally, protected branches can be used to 
+          disallow dangerous use of force pushes, preventing the overwrite of commit 
+          histories and potential obfuscation of code changes.
         recommendation: |
-          Configure the project's version control system to require at least **two**
+          Configure the project's branch protection rules to require at least **two**
           non-author approval of changes before merging into the release or
-          primary branch. This can be achieved by requiring a pull request to be
-          reviewed and approved by at least **two** other collaborators before it can
-          be merged.
-
+          primary branch.

@@ -47,7 +47,7 @@ jobs:
 
       - name: Create Assessment Plan
         run: |
-          go run ./cmd/transformer-kit plan -t "GitHub Repository" -r SSDF > "${AP}"
+          go run ./cmd/transformer-kit plan -t "GitHub Repository" -r 800-53 > "${AP}"
 
       - name: Generate policy bundle
         run: c2pcli oscal2policy -c configs/c2p-config.yaml -a "${AP}"
