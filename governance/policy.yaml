@@ -8,13 +8,10 @@ metadata:
   author-notes: "Updated to align with SSDF recommendations"
   mapping-references:
     - id: 800-53
-      title: NIST Special Publication 800-53 - Cybersecurity Supply Chain Risk Management Practices for Systems and Organizations
-      version: r5
-      url: https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-53r5.pdf
-      description: |
-        This publication provides a catalog of security and privacy controls for information systems and organizations to protect 
-        organizational operations and assets, individuals, other organizations, and the Nation from a diverse set of threats and risks, 
-        including hostile attacks, human errors, natural disasters, structural failures, foreign intelligence entities, and privacy risks.
+      title: "NIST Special Publication 800-53"
+      version: "Rev. 5"
+      description: "Security and Privacy Controls for Federal Information Systems"
+      url: "https://csrc.nist.gov/publications/detail/sp/800-53/rev-5/final"
     - id: CNSCC
       title: Cloud Native Security Controls Catalog
       version: "1.0"
@@ -43,13 +40,20 @@ metadata:
         affiliation: "Engineering"
         email: "vp-eng@company.com"
 
+scope:
+  boundaries:
+    - "United States"
+  technologies:
+    - "Cloud Computing"
+  providers:
+    - "Amazon Web Services"
+    - "GitHub"
+
 
 guidance-references:
   - reference-id: "800-53"
     in-scope:
       boundaries: ["United States"]
-    out-of-scope:
-      boundaries: ["International"]
 
 control-references:
   - reference-id: "CNSCC"

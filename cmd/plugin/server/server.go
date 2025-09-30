@@ -42,8 +42,6 @@ func (p *Plugin) Configure(_ context.Context, m map[string]string) error {
 	return p.config.Validate()
 }
 
-// TODO: Fix
-
 func (p *Plugin) Generate(ctx context.Context, pl policy.Policy) error {
 	composer := server.NewComposer(p.config.PolicyTemplates, p.config.PolicyOutput)
 	if err := composer.GeneratePolicySet(pl, *p.config); err != nil {
@@ -56,7 +54,6 @@ func (p *Plugin) Generate(ctx context.Context, pl policy.Policy) error {
 			return fmt.Errorf("error creating policy bundle: %w", err)
 		}
 	}
-
 	return nil
 }
 
