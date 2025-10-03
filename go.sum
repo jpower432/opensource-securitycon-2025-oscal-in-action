@@ -31,10 +31,10 @@ github.com/cespare/xxhash/v2 v2.3.0 h1:UL815xU9SqsFlibzuggzjXhog7bL6oX9BbNZnL2UF
 github.com/cespare/xxhash/v2 v2.3.0/go.mod h1:VGX0DQ3Q6kWi7AoAeZDth3/j3BFtOZR5XLFGgcrjCOs=
 github.com/complytime/compliance-to-policy-plugins/opa-plugin v0.0.0-20250908221342-1d38eabbee87 h1:XYis7/Lo4eFA/m55af9u+C8Uhm2BDCdMmrLpKvHDWQY=
 github.com/complytime/compliance-to-policy-plugins/opa-plugin v0.0.0-20250908221342-1d38eabbee87/go.mod h1:CM06AgMkEuGBAXE04KEk0w43Ld8ObaiJsU7qrTgs+X4=
-github.com/complytime/complybeacon/proofwatch v0.0.0-20250906220442-88c41889bd41 h1:3NOr0iOJ0xzZJuiQhVFhoAbhFvywtL6feZnWjLk0hcg=
-github.com/complytime/complybeacon/proofwatch v0.0.0-20250906220442-88c41889bd41/go.mod h1:DLocW8ELQ0IPsfQbfjnYOHI6RqgQ26HHk7VNoHpBSh4=
-github.com/complytime/gemara2oscal v0.0.0-20250927000700-b0401d337e6b h1:tW4r99jsvoXbMiav6Lw2bCUchqFeals7IZTuDpvikYs=
-github.com/complytime/gemara2oscal v0.0.0-20250927000700-b0401d337e6b/go.mod h1:sg+uwZorJtHj7O3Fz3Y1tTm3fPj1I4D1kLhL5qh+JcY=
+github.com/complytime/complybeacon/proofwatch v0.0.0-20251002231626-9cd3296e7ad2 h1:CKnxjg1UKwWWxZFzKF9W8GjxRbwXDwcsF/gO94FMjRc=
+github.com/complytime/complybeacon/proofwatch v0.0.0-20251002231626-9cd3296e7ad2/go.mod h1:pekOQ9oaMvIMU7sX9oYNsQ72JRImIRCUmRsnStw0m0k=
+github.com/complytime/gemara2oscal v0.0.0-20251002233905-55d07434b5ad h1:YrBRdbcJJKu5J/FQvv2xY1WquJfza+eJJPV3ofNnC3A=
+github.com/complytime/gemara2oscal v0.0.0-20251002233905-55d07434b5ad/go.mod h1:V6PukQN6Umj8sQnnukqQE0yKcQLvGFkQ5/Ea68EEIb4=
 github.com/coreos/go-semver v0.3.1 h1:yi21YpKnrx1gt5R+la8n5WgS0kCrsPp33dmEyHReZr4=
 github.com/coreos/go-semver v0.3.1/go.mod h1:irMmmIw/7yzSRPWryHsK7EYSg09caPQL03VsM8rvUec=
 github.com/coreos/go-systemd/v22 v22.5.0 h1:RrqgGjYQKalulkV8NGVIfkXQf6YYmOyiJKk8iXXhfZs=
@@ -185,8 +185,8 @@ github.com/open-policy-agent/opa v1.7.1 h1:bhA2UGq5oS25471WB9aCJBWEp5/7WK+Nyb2PM
 github.com/open-policy-agent/opa v1.7.1/go.mod h1:7cPuErOAt7k/oVWAVJnxqAC6mwArrAazkvk0RXiih2A=
 github.com/oscal-compass/compliance-to-policy-go/v2 v2.0.0-alpha.4 h1:ZELJtsHob+ZhOv07QclJJ1zeD3HJKYXvcrrVGlIBtmE=
 github.com/oscal-compass/compliance-to-policy-go/v2 v2.0.0-alpha.4/go.mod h1:758YLiUgNgYyXzGN0Fw5cSKAW+40rAuVilf47GBM04Y=
-github.com/oscal-compass/oscal-sdk-go v0.0.7 h1:O6xdLRM5qv+NlGaypWjLOELZsbEk0YSWBIKLttWPgvE=
-github.com/oscal-compass/oscal-sdk-go v0.0.7/go.mod h1:+8uyfcY5YkpB2CUXEeVZnWmSwi8Po5MV5yflLPDjRKE=
+github.com/oscal-compass/oscal-sdk-go v0.0.8 h1:9nVh/WLj8gqLKEDFBgc+XT4VUSwKROG5KYuF6exOtmM=
+github.com/oscal-compass/oscal-sdk-go v0.0.8/go.mod h1:+8uyfcY5YkpB2CUXEeVZnWmSwi8Po5MV5yflLPDjRKE=
 github.com/otiai10/copy v1.14.1 h1:5/7E6qsUMBaH5AnQ0sSLzzTg1oTECmcCmT6lvF45Na8=
 github.com/otiai10/copy v1.14.1/go.mod h1:oQwrEDDOci3IM8dJF0d8+jnbfPDllW6vUjNc3DoZm9I=
 github.com/otiai10/mint v1.6.3 h1:87qsV/aw1F5as1eH1zS/yqHY85ANKVMgkDrf9rcxbQs=

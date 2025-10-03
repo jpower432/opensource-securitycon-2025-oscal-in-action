@@ -31,6 +31,10 @@ go.work.sum
 .idea/
 .vscode/
 
+# Test artifacts
 c2p-plugins/
 policies/
 policy-results/
+output.json
+assessment-results.json
+catalog.json

@@ -32,7 +32,7 @@
        "name": "Check_Description",
        "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
        "remarks": "rule_set_0",
-       "value": "The procedure performs an automated check of the branch ruleset state in GitHub by creating a snapshot of the state from the API and checks the output with an OPA policy to ensure the outcome meets the baseline requirement.\n"
+       "value": "The procedure performs an automated check of the branch ruleset state in GitHub by creating a snapshot of the state from the API and checks the output with an OPA policy to ensure the outcome meets the baseline requirement."
       }
      ],
      "status": {
