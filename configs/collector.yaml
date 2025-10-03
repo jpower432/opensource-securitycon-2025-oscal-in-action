@@ -11,22 +11,32 @@
 
     processors:
       batch:
-      transform:
-        error_mode: ignore
-        log_statements:
-          - context: log
-            conditions:
-              - body != nil and Substring(body, 0, 2) == "{\""
-            statements:
-              - merge_maps(cache, ParseJSON(body), "upsert")
-              - set(observed_time, Now()) where observed_time_unix_nano == 0
-              - set(time, observed_time) where time_unix_nano == 0
+      resourcedetection:
+        detectors: ["env", "system"]
+        override: false
+
 
     exporters:
       debug:
         verbosity: detailed
+      #otlphttp/logs:
+      #  endpoint: "http://loki:3100/otlp"
+      #  tls:
+      #    insecure: true
+      otlphttp/grafana_cloud:
+        endpoint: "${env:GRAFANA_CLOUD_OTLP_ENDPOINT}"
+        auth:
+          authenticator: basicauth/grafana_cloud
+
+    extensions:
+      basicauth/grafana_cloud:
+        client_auth:
+          username: "${env:GRAFANA_CLOUD_INSTANCE_ID}"
+          password: "${env:GRAFANA_CLOUD_API_KEY}"
 
     service:
+      extensions:
+        [ basicauth/grafana_cloud ]
       pipelines:
         traces:
           receivers: [otlp]
@@ -37,9 +47,8 @@
           processors: [ batch ]
           exporters: [ debug ]
         logs:
-          # TODO: Grafana Cloud Free Tier
           receivers: [ otlp ]
-          processors: [ batch, transform ]
-          exporters: [ debug ]
+          processors: [  resourcedetection, batch ]
+          exporters: [ debug, otlphttp/grafana_cloud ]
 
 
