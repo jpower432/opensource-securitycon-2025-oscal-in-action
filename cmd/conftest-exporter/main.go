@@ -59,7 +59,7 @@ func main() {
 		}
 	}()
 
-	watcher, err := proofwatch.NewProofWatch("conftest-exporter", meter)
+	watcher, err := proofwatch.NewProofWatch()
 	if err != nil {
 		log.Fatal(err.Error())
 	}

@@ -73,6 +73,11 @@ runs:
               "description": "A bundle revision if a bundle is created.",
               "required": false,
               "default": "1.0"
+            },
+            {
+              "name": "loki-url",
+              "description": "A URL for the Loki instance endpoint to configure the client",
+              "required": true
             }
           ]
         }

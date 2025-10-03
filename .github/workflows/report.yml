@@ -47,4 +47,4 @@ jobs:
       - name: Summary
         run: |
           wget https://raw.githubusercontent.com/usnistgov/oscal-content/refs/heads/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json -O catalog.json
-          c2pcli oscal2posture -c configs/c2p-config.yaml -r assessment-results.json -d "${AP}" --catalog catalog.json >> $GITHUB_STEP_SUMMARY
+          c2pcli oscal2posture -c configs/c2p-config.yaml -r assessment-results.json -a "${AP}" --catalog catalog.json >> $GITHUB_STEP_SUMMARY

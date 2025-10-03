@@ -46,7 +46,7 @@ func (f ConftestFinding) ToOCSF(filename string) (proofwatch.Evidence, error) {
 	unknown := "unknown"
 	unknownID := int32(0)
 
-	uid := "conftext-exporter"
+	uid := "conftest-exporter"
 	activity := ocsf.ScanActivity{
 		ActivityId:   int32(activityID),
 		ActivityName: &activityName,

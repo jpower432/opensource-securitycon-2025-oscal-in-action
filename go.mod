@@ -3,8 +3,10 @@ module github.com/jpower432/opensource-securitycon-2025-oscal-in-action
 go 1.24.6
 
 require (
+	github.com/Santiago-Labs/go-ocsf v0.1.1-0.20250729170529-8b19b43949a6
 	github.com/complytime/compliance-to-policy-plugins/opa-plugin v0.0.0-20250908221342-1d38eabbee87
-	github.com/complytime/gemara2oscal v0.0.0-20250927000700-b0401d337e6b
+	github.com/complytime/complybeacon/proofwatch v0.0.0-20251002231626-9cd3296e7ad2
+	github.com/complytime/gemara2oscal v0.0.0-20251002233905-55d07434b5ad
 	github.com/defenseunicorns/go-oscal v0.7.0
 	github.com/go-viper/mapstructure/v2 v2.4.0
 	github.com/goccy/go-yaml v1.18.0
@@ -12,7 +14,7 @@ require (
 	github.com/hashicorp/go-plugin v1.7.0
 	github.com/open-policy-agent/opa v1.7.1
 	github.com/oscal-compass/compliance-to-policy-go/v2 v2.0.0-alpha.4
-	github.com/oscal-compass/oscal-sdk-go v0.0.7
+	github.com/oscal-compass/oscal-sdk-go v0.0.8
 	github.com/ossf/gemara v0.9.0
 	github.com/spf13/cobra v1.10.1
 	go.opentelemetry.io/otel v1.37.0
@@ -21,16 +23,17 @@ require (
 	go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc v1.37.0
 	go.opentelemetry.io/otel/log v0.13.0
 	go.opentelemetry.io/otel/sdk v1.37.0
+	go.opentelemetry.io/otel/sdk/log v0.13.0
+	go.opentelemetry.io/otel/sdk/metric v1.37.0
+	google.golang.org/grpc v1.75.0
 )
 
 require (
-	github.com/Santiago-Labs/go-ocsf v0.1.1-0.20250729170529-8b19b43949a6 // indirect
 	github.com/agnivade/levenshtein v1.2.1 // indirect
 	github.com/apache/arrow-go/v18 v18.2.1-0.20250425153947-5ae8b27ab357 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/cenkalti/backoff/v5 v5.0.3 // indirect
 	github.com/cespare/xxhash/v2 v2.3.0 // indirect
-	github.com/complytime/complybeacon/proofwatch v0.0.0-20250906220442-88c41889bd41 // indirect
 	github.com/enterprise-contract/enterprise-contract-controller/api v0.1.142 // indirect
 	github.com/fatih/color v1.18.0 // indirect
 	github.com/fxamacker/cbor/v2 v2.9.0 // indirect
@@ -73,8 +76,6 @@ require (
 	go.opentelemetry.io/auto/sdk v1.1.0 // indirect
 	go.opentelemetry.io/otel/exporters/otlp/otlptrace v1.37.0 // indirect
 	go.opentelemetry.io/otel/metric v1.37.0 // indirect
-	go.opentelemetry.io/otel/sdk/log v0.13.0 // indirect
-	go.opentelemetry.io/otel/sdk/metric v1.37.0 // indirect
 	go.opentelemetry.io/otel/trace v1.37.0 // indirect
 	go.opentelemetry.io/proto/otlp v1.7.1 // indirect
 	go.yaml.in/yaml/v2 v2.4.2 // indirect
@@ -88,7 +89,6 @@ require (
 	golang.org/x/xerrors v0.0.0-20240903120638-7835f813f4da // indirect
 	google.golang.org/genproto/googleapis/api v0.0.0-20250804133106-a7a43d27e69b // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20250804133106-a7a43d27e69b // indirect
-	google.golang.org/grpc v1.75.0 // indirect
 	google.golang.org/protobuf v1.36.8 // indirect
 	gopkg.in/inf.v0 v0.9.1 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
