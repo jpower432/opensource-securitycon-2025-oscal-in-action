@@ -1,63 +1,55 @@
-    # To limit exposure to denial-of-service attacks, change the host in endpoints below from 0.0.0.0 to a specific network interface.
-    # See https://github.com/open-telemetry/opentelemetry-collector/blob/main/docs/security-best-practices.md#safeguards-against-denial-of-service-attacks
+# To limit exposure to denial-of-service attacks, change the host in endpoints below from 0.0.0.0 to a specific network interface.
+# See https://github.com/open-telemetry/opentelemetry-collector/blob/main/docs/security-best-practices.md#safeguards-against-denial-of-service-attacks
 
-    receivers:
-      otlp:
-        protocols:
-          grpc:
-            endpoint: 0.0.0.0:4317
-          http:
-            endpoint: 0.0.0.0:4318
+receivers:
+  otlp:
+    protocols:
+      grpc:
+        endpoint: 0.0.0.0:4317
+      http:
+        endpoint: 0.0.0.0:4318
 
-    processors:
-      batch:
-      resourcedetection:
-        detectors: ["env", "system"]
-        override: false
-      transform:
-        error_mode: ignore
-        log_statements:
-          - context: log
-            conditions:
-              - body != nil and Substring(body, 0, 2) == "{\""
-            statements:
-              - merge_maps(cache, ParseJSON(body), "upsert")
-              - set(observed_time, Now()) where observed_time_unix_nano == 0
-              - set(time, observed_time) where time_unix_nano == 0
+processors:
+  batch:
+  transform:
+    error_mode: ignore
+    log_statements:
+      - context: log
+        conditions:
+          - body != nil and Substring(body, 0, 2) == "{\""
+        statements:
+          - merge_maps(cache, ParseJSON(body), "upsert")
+          - set(observed_time, Now()) where observed_time_unix_nano == 0
+          - set(time, observed_time) where time_unix_nano == 0
 
-    exporters:
-      debug:
-        verbosity: detailed
-      #otlphttp/logs:
-      #  endpoint: "http://loki:3100/otlp"
-      #  tls:
-      #    insecure: true
-      otlphttp/grafana_cloud:
-        endpoint: "${env:GRAFANA_CLOUD_OTLP_ENDPOINT}"
-        auth:
-          authenticator: basicauth/grafana_cloud
+exporters:
+  debug:
+    verbosity: detailed
+  otlphttp/grafana_cloud:
+    endpoint: "${env:GRAFANA_CLOUD_OTLP_ENDPOINT}"
+    auth:
+      authenticator: basicauth/grafana_cloud
 
-    extensions:
-      basicauth/grafana_cloud:
-        client_auth:
-          username: "${env:GRAFANA_CLOUD_INSTANCE_ID}"
-          password: "${env:GRAFANA_CLOUD_API_KEY}"
+extensions:
+  basicauth/grafana_cloud:
+    # https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/extension/basicauthextension
+    client_auth:
+      username: "${env:GRAFANA_CLOUD_INSTANCE_ID}"
+      password: "${env:GRAFANA_CLOUD_API_KEY}"
 
-    service:
-      extensions:
-        [ basicauth/grafana_cloud ]
-      pipelines:
-        traces:
-          receivers: [otlp]
-          processors: [batch]
-          exporters: [debug]
-        metrics:
-          receivers: [ otlp ]
-          processors: [ batch ]
-          exporters: [ debug ]
-        logs:
-          receivers: [ otlp ]
-          processors: [  resourcedetection, transform, batch ]
-          exporters: [ debug, otlphttp/grafana_cloud ]
-
-
+service:
+  extensions:
+    [ basicauth/grafana_cloud ]
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [debug]
+    metrics:
+      receivers: [ otlp ]
+      processors: [ batch ]
+      exporters: [ debug ]
+    logs:
+      receivers: [ otlp ]
+      processors: [ transform, batch ]
+      exporters: [ debug, otlphttp/grafana_cloud ]
