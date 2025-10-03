@@ -3,7 +3,7 @@
   "assessment-assets": {
    "assessment-platforms": [
     {
-     "title": "REPLACE_ME",
+     "title": "Cloud Native Security Controls Catalog",
      "uses-components": [
       {
        "component-uuid": "1026fea3-20f9-4134-bd71-5fd56522fe4c"
@@ -71,7 +71,7 @@
    ]
   },
   "import-ssp": {
-   "href": "REPLACE_ME"
+   "href": "Import SSP href has not been set."
   },
   "local-definitions": {
    "activities": [
