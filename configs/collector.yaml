@@ -14,7 +14,16 @@
       resourcedetection:
         detectors: ["env", "system"]
         override: false
-
+      transform:
+        error_mode: ignore
+        log_statements:
+          - context: log
+            conditions:
+              - body != nil and Substring(body, 0, 2) == "{\""
+            statements:
+              - merge_maps(cache, ParseJSON(body), "upsert")
+              - set(observed_time, Now()) where observed_time_unix_nano == 0
+              - set(time, observed_time) where time_unix_nano == 0
 
     exporters:
       debug:
@@ -48,7 +57,7 @@
           exporters: [ debug ]
         logs:
           receivers: [ otlp ]
-          processors: [  resourcedetection, batch ]
+          processors: [  resourcedetection, transform, batch ]
           exporters: [ debug, otlphttp/grafana_cloud ]
 
 
