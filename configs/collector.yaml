@@ -18,9 +18,8 @@ processors:
         conditions:
           - body != nil and Substring(body, 0, 2) == "{\""
         statements:
-          - merge_maps(cache, ParseJSON(body), "upsert")
-          - set(observed_time, Now()) where observed_time_unix_nano == 0
-          - set(time, observed_time) where time_unix_nano == 0
+          # Use the observed_timestamp as a fallback if the above fails or results in a zero value.
+          - set(timestamp, observed_timestamp) where timestamp_unix_nano == 0
 
 exporters:
   debug:
