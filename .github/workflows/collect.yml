@@ -10,7 +10,7 @@ jobs:
     services:
       otel-collector:
         # Replace with beacon distro
-        image: otel/opentelemetry-collector-contrib:latest
+        image: ghcr.io/jpower432/oscal-in-action-collector:latest
         ports:
           - 4317:4317
           - 4318:4318
@@ -18,9 +18,6 @@ jobs:
           GRAFANA_CLOUD_OTLP_ENDPOINT: ${{ secrets.GRAFANA_CLOUD_OTLP_ENDPOINT }}
           GRAFANA_CLOUD_INSTANCE_ID: ${{ secrets.GRAFANA_CLOUD_INSTANCE_ID }}
           GRAFANA_CLOUD_API_KEY: ${{ secrets.GRAFANA_CLOUD_API_KEY }}
-        volumes:
-          - ${{ github.workspace }}/configs/collector.yaml:/etc/otelcol/config.yaml
-
     permissions:
       contents: read
       packages: read
@@ -80,6 +77,3 @@ jobs:
         working-directory: export
         run: |
           go run ./cmd/conftest-exporter --endpoint localhost:4317 --skip-tls --path ${{ github.workspace }}/output.json
-          
-
-

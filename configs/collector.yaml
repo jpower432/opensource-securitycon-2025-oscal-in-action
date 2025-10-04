@@ -12,6 +12,8 @@ receivers:
 
 processors:
   batch:
+    send_batch_size: 512
+    timeout: 1s
   # Add resource processor to ensure service name is set
   resource:
     attributes:
