@@ -20,6 +20,8 @@ jobs:
           GRAFANA_CLOUD_API_KEY: ${{ secrets.GRAFANA_CLOUD_API_KEY }}
         volumes:
           - ${{ github.workspace }}/configs/collector.yaml:/etc/otelcol/config.yaml
+        options: >-
+          -c "--config=/etc/otelcol/config.yaml"
 
     permissions:
       contents: read
@@ -80,6 +82,7 @@ jobs:
         working-directory: export
         run: |
           go run ./cmd/conftest-exporter --endpoint localhost:4317 --skip-tls --path ${{ github.workspace }}/output.json
+          sleep 30
           
 
 
