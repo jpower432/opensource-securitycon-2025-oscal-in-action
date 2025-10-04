@@ -12,15 +12,6 @@ receivers:
 
 processors:
   batch:
-  transform:
-    error_mode: ignore
-    log_statements:
-      - context: log
-        conditions:
-          - body != nil and Substring(body, 0, 2) == "{\""
-        statements:
-          # Use the observed_timestamp as a fallback if the above fails or results in a zero value.
-          - set(timestamp, observed_timestamp) where timestamp_unix_nano == 0
   # Add resource processor to ensure service name is set
   resource:
     attributes:
@@ -72,5 +63,5 @@ service:
       exporters: [ debug, otlphttp/grafana_cloud ]  # Send to both debug and Grafana
     logs:
       receivers: [ otlp ]
-      processors: [ transform, resource, batch ]
+      processors: [ resource, batch ]
       exporters: [ debug, otlphttp/grafana_cloud ]
