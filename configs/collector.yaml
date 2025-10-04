@@ -63,5 +63,5 @@ service:
       exporters: [ debug, otlphttp/grafana_cloud ]  # Send to both debug and Grafana
     logs:
       receivers: [ otlp ]
-      processors: [ resource, batch ]
+      processors: [ resource ]
       exporters: [ debug, otlphttp/grafana_cloud ]
