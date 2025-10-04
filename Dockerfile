@@ -5,4 +5,4 @@ FROM otel/opentelemetry-collector-contrib:latest
 COPY configs/collector.yaml /etc/otelcol/config.yaml
 
 # Override the default command to use our custom configuration
-CMD ["--config=file:/etc/otelcol/config.yaml"]
+CMD ["--config", "/etc/otelcol/config.yaml"]
