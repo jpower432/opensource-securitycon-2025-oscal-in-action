@@ -115,6 +115,8 @@ func otelSDKSetup(ctx context.Context, conn *grpc.ClientConn) (func(context.Cont
 	tracerProvider := sdktrace.NewTracerProvider(
 		sdktrace.WithBatcher(traceExporter),
 		sdktrace.WithResource(res),
+		// For audit critical actions.
+		sdktrace.WithSampler(sdktrace.AlwaysSample()),
 	)
 	otel.SetTracerProvider(tracerProvider)
 	shutdownFuncs = append(shutdownFuncs, tracerProvider.Shutdown)

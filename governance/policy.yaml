@@ -3,7 +3,7 @@ metadata:
   title: "Organization Policy for Open Source Projects"
   objective: "Ensure secure software development practices and mitigate risks in open-source projects"
   version: "1.5.0"
-  last-modified: "2024-02-01"
+  last-modified: "2025-10-06"
   organization-id: "org-67890"
   author-notes: "Updated to align with SSDF recommendations"
   mapping-references:
@@ -40,6 +40,18 @@ metadata:
         affiliation: "Engineering"
         email: "vp-eng@company.com"
 
+implementation-plan:
+  evaluation:
+    start: 2025-11-01T16:02:00.000000000Z
+    notes: |
+      This is setting when my policy will take effect.
+  evaluation-points: ["runtime-adhoc"]
+  enforcement:
+    start: 2025-11-07T16:02:00.000000000Z
+    notes:
+      This is setting when my policy will be enforced.
+  enforcement-methods: ["Manual Remediation"]
+
 scope:
   boundaries:
     - "United States"
@@ -64,14 +76,6 @@ control-references:
       - target-id: "CNSCC-SSC-01.01"
         modification-type: "clarify"
         modification-rationale: "Requires two approvals from non-author contributors"
-        text: |
-          SCM platforms allow the configuration and restriction of source code 
-          operations on individual branches. Protection rules can be used to enforce 
-          the usage of pull requests with specified precondition and approval rules, 
-          ensuring that a human code review process is followed or an automated status 
-          checking of a branch occurs. Additionally, protected branches can be used to 
-          disallow dangerous use of force pushes, preventing the overwrite of commit 
-          histories and potential obfuscation of code changes.
         recommendation: |
           Configure the project's branch protection rules to require at least **two**
           non-author approval of changes before merging into the release or
