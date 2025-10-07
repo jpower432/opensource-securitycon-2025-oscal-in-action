@@ -16,6 +16,8 @@ import (
 type LokiClient struct {
 	baseURL    string
 	httpClient *http.Client
+	username   string
+	password   string
 }
 
 // LokiQueryResponse represents the response from Loki query API
@@ -47,6 +49,18 @@ func NewLokiClient(baseURL string) *LokiClient {
 	}
 }
 
+// NewLokiClientWithAuth creates a new Loki client with authentication
+func NewLokiClientWithAuth(baseURL, instanceID, apiKey string) *LokiClient {
+	return &LokiClient{
+		baseURL: baseURL,
+		httpClient: &http.Client{
+			Timeout: 30 * time.Second,
+		},
+		username: instanceID, // Use instance ID as username
+		password: apiKey,     // Use API key as password
+	}
+}
+
 // QueryLogs queries Loki for logs matching the given policy ID
 func (lc *LokiClient) QueryLogs(ctx context.Context, policyID string, limit int) ([]LokiLogEntry, error) {
 	// Construct the query URL
@@ -59,12 +73,15 @@ func (lc *LokiClient) QueryLogs(ctx context.Context, policyID string, limit int)
 
 	fullURL := fmt.Sprintf("%s?%s", queryURL, params.Encode())
 
-	logger.Info(fullURL)
-
 	// Make the HTTP request
 	req, err := http.NewRequestWithContext(ctx, "GET", fullURL, nil)
 	if err != nil {
 		return nil, fmt.Errorf("failed to create request: %w", err)
+	}
+
+	// Add authentication headers (basic auth with instance ID and API key)
+	if lc.username != "" && lc.password != "" {
+		req.SetBasicAuth(lc.username, lc.password)
 	}
 
 	resp, err := lc.httpClient.Do(req)

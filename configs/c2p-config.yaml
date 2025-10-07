@@ -3,4 +3,3 @@ plugins:
     policy-templates: ./checks
     policy-output: ./policies
     policy-results: ./policy-results
-    loki-url: http://localhost:3100
