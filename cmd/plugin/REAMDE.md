@@ -17,6 +17,9 @@ The plugin accepts the following configuration parameters:
 - `grafana-cloud-endpoint`: The Grafana Cloud Loki endpoint URL
 - `grafana-cloud-instance-id`: Your Grafana Cloud instance ID (used as username for basic auth)
 - `grafana-cloud-api-key`: Your Grafana Cloud API key (used as password for basic auth)
+- `loki_url`: The base URL of your local Loki instance (fallback, e.g., `http://localhost:3100`)
+
+**Note**: Grafana Cloud configuration is checked first. If not provided, the plugin will fall back to the local Loki instance.
 
 ### Environment Variables
 
@@ -32,19 +35,19 @@ For security, credentials can be provided via environment variables instead of c
 
 ### Configuration Examples
 
-#### Local Loki Instance
-```json
-{
-  "loki_url": "http://localhost:3100"
-}
-```
-
-#### Grafana Cloud (Configuration)
+#### Grafana Cloud (Preferred)
 ```json
 {
   "grafana-cloud-endpoint": "https://logs-prod-us-central1.grafana.net",
   "grafana-cloud-instance-id": "your-instance-id",
   "grafana-cloud-api-key": "your-api-key"
+}
+```
+
+#### Local Loki Instance (Fallback)
+```json
+{
+  "loki_url": "http://localhost:3100"
 }
 ```
 
