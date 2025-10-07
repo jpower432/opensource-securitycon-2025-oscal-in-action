@@ -41,6 +41,10 @@ jobs:
           install-dir: './c2p-plugins'
 
       - name: Aggregate results
+        env:
+          GRAFANA_CLOUD_LOKI_ENDPOINT: ${{ secrets.GRAFANA_CLOUD_LOKI_ENDPOINT}}
+          GRAFANA_CLOUD_INSTANCE_ID: ${{ secrets.GRAFANA_CLOUD_INSTANCE_ID }}
+          GRAFANA_CLOUD_API_KEY: ${{ secrets.GRAFANA_CLOUD_API_KEY_READ }}
         run: c2pcli result2oscal -c configs/c2p-config.yaml -a "${AP}"
 
       # Post summary on GitHub action summary
