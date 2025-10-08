@@ -1,14 +1,25 @@
 # opensource-securitycon-2025-oscal-in-action
 
-Demo repository for OpenSource SecurityCon presentation - **OSCAL in Action:** Real World Examples of Automating Policy &amp; Compliance
+This demo repository contains the official content for the OpenSource SecurityCon presentation - **OSCAL in Action:** Real World Examples of Automating Policy &amp; Compliance
 
-![alt text](assets/img/demo-diagram.png)
+## Key Concepts 
+
+1. **Governance → OSCAL**: Control catalogs and assessment plans are transformed into structured OSCAL documentation
+2. **Policy → Validation**: OPA Rego policies validate against GitHub API data
+3. **Evidence Collection**: Plugin system gathers evidence from Loki and creates policy bundles
+4. **Evidence Processing**: Conftest exporter converts results to OCSF format for audit trails
+5. **Observability**: OpenTelemetry collects all evidence and provides continuous monitoring
+
+This repository demonstrates a complete **compliance-as-code** implementation using industry standards (OSCAL, OPA, OpenTelemetry) to automate policy enforcement and evidence collection.
+![alt text](assets/img/demo-diagram.png) 
 
 ## Component Workflow Description
 
 ### 1. Governance `governance/`
 
 - **Control Catalogs (cnscc.yaml)**: Contains [Cloud Native Security Controls Catalog](https://docs.google.com/spreadsheets/d/1GUohOTlLw9FKUQ3O23X7ypvJLXN-B3veJGe6YE6JYfU/edit?gid=1938257679#gid=1938257679) with NIST 800-53 mappings
+
+**Example `governance/catalog` yaml**
 
 ```yaml
       - id: CNSCC-SSC-03
@@ -35,6 +46,8 @@ Demo repository for OpenSource SecurityCon presentation - **OSCAL in Action:** R
 
 - **Assessment Plans (cnscc.yaml)**: Defines evaluation procedures and assessment requirements
 
+**Example `governance/plans` yaml**
+
 ```yaml
 - control-id: CNSCC-SSC-01
     assessments:
@@ -47,9 +60,13 @@ Demo repository for OpenSource SecurityCon presentation - **OSCAL in Action:** R
 
 - **Policy Definition (policy.yaml)**: Organization-specific policy rules and control modifications
 
+> Note: The organizational policy rules and control modifications map back to the definition of [Layer 3 Policy](https://github.com/ossf/gemara/tree/main?tab=readme-ov-file#layer-3-policy) in the OpenSSF `gemara` project.
+
 ### 2. Policy Checks `checks/`
 
 - **OPA Rego Policies**: Implements policy validation logic (e.g., GitHub branch protection requirements)
+
+**Example `rego` policy checks for enforcement of organizational policy.**
 
 ```rego
 deny contains result if {
@@ -74,8 +91,8 @@ deny contains result if {
 
 ### 4. Plugin System `cmd/plugin/`
 
-- **OPA/Loki Plugin**: Creates policy bundles and collects evidence from Loki logs
-- **Policy Bundle**: Compiled OPA policies ready for deployment
+- **OPA/Loki Plugin**: Creates policy bundles and collects evidence from [Loki](https://github.com/grafana/loki) logs
+- **Policy Bundle**: Compiled [OPA](https://www.openpolicyagent.org/) policies ready for deployment
 - **Loki Logs**: Centralized evidence storage with policy ID tracking
 
 ### 5. Conftest Exporter
@@ -98,5 +115,17 @@ deny contains result if {
 5. **Evidence Export**: Results are structured and exported via OpenTelemetry
 6. **OSCAL Generation**: Transformer kit creates OSCAL-compliant assessment plans
 
-
 ![alt text](assets/img/mermaid-flow.png)
+
+## Relevant Links
+
+### Open Source Projects
+
+- Open Policy Agent
+- OpenTelemetry
+- OSCAL Compass
+- Grafana Loki
+
+<!-- ### Where to Find Us -->
+
+<!-- - Community meeting placeholder -->
