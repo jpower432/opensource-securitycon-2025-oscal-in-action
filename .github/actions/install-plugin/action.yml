@@ -77,7 +77,7 @@ runs:
             {
               "name": "loki-url",
               "description": "A URL for the Loki instance endpoint to configure the client",
-              "required": true
+              "required": false
             }
           ]
         }

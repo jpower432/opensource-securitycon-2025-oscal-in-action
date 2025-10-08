@@ -39,10 +39,21 @@ func (p *Plugin) Configure(_ context.Context, m map[string]string) error {
 		return errors.New("error decoding configuration")
 	}
 
-	// Initialize Loki client if Loki URL is provided
-	if p.config.LokiURL != "" {
+	// Load configuration from environment variables
+	p.config.LoadFromEnv()
+
+	// Initialize Loki client - prioritize Grafana Cloud, fall back to local Loki
+	if p.config.GrafanaCloudEndpoint != "" {
+		// Use Grafana Cloud endpoint with authentication
+		p.lokiClient = NewLokiClientWithAuth(
+			p.config.GrafanaCloudEndpoint,
+			p.config.GrafanaCloudInstanceID,
+			p.config.GrafanaCloudAPIKey,
+		)
+		logger.Info("Initialized Loki client with Grafana Cloud endpoint")
+	} else if p.config.LokiURL != "" {
 		p.lokiClient = NewLokiClient(p.config.LokiURL)
-		logger.Info(fmt.Sprintf("Initialized Loki client with URL: %s", p.config.LokiURL))
+		logger.Info("Initialized Loki client with local endpoint")
 	}
 
 	return p.config.Validate()

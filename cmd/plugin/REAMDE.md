@@ -14,16 +14,72 @@ This plugin is a hybrid that creates OPA policy bundles and can pull evidence fr
 The plugin accepts the following configuration parameters:
 
 - `loki_url`: The base URL of your Loki instance (e.g., `http://localhost:3100`)
+- `grafana-cloud-endpoint`: The Grafana Cloud Loki endpoint URL
+- `grafana-cloud-instance-id`: Your Grafana Cloud instance ID (used as username for basic auth)
+- `grafana-cloud-api-key`: Your Grafana Cloud API key (used as password for basic auth)
+- `loki_url`: The base URL of your local Loki instance (fallback, e.g., `http://localhost:3100`)
+
+**Note**: Grafana Cloud configuration is checked first. If not provided, the plugin will fall back to the local Loki instance.
+
+### Environment Variables
+
+For security, credentials can be provided via environment variables instead of hard-coded in the configuration:
+
+- `GRAFANA_CLOUD_ENDPOINT`: Grafana Cloud Loki endpoint URL
+- `GRAFANA_CLOUD_INSTANCE_ID`: Your Grafana Cloud instance ID
+- `GRAFANA_CLOUD_API_KEY`: Your Grafana Cloud API key
+
+**Security Note**: Environment variables take precedence over configuration values and are recommended for production deployments.
 
 ## Usage
 
-### Configuration Example
+### Configuration Examples
 
+#### Grafana Cloud (Preferred)
+```json
+{
+  "grafana-cloud-endpoint": "https://logs-<region>.grafana.net",
+  "grafana-cloud-instance-id": "your-instance-id",
+  "grafana-cloud-api-key": "your-api-key"
+}
+```
+
+#### Local Loki Instance (Fallback)
 ```json
 {
   "loki_url": "http://localhost:3100"
 }
 ```
+
+#### Grafana Cloud (Environment Variables - Recommended)
+```bash
+export GRAFANA_CLOUD_ENDPOINT="https://logs-<region>.grafana.net"
+export GRAFANA_CLOUD_INSTANCE_ID="your-instance-id"
+export GRAFANA_CLOUD_API_KEY="your-api-key"
+```
+
+```json
+{
+  "policy-results": "/path/to/results"
+}
+```
+
+### Authentication Methods
+
+The plugin uses **Basic Authentication** for Grafana Cloud:
+
+- **Username**: Your Grafana Cloud instance ID (`grafana-cloud-instance-id`)
+- **Password**: Your Grafana Cloud API key (`grafana-cloud-api-key`)
+
+This follows Grafana Cloud's standard authentication pattern where the instance ID and API key are used together for basic authentication.
+
+### Security Best Practices
+
+1. **Use Environment Variables**: Store sensitive credentials in environment variables rather than configuration files
+2. **Avoid Logging Secrets**: The plugin does not log instance IDs or API keys to prevent PII exposure
+3. **Secure Storage**: Ensure environment variables are stored securely in your deployment environment
+4. **Rotation**: Regularly rotate your Grafana Cloud API keys
+5. **Least Privilege**: Use API keys with minimal required permissions
 
 ### Policy ID Mapping
 
