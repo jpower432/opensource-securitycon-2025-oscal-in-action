@@ -23,7 +23,7 @@ The plugin accepts the following configuration parameters:
 
 ### Environment Variables
 
-For security, credentials can be provided via environment variables instead of configuration:
+For security, credentials can be provided via environment variables instead of hard-coded in the configuration:
 
 - `GRAFANA_CLOUD_ENDPOINT`: Grafana Cloud Loki endpoint URL
 - `GRAFANA_CLOUD_INSTANCE_ID`: Your Grafana Cloud instance ID
@@ -38,7 +38,7 @@ For security, credentials can be provided via environment variables instead of c
 #### Grafana Cloud (Preferred)
 ```json
 {
-  "grafana-cloud-endpoint": "https://logs-prod-us-central1.grafana.net",
+  "grafana-cloud-endpoint": "https://logs-<region>.grafana.net",
   "grafana-cloud-instance-id": "your-instance-id",
   "grafana-cloud-api-key": "your-api-key"
 }
@@ -53,7 +53,7 @@ For security, credentials can be provided via environment variables instead of c
 
 #### Grafana Cloud (Environment Variables - Recommended)
 ```bash
-export GRAFANA_CLOUD_ENDPOINT="https://logs-prod-us-central1.grafana.net"
+export GRAFANA_CLOUD_ENDPOINT="https://logs-<region>.grafana.net"
 export GRAFANA_CLOUD_INSTANCE_ID="your-instance-id"
 export GRAFANA_CLOUD_API_KEY="your-api-key"
 ```
