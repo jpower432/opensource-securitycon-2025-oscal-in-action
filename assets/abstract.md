@@ -1,0 +1,6 @@
+# OSCAL in Action: Real World Examples of Automating Policy & Compliance
+
+## Abstract OpenSource SecurityCon November 2025
+
+Imagine you're trying to read a book while someone's simultaneously ripping out pages, rewriting chapters, and gluing in new sections. That's what gathering compliance evidence in a cloud native environment is like. The rapid evolution in how systems are deployed, secured, and governed leaves organizations struggling to connect abstract cybersecurity regulations with concrete, enforceable policies.
+This talk provides a practical blueprint for bridging that gap. We'll show how CNCF projects - like the newly released OSCAL Compass Compliance-to-Policy (C2P) v2 and Open Policy Agent (OPA) - work together to transform regulatory requirements (expressed in Open Security Controls Assessment Language) into actionable policy-as-code artifacts that generate verifiable, audit-ready evidence. Focusing on the end-to-end approach, we'll dive into the tools and practices involved, providing real-world examples of automating compliance in cloud-native environments.
