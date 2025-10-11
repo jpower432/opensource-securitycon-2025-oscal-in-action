@@ -22,26 +22,26 @@ This repository demonstrates a complete **compliance-as-code** implementation us
 **Example `governance/catalog` yaml**
 
 ```yaml
-      - id: CNSCC-SSC-03
-        title: Enforce full attestation and verification for protected branches
+      - id: CNSCC-SSC-09
+        title: The author(s) of a request may not also be the approver of the request
         objective: |
-          Branch protection is enabled on the mainline and release branches with force push disabled
-          to ensure proper review and verification processes.
+          The author(s) of a request may not also be the approver of the request. At least two reviewers 
+          with equal or greater expertise should review & approve the request.
         guideline-mappings:
           - reference-id: 800-53
             entries:
               - reference-id: AC-6(3)
         assessment-requirements:
-          - id: CNSCC-SSC-03.01
+          - id: CNSCC-SSC-09.01
             text: |
-              Branch protection is enabled on the mainline and release branches with force push disabled.
-              This ensures proper review and verification processes are followed.
+              The author(s) of a request may not also be the approver of the request. At least two reviewers 
+              with equal or greater expertise should review & approve the request.
             applicability:
               - tlp_clear
               - tlp_green
               - tlp_amber
               - tlp_red
-            recommendation: Enable branch protection with force push disabled
+            recommendation: Configure branch protection with proper reviewer requirements
 ```
 
 - **Assessment Plans (cnscc.yaml)**: Defines evaluation procedures and assessment requirements
@@ -49,13 +49,13 @@ This repository demonstrates a complete **compliance-as-code** implementation us
 **Example `governance/plans` yaml**
 
 ```yaml
-- control-id: CNSCC-SSC-01
+- control-id: CNSCC-SSC-09
     assessments:
-      - requirement-id: CNSCC-SSC-01.01
+      - requirement-id: CNSCC-SSC-09.01
         procedures:
           - id: "github_branch_protection"
             name: "GitHub API Verifications for Branch Protection"
-            description: The procedure performs an automated check of the branch ruleset state in GitHub by creating a snapshot of the state from the API and checks the output with an OPA policy to ensure the outcome meets the baseline requirement.
+            description: The procedure performs an automated check of the branch ruleset state in GitHub by creating a snapshot of the state from the API and checks the output with an OPA policy to ensure proper code review practices and author-approver separation.
 ```
 
 - **Policy Definition (policy.yaml)**: Organization-specific policy rules and control modifications
@@ -77,7 +77,23 @@ deny contains result if {
     
     result := {
         "short_name": annotations.custom.short_name,
-        "msg": "A branch protection rule of type 'pull_request' is required but was not found."
+        "msg": "Violation: A branch protection rule of type 'pull_request' is required but was not found. This is a prerequisite for enforcing proper code review practices."
+    }
+}
+
+deny contains result if {
+    has_pull_request_rule
+    
+    some rule in input.values
+    rule.type == "pull_request"
+    not rule.parameters.require_code_owner_review
+
+    chain := rego.metadata.chain()
+    annotations := chain[0].annotations
+    
+    result := {
+        "short_name": annotations.custom.short_name,
+        "msg": "Violation: Code owner review is required to ensure reviewers have equal or greater expertise for the code being changed."
     }
 }
 ```

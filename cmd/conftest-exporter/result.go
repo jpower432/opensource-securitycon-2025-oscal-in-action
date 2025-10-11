@@ -11,7 +11,7 @@ import (
 
 // ConftestFinding mirrors the structure of a single "warning" or "failure" entry.
 type ConftestFinding struct {
-	Message   string                 `json:"message"`
+	Message   string                 `json:"msg"`
 	Policy    string                 `json:"policy"`
 	Level     string                 `json:"level"` // "warning" or "failure"
 	Namespace string                 `json:"namespace"`
@@ -59,6 +59,7 @@ func (f ConftestFinding) ToOCSF(filename string) (proofwatch.Evidence, error) {
 		Severity:     &unknown,
 		SeverityId:   unknownID,
 		NumFiles:     &numFiles,
+		Message:      &f.Message, // Include the violation message from the finding
 		Metadata: ocsf.Metadata{
 			Uid: &uid,
 			Product: ocsf.Product{

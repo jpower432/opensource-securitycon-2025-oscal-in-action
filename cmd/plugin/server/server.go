@@ -136,13 +136,16 @@ func (p *Plugin) GetResults(ctx context.Context, pl policy.Policy) (policy.PVPRe
 
 				// Add subjects for each log entry
 				for i, entry := range logEntries {
+					// Extract policy_status_detail from labels as the reason
+					reason := extractReason(entry.Labels)
+					
 					subject := policy.Subject{
 						Title:       fmt.Sprintf("Log Entry %d", i+1),
 						Type:        "resource",
 						ResourceID:  fmt.Sprintf("log-%s-%d", policyID, i),
 						Result:      mapResults(entry.Labels),
 						EvaluatedOn: time.Now(),
-						Reason:      "Evidence found in Loki logs",
+						Reason:      reason,
 						Props: []policy.Property{
 							{Name: "timestamp", Value: entry.Timestamp},
 							{Name: "message", Value: entry.Message},
@@ -177,4 +180,13 @@ func mapResults(labels map[string]string) policy.Result {
 	default:
 		return policy.ResultError
 	}
+}
+
+// extractReason extracts the policy_status_detail from labels as the reason for the OSCAL subject
+func extractReason(labels map[string]string) string {
+	if reason, ok := labels["policy_status_detail"]; ok && reason != "" {
+		return reason
+	}
+	// Fallback to default reason if policy_status_detail is not available
+	return "Evidence found in Loki logs"
 }
