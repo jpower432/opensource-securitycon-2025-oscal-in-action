@@ -73,10 +73,17 @@ control-references:
       technologies: ["Source Code Management Platform"]
       providers: ["GitHub"]
     assessment-requirement-modifications:
-      - target-id: "CNSCC-SSC-01.01"
+      - target-id: "CNSCC-SSC-09.01"
         modification-type: "clarify"
-        modification-rationale: "Requires two approvals from non-author contributors"
+        modification-rationale: "Adjusted for projects with two maintainers - requires one reviewer to ensure author-approver separation"
         recommendation: |
-          Configure the project's branch protection rules to require at least **two**
-          non-author approval of changes before merging into the release or
-          primary branch.
+          Configure GitHub branch protection rules to enforce proper code review practices:
+          - Require at least **one** reviewer with equal or greater expertise (adjusted for projects with two maintainers)
+          - Enable code owner review to ensure reviewers have appropriate expertise
+          - Enable stale review dismissal to maintain review quality
+          - Require review thread resolution for thorough review process
+          - Ensure pull request rules exist for the main branch
+          
+          **Policy Implementation**: The GitHub branch protection policy is implemented in 
+          `checks/github_branch_protection/policy/github_branch_protection.rego` and enforces
+          these requirements through automated policy-as-code validation.

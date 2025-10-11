@@ -239,7 +239,7 @@ control-families:
         guideline-mappings:
           - reference-id: 800-53
             entries:
-              - reference-id: SA-11
+              - reference-id: SA-11(4)
         assessment-requirements:
           - id: CNSCC-SSC-09.01
             text: |

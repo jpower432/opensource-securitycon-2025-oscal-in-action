@@ -3,11 +3,12 @@ metadata:
   version: 0.1.0
   evaluator:
     name: opa
+    uri: 1.6.0
 plans:
-  - control-id: CNSCC-SSC-01
+  - control-id: CNSCC-SSC-09
     assessments:
-      - requirement-id: CNSCC-SSC-01.01
+      - requirement-id: CNSCC-SSC-09.01
         procedures:
           - id: "github_branch_protection"
-            name: "GitHub API Verifications for Branch Protection"
-            description: The procedure performs an automated check of the branch ruleset state in GitHub by creating a snapshot of the state from the API and checks the output with an OPA policy to ensure the outcome meets the baseline requirement.
+            name: "GitHub Branch Protection and Code Review Verification"
+            description: "The procedure performs an automated check of GitHub branch protection rules and pull request review requirements to ensure authors cannot approve their own requests and at least two reviewers with equal or greater expertise review and approve requests."

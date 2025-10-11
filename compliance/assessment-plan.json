@@ -3,13 +3,13 @@
   "assessment-assets": {
    "assessment-platforms": [
     {
-     "title": "Cloud Native Security Controls Catalog",
+     "title": "REPLACE_ME",
      "uses-components": [
       {
-       "component-uuid": "1026fea3-20f9-4134-bd71-5fd56522fe4c"
+       "component-uuid": "70a39109-734b-4ce1-903d-adb032482752"
       }
      ],
-     "uuid": "f9d84ec1-88f5-498d-afc3-6bda2585d08b"
+     "uuid": "96cdb7a7-85ee-4979-9bf0-f66463d9d6ee"
     }
    ],
    "components": [
@@ -20,7 +20,7 @@
        "name": "Rule_Id",
        "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
        "remarks": "rule_set_0",
-       "value": "CNSCC-SSC-01.01"
+       "value": "CNSCC-SSC-09.01"
       },
       {
        "name": "Check_Id",
@@ -32,7 +32,7 @@
        "name": "Check_Description",
        "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
        "remarks": "rule_set_0",
-       "value": "The procedure performs an automated check of the branch ruleset state in GitHub by creating a snapshot of the state from the API and checks the output with an OPA policy to ensure the outcome meets the baseline requirement."
+       "value": "The procedure performs an automated check of GitHub branch protection rules and pull request review requirements to ensure authors cannot approve their own requests and at least two reviewers with equal or greater expertise review and approve requests."
       }
      ],
      "status": {
@@ -40,7 +40,7 @@
      },
      "title": "opa",
      "type": "validation",
-     "uuid": "1026fea3-20f9-4134-bd71-5fd56522fe4c"
+     "uuid": "70a39109-734b-4ce1-903d-adb032482752"
     }
    ]
   },
@@ -48,7 +48,7 @@
    {
     "include-subjects": [
      {
-      "subject-uuid": "c1c79e31-902d-4798-8673-617c2c4943ad",
+      "subject-uuid": "ca4ed669-9c09-4569-8b4f-b991bc68aa15",
       "type": "component"
      }
     ],
@@ -66,17 +66,17 @@
       }
      ],
      "title": "800-53",
-     "uuid": "0d0730ea-d57e-4230-9760-6bacde0595e7"
+     "uuid": "a8d7668e-c961-48ff-94e8-d95741755d9e"
     }
    ]
   },
   "import-ssp": {
-   "href": "Import SSP href has not been set."
+   "href": "REPLACE_ME"
   },
   "local-definitions": {
    "activities": [
     {
-     "description": "The author(s) of a request may not also be the approver of the request. At least two reviewers \\nwith equal or greater expertise should review \u0026 approve the request.\\n",
+     "description": "Storage control plane management interface requires mutual authentication \\nand TLS for connections to ensure secure communication.\\n",
      "props": [
       {
        "name": "method",
@@ -88,369 +88,14 @@
        {
         "include-controls": [
          {
-          "control-id": "sa-11"
+          "control-id": "sc-8"
          }
         ]
        }
       ]
      },
-     "title": "CNSCC-SSC-09.01",
-     "uuid": "5598e612-6bb9-4ff5-a13f-93e419bfb503"
-    },
-    {
-     "description": "The hardware root of trust is based in a Trusted Platform Module (TPM) or virtual TPM (vTPM).\\nEnsure HW root of trust extends to the host OS kernel, modules, system images, \\ncontainer runtimes, and all software on the system.\\n",
-     "props": [
-      {
-       "name": "method",
-       "value": "TEST"
-      }
-     ],
-     "related-controls": {
-      "control-selections": [
-       {
-        "include-controls": [
-         {
-          "control-id": "si-7"
-         }
-        ]
-       }
-      ]
-     },
-     "title": "CNSCC-COM-06.01",
-     "uuid": "12016742-4594-42c2-a8cc-808b083cda05"
-    },
-    {
-     "description": "The build environment's sources and dependencies must come from a secure, trusted source of truth.\\nChecksums and any signatures should be validated both in the downloading or ingestion process, \\nand again by the build worker.\\n",
-     "props": [
-      {
-       "name": "method",
-       "value": "TEST"
-      }
-     ],
-     "related-controls": {
-      "control-selections": [
-       {
-        "include-controls": [
-         {
-          "control-id": "cm-3.2"
-         }
-        ]
-       }
-      ]
-     },
-     "title": "CNSCC-SBP-02.01",
-     "uuid": "3e381043-35c7-49ee-83e2-1894cc404b04"
-    },
-    {
-     "description": "SSH keys should be used instead of passwords to provide secure access to source code repositories.\\n",
-     "props": [
-      {
-       "name": "method",
-       "value": "TEST"
-      }
-     ],
-     "related-controls": {
-      "control-selections": [
-       {
-        "include-controls": [
-         {
-          "control-id": "ac-1"
-         }
-        ]
-       }
-      ]
-     },
-     "title": "CNSCC-SSC-11.01",
-     "uuid": "ee5f080f-6c05-42b2-b2a2-87091390d6a2"
-    },
-    {
-     "description": "Disparate data sensitive workloads are not run on the same host OS kernel.\\nWorkloads may be separated by running in a separate cluster, on a separate node, \\nor by implementing pods in independent VMs.\\n",
-     "props": [
-      {
-       "name": "method",
-       "value": "TEST"
-      }
-     ],
-     "related-controls": {
-      "control-selections": [
-       {
-        "include-controls": [
-         {
-          "control-id": "sc-7"
-         }
-        ]
-       }
-      ]
-     },
-     "title": "CNSCC-COM-02.01",
-     "uuid": "5385f5cc-c1c2-405a-a55d-b2c53d480391"
-    },
-    {
-     "description": "Systems processing alerts are periodically tuned for false positives to avoid \\nalert flooding, fatigue, and false negatives after security incidents that were \\nnot detected by the system.\\n",
-     "props": [
-      {
-       "name": "method",
-       "value": "TEST"
-      }
-     ],
-     "related-controls": {
-      "control-selections": [
-       {
-        "include-controls": [
-         {
-          "control-id": "si-4.13"
-         }
-        ]
-       }
-      ]
-     },
-     "title": "CNSCC-COM-09.01",
-     "uuid": "08f65c0c-d830-436f-9289-b20dde0b3418"
-    },
-    {
-     "description": "Branch protection is enabled on the mainline and release branches with force push disabled.\\nThis ensures proper review and verification processes are followed.\\n",
-     "props": [
-      {
-       "name": "method",
-       "value": "TEST"
-      }
-     ],
-     "related-controls": {
-      "control-selections": [
-       {
-        "include-controls": [
-         {
-          "control-id": "ac-6.3"
-         }
-        ]
-       }
-      ]
-     },
-     "title": "CNSCC-SSC-03.01",
-     "uuid": "ff2ea059-d155-4870-ba3a-9e5c934febb2"
-    },
-    {
-     "description": "Define roles by using principle of least privileges to provide access based on function \\nsuch as Developer, Maintainer, Owner, Reviewer, Approver, and Guest.\\n",
-     "props": [
-      {
-       "name": "method",
-       "value": "TEST"
-      }
-     ],
-     "related-controls": {
-      "control-selections": [
-       {
-        "include-controls": [
-         {
-          "control-id": "pl-1"
-         }
-        ]
-       }
-      ]
-     },
-     "title": "CNSCC-SSC-08.01",
-     "uuid": "28e348b1-a5e0-4d68-97be-9b31e9f9fa8b"
-    },
-    {
-     "description": "Keys are rotated frequently to limit the exposure window in case of key compromise.\\n",
-     "props": [
-      {
-       "name": "method",
-       "value": "TEST"
-      }
-     ],
-     "related-controls": {
-      "control-selections": [
-       {
-        "include-controls": [
-         {
-          "control-id": "sc-12"
-         }
-        ]
-       }
-      ]
-     },
-     "title": "CNSCC-ACC-03.01",
-     "uuid": "88d426cc-c607-4fcc-8db3-dfa434a41c38"
-    },
-    {
-     "description": "Multi-factor authentication should be enforced for all users accessing source code repositories\\nto prevent unauthorized access.\\n",
-     "props": [
-      {
-       "name": "method",
-       "value": "TEST"
-      }
-     ],
-     "related-controls": {
-      "control-selections": [
-       {
-        "include-controls": [
-         {
-          "control-id": "ia-2.1"
-         }
-        ]
-       }
-      ]
-     },
-     "title": "CNSCC-SSC-10.01",
-     "uuid": "567700ec-adc0-4448-a7a9-082f2e16e64c"
-    },
-    {
-     "description": "Key lifespan is short to minimize the impact of potential key compromise \\nand reduce the attack surface.\\n",
-     "props": [
-      {
-       "name": "method",
-       "value": "TEST"
-      }
-     ],
-     "related-controls": {
-      "control-selections": [
-       {
-        "include-controls": [
-         {
-          "control-id": "sc-12.3"
-         }
-        ]
-       }
-      ]
-     },
-     "title": "CNSCC-ACC-04.01",
-     "uuid": "e9e29b2f-f90f-43c3-9e3a-3a5cd85d249f"
-    },
-    {
-     "description": "A verifiably reproducible build is a build process where, given a source code commit hash \\nand a set of build instructions, an end user should be able to reproduce the built artefact bit for bit.\\n",
-     "props": [
-      {
-       "name": "method",
-       "value": "TEST"
-      }
-     ],
-     "related-controls": {
-      "control-selections": [
-       {
-        "include-controls": [
-         {
-          "control-id": "cm-3.4"
-         }
-        ]
-       }
-      ]
-     },
-     "title": "CNSCC-SBP-04.01",
-     "uuid": "2c841027-99af-4330-94b6-d9d452364a36"
-    },
-    {
-     "description": "Out-of-band verification of runtime environment security, as defined by execution of policies \\nusing tools such as seccomp, AppArmor, and SELinux, provides defense in depth against attacks \\non build infrastructure.\\n",
-     "props": [
-      {
-       "name": "method",
-       "value": "TEST"
-      }
-     ],
-     "related-controls": {
-      "control-selections": [
-       {
-        "include-controls": [
-         {
-          "control-id": "cm-3.4"
-         }
-        ]
-       }
-      ]
-     },
-     "title": "CNSCC-SBP-03.01",
-     "uuid": "ed1e7342-20e3-4897-8d01-0e9f7d740e74"
-    },
-    {
-     "description": "Short-life credential issuance encourages the use of fine grained permissions and automation in \\nprovisioning access tokens. For CI/CD pipeline agents, short-lived access tokens should be considered \\ninstead of password-based credentials.\\n",
-     "props": [
-      {
-       "name": "method",
-       "value": "TEST"
-      }
-     ],
-     "related-controls": {
-      "control-selections": [
-       {
-        "include-controls": [
-         {
-          "control-id": "ac-2.1"
-         }
-        ]
-       }
-      ]
-     },
-     "title": "CNSCC-SSC-13.01",
-     "uuid": "f582a938-7408-4263-8472-bf872b3450ca"
-    },
-    {
-     "description": "Authorization for workloads is granted based on attributes and roles/permissions \\npreviously assigned.\\n",
-     "props": [
-      {
-       "name": "method",
-       "value": "TEST"
-      }
-     ],
-     "related-controls": {
-      "control-selections": [
-       {
-        "include-controls": [
-         {
-          "control-id": "ac-3.13"
-         }
-        ]
-       }
-      ]
-     },
-     "title": "CNSCC-ACC-09.01",
-     "uuid": "689e732c-f4c2-4446-90a6-98a142a84ad6"
-    },
-    {
-     "description": "Both Attribute-Based Access Control (ABAC) and Role-Based Access Control (RBAC) \\nare used to provide comprehensive access control mechanisms.\\n",
-     "props": [
-      {
-       "name": "method",
-       "value": "TEST"
-      }
-     ],
-     "related-controls": {
-      "control-selections": [
-       {
-        "include-controls": [
-         {
-          "control-id": "ac-3.13"
-         },
-         {
-          "control-id": "ac-3.7"
-         }
-        ]
-       }
-      ]
-     },
-     "title": "CNSCC-ACC-10.01",
-     "uuid": "65a2455f-27cd-498c-b7f1-497a264075b1"
-    },
-    {
-     "description": "Secure Boot with TPM 2.0 or similar control is employed to verify the correct \\nphysical and logical location of compute resources.\\n",
-     "props": [
-      {
-       "name": "method",
-       "value": "TEST"
-      }
-     ],
-     "related-controls": {
-      "control-selections": [
-       {
-        "include-controls": [
-         {
-          "control-id": "si-7.9"
-         }
-        ]
-       }
-      ]
-     },
-     "title": "CNSCC-COM-01.01",
-     "uuid": "19a606bb-f7b5-48bb-b6cb-0ddc49e959c2"
+     "title": "CNSCC-STO-01.01",
+     "uuid": "9fd8129c-9f03-4ab0-8db8-bd2ddc9f8316"
     },
     {
      "description": "GPG keys or S/MIME certificates are used to sign the source code.\\nThis ensures authenticity and integrity of commits and tags.\\n",
@@ -472,435 +117,7 @@
       ]
      },
      "title": "CNSCC-SSC-02.01",
-     "uuid": "b31455cb-5ec3-4e0c-bb68-99906c42885e"
-    },
-    {
-     "description": "Credentials and keys protecting sensitive workloads (health/finance/etc) are customer managed \\n(e.g. generated and managed independent of a cloud service provider). KMS and HMS are common \\ntechnologies to achieve this. FIPS 140-2 compliance is strongly suggested.\\n",
-     "props": [
-      {
-       "name": "method",
-       "value": "TEST"
-      }
-     ],
-     "related-controls": {
-      "control-selections": [
-       {
-        "include-controls": [
-         {
-          "control-id": "ia-2.12"
-         }
-        ]
-       }
-      ]
-     },
-     "title": "CNSCC-ACC-05.01",
-     "uuid": "496cfb48-a559-4839-bb20-1017971e112b"
-    },
-    {
-     "description": "Hashing and checksums are added to blocks, objects or files to detect and recover \\nfrom corrupted data and provide protection against tampering.\\n",
-     "props": [
-      {
-       "name": "method",
-       "value": "TEST"
-      }
-     ],
-     "related-controls": {
-      "control-selections": [
-       {
-        "include-controls": [
-         {
-          "control-id": "cm-7"
-         }
-        ]
-       }
-      ]
-     },
-     "title": "CNSCC-STO-03.01",
-     "uuid": "e6a740f5-f9bd-4928-ac71-4b3d27568c3d"
-    },
-    {
-     "description": "Monitor and detect any changes to the initial configurations made in runtime.\\nPreventative controls should be the primary control. Detective controls monitoring \\nfilesystem changes should be used to verify primary controls are operating properly.\\n",
-     "props": [
-      {
-       "name": "method",
-       "value": "TEST"
-      }
-     ],
-     "related-controls": {
-      "control-selections": [
-       {
-        "include-controls": [
-         {
-          "control-id": "cm-2.2"
-         },
-         {
-          "control-id": "cm-3.7"
-         }
-        ]
-       }
-      ]
-     },
-     "title": "CNSCC-COM-03.01",
-     "uuid": "9474446d-b50d-4af0-9573-ec6e562559db"
-    },
-    {
-     "description": "All orchestrator control plane components are configured to communicate via mutual \\nauthentication and certificate validation with a periodically rotated certificate.\\nIn unfederated clusters, the CA should be used exclusively for the current cluster.\\n",
-     "props": [
-      {
-       "name": "method",
-       "value": "TEST"
-      }
-     ],
-     "related-controls": {
-      "control-selections": [
-       {
-        "include-controls": [
-         {
-          "control-id": "ac-3"
-         }
-        ]
-       }
-      ]
-     },
-     "title": "CNSCC-COM-10.01",
-     "uuid": "492770a5-6cb7-41f2-a0a3-aa889b013739"
-    },
-    {
-     "description": "Applications and workloads are explicitly authorized to communicate with each other \\nusing mutual authentication.\\n",
-     "props": [
-      {
-       "name": "method",
-       "value": "TEST"
-      }
-     ],
-     "related-controls": {
-      "control-selections": [
-       {
-        "include-controls": [
-         {
-          "control-id": "ia-9"
-         }
-        ]
-       }
-      ]
-     },
-     "title": "CNSCC-ACC-02.01",
-     "uuid": "b6ead5a3-6036-47eb-8b5b-b078bcbb7fec"
-    },
-    {
-     "description": "Implement codeowners (or equivalent) to clearly define who has write access \\nto different parts of the repository.\\n",
-     "props": [
-      {
-       "name": "method",
-       "value": "TEST"
-      }
-     ],
-     "related-controls": {
-      "control-selections": [
-       {
-        "include-controls": [
-         {
-          "control-id": "pl-1"
-         }
-        ]
-       }
-      ]
-     },
-     "title": "CNSCC-SSC-05.01",
-     "uuid": "14ab01d6-55f5-451c-9514-689f6b1e8970"
-    },
-    {
-     "description": "The presence and output of each build step should be attested during the build.\\nThe CNCF maintains the in-toto project that can be used to secure a chain of pipeline \\nstages end-to-end with cryptographic guarantees.\\n",
-     "props": [
-      {
-       "name": "method",
-       "value": "TEST"
-      }
-     ],
-     "related-controls": {
-      "control-selections": [
-       {
-        "include-controls": [
-         {
-          "control-id": "cm-3.6"
-         }
-        ]
-       }
-      ]
-     },
-     "title": "CNSCC-SBP-01.01",
-     "uuid": "366cbf54-982c-41a0-bb92-3fe5cf0d8e15"
-    },
-    {
-     "description": "It is recommended to implement a key rotation policy to ensure that compromised keys will cease \\nto be usable after a certain period of time. When a private key is known to have been compromised, \\nit should be revoked and replaced immediately.\\n",
-     "props": [
-      {
-       "name": "method",
-       "value": "TEST"
-      }
-     ],
-     "related-controls": {
-      "control-selections": [
-       {
-        "include-controls": [
-         {
-          "control-id": "ac-2.1"
-         }
-        ]
-       }
-      ]
-     },
-     "title": "CNSCC-SSC-12.01",
-     "uuid": "8f660458-040f-4de2-8a07-69196840e368"
-    },
-    {
-     "description": "Object level and resource requests and limits are controlled through cgroups.\\nThis helps prevent exhaustion of node and cluster level resources by one misbehaving workload.\\n",
-     "props": [
-      {
-       "name": "method",
-       "value": "TEST"
-      }
-     ],
-     "related-controls": {
-      "control-selections": [
-       {
-        "include-controls": [
-         {
-          "control-id": "si-7.16"
-         }
-        ]
-       }
-      ]
-     },
-     "title": "CNSCC-COM-08.01",
-     "uuid": "e5fc6a91-9290-4481-a7e4-73a12690081b"
-    },
-    {
-     "description": "External requirements and dependencies should be locked to specific versions and verified\\nto ensure build reproducibility and security.\\n",
-     "props": [
-      {
-       "name": "method",
-       "value": "TEST"
-      }
-     ],
-     "related-controls": {
-      "control-selections": [
-       {
-        "include-controls": [
-         {
-          "control-id": "cm-3.2"
-         }
-        ]
-       }
-      ]
-     },
-     "title": "CNSCC-SBP-05.01",
-     "uuid": "31ba01be-6add-462a-85cd-43e13d0d44c6"
-    },
-    {
-     "description": "Implement tooling to detect secrets or to prevent certain files from being pushed which may contain \\nplaintext sensitive materials, such as via a .gitignore and/or .gitattributes file, client-side hook \\n(pre-commit), server-side hook (pre-receive or update), and/or as a step in the CI process.\\n",
-     "props": [
-      {
-       "name": "method",
-       "value": "TEST"
-      }
-     ],
-     "related-controls": {
-      "control-selections": [
-       {
-        "include-controls": [
-         {
-          "control-id": "sc-12.3"
-         }
-        ]
-       }
-      ]
-     },
-     "title": "CNSCC-SSC-04.01",
-     "uuid": "6b72b732-940c-459d-8846-4e45c4607004"
-    },
-    {
-     "description": "Data availability is achieved through parity or mirroring, erasure coding or replicas\\nto ensure data remains accessible even in case of hardware failures.\\n",
-     "props": [
-      {
-       "name": "method",
-       "value": "TEST"
-      }
-     ],
-     "related-controls": {
-      "control-selections": [
-       {
-        "include-controls": [
-         {
-          "control-id": "si-13"
-         }
-        ]
-       }
-      ]
-     },
-     "title": "CNSCC-STO-02.01",
-     "uuid": "d00113d6-1ecd-4b71-8cbc-06d6932192d8"
-    },
-    {
-     "description": "Minimize administrative access to the control plane. Ensure both users and pods \\nhave the minimum necessary access.\\n",
-     "props": [
-      {
-       "name": "method",
-       "value": "TEST"
-      }
-     ],
-     "related-controls": {
-      "control-selections": [
-       {
-        "include-controls": [
-         {
-          "control-id": "ac-6"
-         }
-        ]
-       }
-      ]
-     },
-     "title": "CNSCC-COM-07.01",
-     "uuid": "07b9f923-fec6-4b40-a8d0-4308918d1853"
-    },
-    {
-     "description": "API auditing is enabled with a filter for a specific set of API Groups or verbs.\\nAPI audits of the application, kubernetes API server, and kernel should be implemented.\\n",
-     "props": [
-      {
-       "name": "method",
-       "value": "TEST"
-      }
-     ],
-     "related-controls": {
-      "control-selections": [
-       {
-        "include-controls": [
-         {
-          "control-id": "au-2"
-         }
-        ]
-       }
-      ]
-     },
-     "title": "CNSCC-COM-04.01",
-     "uuid": "9e23801d-e593-4095-8cc0-b967c5f8ffaa"
-    },
-    {
-     "description": "SCM platforms allow the configuration and restriction of source \\ncode operations on individual branches. Protection rules can be used \\nto enforce the usage of pull requests with specified precondition \\nand approval rules, ensuring that a human code review process is \\nfollowed or an automated status checking of a branch occurs. \\nAdditionally, protected branches can be used to disallow dangerous \\nuse of force pushes, preventing the overwrite of  commit histories and \\npotential obfuscation of code changes.\\n",
-     "props": [
-      {
-       "name": "method",
-       "value": "TEST"
-      }
-     ],
-     "related-controls": {
-      "control-selections": [
-       {
-        "include-controls": [
-         {
-          "control-id": "sa-8"
-         }
-        ]
-       }
-      ]
-     },
-     "steps": [
-      {
-       "description": "The procedure performs an automated check of the branch ruleset state in GitHub by creating a snapshot of the state from the API and checks the output with an OPA policy to ensure the outcome meets the baseline requirement.",
-       "title": "github_branch_protection",
-       "uuid": "7e902d62-2264-4c0f-bd80-53849659eb2f"
-      }
-     ],
-     "title": "CNSCC-SSC-01.01",
-     "uuid": "1b15fbc6-057f-400b-9458-216acc2c7c0e"
-    },
-    {
-     "description": "Secrets are injected at runtime, such as environment variables or as a file,\\nrather than being embedded in the application code.\\n",
-     "props": [
-      {
-       "name": "method",
-       "value": "TEST"
-      }
-     ],
-     "related-controls": {
-      "control-selections": [
-       {
-        "include-controls": [
-         {
-          "control-id": "ia-5.7"
-         }
-        ]
-       }
-      ]
-     },
-     "title": "CNSCC-ACC-01.01",
-     "uuid": "877a8050-9b02-4062-b0e9-76865aafdd38"
-    },
-    {
-     "description": "Data backup storage and data source storage should have the same security controls\\nto ensure consistent protection of data across all storage locations.\\n",
-     "props": [
-      {
-       "name": "method",
-       "value": "TEST"
-      }
-     ],
-     "related-controls": {
-      "control-selections": [
-       {
-        "include-controls": [
-         {
-          "control-id": "sa-9"
-         }
-        ]
-       }
-      ]
-     },
-     "title": "CNSCC-STO-04.01",
-     "uuid": "8e86fb46-7879-4948-a7a1-4f4409b721ae"
-    },
-    {
-     "description": "Authentication and authorization are enforced independently to provide \\nbetter security isolation.\\n",
-     "props": [
-      {
-       "name": "method",
-       "value": "TEST"
-      }
-     ],
-     "related-controls": {
-      "control-selections": [
-       {
-        "include-controls": [
-         {
-          "control-id": "ia-2.6"
-         }
-        ]
-       }
-      ]
-     },
-     "title": "CNSCC-ACC-07.01",
-     "uuid": "8aa94482-f68f-4e87-8ef6-67ed531b5461"
-    },
-    {
-     "description": "Secure erasure adhering to OPAL standards is employed for returned or non-functional devices\\nto ensure data cannot be recovered from decommissioned storage.\\n",
-     "props": [
-      {
-       "name": "method",
-       "value": "TEST"
-      }
-     ],
-     "related-controls": {
-      "control-selections": [
-       {
-        "include-controls": [
-         {
-          "control-id": "sc-28"
-         }
-        ]
-       }
-      ]
-     },
-     "title": "CNSCC-STO-05.01",
-     "uuid": "b906a706-1e38-46b4-a24d-9a2067a2c282"
+     "uuid": "a9767006-185f-4130-867d-2390f06d339e"
     },
     {
      "description": "Container specific operating systems are in use - a read-only OS with other services disabled.\\nThis provides isolation and resource confinement that enables developers to run isolated \\napplications on a shared host kernel.\\n",
@@ -925,54 +142,10 @@
       ]
      },
      "title": "CNSCC-COM-05.01",
-     "uuid": "7ccfca33-f604-4fc7-b271-7bcbefc1c0e0"
+     "uuid": "b933fa76-91b9-4ae0-be19-179e45815275"
     },
     {
-     "description": "Security specific scans should be performed, including Static Application Security Tests (SAST) \\nand Dynamic Application Security Tests (DAST). Both the coverage and results of these tests \\nshould be published as part of the repository information.\\n",
-     "props": [
-      {
-       "name": "method",
-       "value": "TEST"
-      }
-     ],
-     "related-controls": {
-      "control-selections": [
-       {
-        "include-controls": [
-         {
-          "control-id": "ra-5"
-         }
-        ]
-       }
-      ]
-     },
-     "title": "CNSCC-SSC-06.01",
-     "uuid": "a2af9f32-26df-4b38-b71d-f46a46f8bba8"
-    },
-    {
-     "description": "Define configuration options or configuration rules within SCM platforms allow repository \\nadministrators to enforce security, hygiene and operational policies.\\n",
-     "props": [
-      {
-       "name": "method",
-       "value": "TEST"
-      }
-     ],
-     "related-controls": {
-      "control-selections": [
-       {
-        "include-controls": [
-         {
-          "control-id": "pl-1"
-         }
-        ]
-       }
-      ]
-     },
-     "title": "CNSCC-SSC-07.01",
-     "uuid": "2b1ae232-b903-4a49-a31e-58be4b399a70"
-    },
-    {
-     "description": "Authentication and authorization are determined independently to provide \\nbetter security isolation.\\n",
+     "description": "Authentication and authorization are enforced independently to provide \\nbetter security isolation.\\n",
      "props": [
       {
        "name": "method",
@@ -990,8 +163,228 @@
        }
       ]
      },
-     "title": "CNSCC-ACC-06.01",
-     "uuid": "e87edc1f-cf84-43f1-b3f4-cff3c5ab02c8"
+     "title": "CNSCC-ACC-07.01",
+     "uuid": "5ac7578a-419b-485c-9cd8-061ace139d1b"
+    },
+    {
+     "description": "Hashing and checksums are added to blocks, objects or files to detect and recover \\nfrom corrupted data and provide protection against tampering.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "cm-7"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "CNSCC-STO-03.01",
+     "uuid": "8042bcf5-e5f4-4332-942d-b76e86648a79"
+    },
+    {
+     "description": "Multi-factor authentication should be enforced for all users accessing source code repositories\\nto prevent unauthorized access.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "ia-2.1"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "CNSCC-SSC-10.01",
+     "uuid": "8c60a383-5057-46fe-9a1c-8e493be7cfde"
+    },
+    {
+     "description": "Secrets are injected at runtime, such as environment variables or as a file,\\nrather than being embedded in the application code.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "ia-5.7"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "CNSCC-ACC-01.01",
+     "uuid": "06257542-09a9-44ff-870c-ea390746bb77"
+    },
+    {
+     "description": "Applications and workloads are explicitly authorized to communicate with each other \\nusing mutual authentication.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "ia-9"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "CNSCC-ACC-02.01",
+     "uuid": "07a37c47-19dd-4e27-bb74-685ae5eaf586"
+    },
+    {
+     "description": "Define roles by using principle of least privileges to provide access based on function \\nsuch as Developer, Maintainer, Owner, Reviewer, Approver, and Guest.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "pl-1"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "CNSCC-SSC-08.01",
+     "uuid": "30398d55-a472-42fe-99b8-775bcad85751"
+    },
+    {
+     "description": "SSH keys should be used instead of passwords to provide secure access to source code repositories.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "ac-1"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "CNSCC-SSC-11.01",
+     "uuid": "92f69630-a6cc-47b1-8d5c-3cab75b0257e"
+    },
+    {
+     "description": "Out-of-band verification of runtime environment security, as defined by execution of policies \\nusing tools such as seccomp, AppArmor, and SELinux, provides defense in depth against attacks \\non build infrastructure.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "cm-3.4"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "CNSCC-SBP-03.01",
+     "uuid": "62f99c53-c283-465a-ad59-c1be8228165b"
+    },
+    {
+     "description": "External requirements and dependencies should be locked to specific versions and verified\\nto ensure build reproducibility and security.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "cm-3.2"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "CNSCC-SBP-05.01",
+     "uuid": "d8f911d2-9ba9-44c8-aef0-3af168d4fa81"
+    },
+    {
+     "description": "The presence and output of each build step should be attested during the build.\\nThe CNCF maintains the in-toto project that can be used to secure a chain of pipeline \\nstages end-to-end with cryptographic guarantees.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "cm-3.6"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "CNSCC-SBP-01.01",
+     "uuid": "4e5b64de-1301-4738-90cd-d8a017970870"
+    },
+    {
+     "description": "Minimize administrative access to the control plane. Ensure both users and pods \\nhave the minimum necessary access.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "ac-6"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "CNSCC-COM-07.01",
+     "uuid": "dd0bb18c-f504-42a1-9826-30a97c35c8e4"
     },
     {
      "description": "Access control and file permissions are updated in real-time, where possible as \\ncaching may permit unauthorized access.\\n",
@@ -1013,10 +406,10 @@
       ]
      },
      "title": "CNSCC-ACC-08.01",
-     "uuid": "7305f3ff-fd84-40c7-9e73-edca13bbea74"
+     "uuid": "2ae938de-bfb4-4213-af05-a873216ff406"
     },
     {
-     "description": "Storage control plane management interface requires mutual authentication \\nand TLS for connections to ensure secure communication.\\n",
+     "description": "Data backup storage and data source storage should have the same security controls\\nto ensure consistent protection of data across all storage locations.\\n",
      "props": [
       {
        "name": "method",
@@ -1028,14 +421,621 @@
        {
         "include-controls": [
          {
-          "control-id": "sc-8"
+          "control-id": "sa-9"
          }
         ]
        }
       ]
      },
-     "title": "CNSCC-STO-01.01",
-     "uuid": "29ca537a-c00b-40fb-b010-2e85d96cde98"
+     "title": "CNSCC-STO-04.01",
+     "uuid": "2cdf52a4-36c5-4d2a-8121-6cd94225cbaa"
+    },
+    {
+     "description": "It is recommended to implement a key rotation policy to ensure that compromised keys will cease \\nto be usable after a certain period of time. When a private key is known to have been compromised, \\nit should be revoked and replaced immediately.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "ac-2.1"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "CNSCC-SSC-12.01",
+     "uuid": "87c0efab-b476-4a01-ac78-39a966168df2"
+    },
+    {
+     "description": "SCM platforms allow the configuration and restriction of source \\ncode operations on individual branches. Protection rules can be used \\nto enforce the usage of pull requests with specified precondition \\nand approval rules, ensuring that a human code review process is \\nfollowed or an automated status checking of a branch occurs. \\nAdditionally, protected branches can be used to disallow dangerous \\nuse of force pushes, preventing the overwrite of  commit histories and \\npotential obfuscation of code changes.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "sa-8"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "CNSCC-SSC-01.01",
+     "uuid": "b1a2678c-05f6-4cc1-89fd-eac5778786de"
+    },
+    {
+     "description": "Both Attribute-Based Access Control (ABAC) and Role-Based Access Control (RBAC) \\nare used to provide comprehensive access control mechanisms.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "ac-3.13"
+         },
+         {
+          "control-id": "ac-3.7"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "CNSCC-ACC-10.01",
+     "uuid": "c8304859-78ad-49ca-9830-736f54ab07d1"
+    },
+    {
+     "description": "Short-life credential issuance encourages the use of fine grained permissions and automation in \\nprovisioning access tokens. For CI/CD pipeline agents, short-lived access tokens should be considered \\ninstead of password-based credentials.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "ac-2.1"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "CNSCC-SSC-13.01",
+     "uuid": "1a7a026e-2b94-4035-b1f0-ece7ef33934a"
+    },
+    {
+     "description": "Authorization for workloads is granted based on attributes and roles/permissions \\npreviously assigned.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "ac-3.13"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "CNSCC-ACC-09.01",
+     "uuid": "b492a493-a0a5-4d19-9c78-07bbc4b57cf5"
+    },
+    {
+     "description": "Branch protection is enabled on the mainline and release branches with force push disabled.\\nThis ensures proper review and verification processes are followed.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "ac-6.3"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "CNSCC-SSC-03.01",
+     "uuid": "d18e942a-f143-41e8-bcd0-3fe0cace3f5d"
+    },
+    {
+     "description": "Data availability is achieved through parity or mirroring, erasure coding or replicas\\nto ensure data remains accessible even in case of hardware failures.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "si-13"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "CNSCC-STO-02.01",
+     "uuid": "69f68772-1945-4b4a-b3b3-ff53c20b08f2"
+    },
+    {
+     "description": "Security specific scans should be performed, including Static Application Security Tests (SAST) \\nand Dynamic Application Security Tests (DAST). Both the coverage and results of these tests \\nshould be published as part of the repository information.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "ra-5"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "CNSCC-SSC-06.01",
+     "uuid": "d8447f6f-acb2-4860-a3c9-8e6278b8a155"
+    },
+    {
+     "description": "Object level and resource requests and limits are controlled through cgroups.\\nThis helps prevent exhaustion of node and cluster level resources by one misbehaving workload.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "si-7.16"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "CNSCC-COM-08.01",
+     "uuid": "4289a852-a415-4510-8f1b-9633f0563722"
+    },
+    {
+     "description": "Credentials and keys protecting sensitive workloads (health/finance/etc) are customer managed \\n(e.g. generated and managed independent of a cloud service provider). KMS and HMS are common \\ntechnologies to achieve this. FIPS 140-2 compliance is strongly suggested.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "ia-2.12"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "CNSCC-ACC-05.01",
+     "uuid": "7d247d9d-b249-4585-99b6-b7a867235951"
+    },
+    {
+     "description": "The build environment's sources and dependencies must come from a secure, trusted source of truth.\\nChecksums and any signatures should be validated both in the downloading or ingestion process, \\nand again by the build worker.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "cm-3.2"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "CNSCC-SBP-02.01",
+     "uuid": "cc1cc8ec-b58a-4557-97b2-df1b85e93a75"
+    },
+    {
+     "description": "Secure erasure adhering to OPAL standards is employed for returned or non-functional devices\\nto ensure data cannot be recovered from decommissioned storage.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "sc-28"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "CNSCC-STO-05.01",
+     "uuid": "7894613e-b0e7-409d-983b-e29ddbf60bff"
+    },
+    {
+     "description": "Monitor and detect any changes to the initial configurations made in runtime.\\nPreventative controls should be the primary control. Detective controls monitoring \\nfilesystem changes should be used to verify primary controls are operating properly.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "cm-2.2"
+         },
+         {
+          "control-id": "cm-3.7"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "CNSCC-COM-03.01",
+     "uuid": "7a1b1ee2-043c-4711-8917-e224cffbddfe"
+    },
+    {
+     "description": "The hardware root of trust is based in a Trusted Platform Module (TPM) or virtual TPM (vTPM).\\nEnsure HW root of trust extends to the host OS kernel, modules, system images, \\ncontainer runtimes, and all software on the system.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "si-7"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "CNSCC-COM-06.01",
+     "uuid": "1d50facf-d161-4edd-aee6-90f3616f69e1"
+    },
+    {
+     "description": "A verifiably reproducible build is a build process where, given a source code commit hash \\nand a set of build instructions, an end user should be able to reproduce the built artefact bit for bit.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "cm-3.4"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "CNSCC-SBP-04.01",
+     "uuid": "14c581ce-d631-4c03-923e-4704b01a9359"
+    },
+    {
+     "description": "API auditing is enabled with a filter for a specific set of API Groups or verbs.\\nAPI audits of the application, kubernetes API server, and kernel should be implemented.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "au-2"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "CNSCC-COM-04.01",
+     "uuid": "79d53ce8-53bd-4d3f-bee9-21aca157c323"
+    },
+    {
+     "description": "Systems processing alerts are periodically tuned for false positives to avoid \\nalert flooding, fatigue, and false negatives after security incidents that were \\nnot detected by the system.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "si-4.13"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "CNSCC-COM-09.01",
+     "uuid": "eb5fe5b6-b994-44d0-bc32-31b1d139ad37"
+    },
+    {
+     "description": "All orchestrator control plane components are configured to communicate via mutual \\nauthentication and certificate validation with a periodically rotated certificate.\\nIn unfederated clusters, the CA should be used exclusively for the current cluster.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "ac-3"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "CNSCC-COM-10.01",
+     "uuid": "e2e3b496-d806-4f10-93e0-aedd79096241"
+    },
+    {
+     "description": "Implement tooling to detect secrets or to prevent certain files from being pushed which may contain \\nplaintext sensitive materials, such as via a .gitignore and/or .gitattributes file, client-side hook \\n(pre-commit), server-side hook (pre-receive or update), and/or as a step in the CI process.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "sc-12.3"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "CNSCC-SSC-04.01",
+     "uuid": "2e7eb934-2a03-45a9-a9b6-9dd3a5db620a"
+    },
+    {
+     "description": "Implement codeowners (or equivalent) to clearly define who has write access \\nto different parts of the repository.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "pl-1"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "CNSCC-SSC-05.01",
+     "uuid": "28c5c4f1-317d-43ac-985f-0681c28d5581"
+    },
+    {
+     "description": "Keys are rotated frequently to limit the exposure window in case of key compromise.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "sc-12"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "CNSCC-ACC-03.01",
+     "uuid": "e99b1032-07a7-4bc9-bdf3-c6f4b5023fb8"
+    },
+    {
+     "description": "Authentication and authorization are determined independently to provide \\nbetter security isolation.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "ia-2.6"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "CNSCC-ACC-06.01",
+     "uuid": "93c8bd68-4567-4151-a074-d36861e8a771"
+    },
+    {
+     "description": "Secure Boot with TPM 2.0 or similar control is employed to verify the correct \\nphysical and logical location of compute resources.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "si-7.9"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "CNSCC-COM-01.01",
+     "uuid": "a7c5a9e1-bb26-4842-9cd7-05d2213c0992"
+    },
+    {
+     "description": "Define configuration options or configuration rules within SCM platforms allow repository \\nadministrators to enforce security, hygiene and operational policies.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "pl-1"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "CNSCC-SSC-07.01",
+     "uuid": "93f59c11-1639-4e20-9f52-abc36639e7b4"
+    },
+    {
+     "description": "Disparate data sensitive workloads are not run on the same host OS kernel.\\nWorkloads may be separated by running in a separate cluster, on a separate node, \\nor by implementing pods in independent VMs.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "sc-7"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "CNSCC-COM-02.01",
+     "uuid": "afbdca1d-0ebd-48c5-9bb0-167a3d3cd6fc"
+    },
+    {
+     "description": "Key lifespan is short to minimize the impact of potential key compromise \\nand reduce the attack surface.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "sc-12.3"
+         }
+        ]
+       }
+      ]
+     },
+     "title": "CNSCC-ACC-04.01",
+     "uuid": "22e89983-74d5-49cd-8f8b-1cfd8ba9efa0"
+    },
+    {
+     "description": "The author(s) of a request may not also be the approver of the request. At least two reviewers \\nwith equal or greater expertise should review \u0026 approve the request.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "sa-11.4"
+         }
+        ]
+       }
+      ]
+     },
+     "steps": [
+      {
+       "description": "The procedure performs an automated check of GitHub branch protection rules and pull request review requirements to ensure authors cannot approve their own requests and at least two reviewers with equal or greater expertise review and approve requests.",
+       "title": "github_branch_protection",
+       "uuid": "df03a965-edd3-4abe-843b-a76812e60149"
+      }
+     ],
+     "title": "CNSCC-SSC-09.01",
+     "uuid": "397cdedd-92db-4ac1-9c07-6ba87c57d456"
     }
    ],
    "components": [
@@ -1564,12 +1564,12 @@
      },
      "title": "GitHub Repository",
      "type": "software",
-     "uuid": "c1c79e31-902d-4798-8673-617c2c4943ad"
+     "uuid": "ca4ed669-9c09-4569-8b4f-b991bc68aa15"
     }
    ]
   },
   "metadata": {
-   "last-modified": "2025-09-30T19:38:18.067312513-04:00",
+   "last-modified": "2025-10-10T20:29:44.843223084-04:00",
    "oscal-version": "1.1.3",
    "title": "REPLACE_ME",
    "version": "0.1.0"
@@ -1582,22 +1582,43 @@
        "control-id": "sc-12.3"
       },
       {
-       "control-id": "ac-6"
+       "control-id": "sc-7"
+      },
+      {
+       "control-id": "cm-3.7"
+      },
+      {
+       "control-id": "cm-2"
       },
       {
        "control-id": "si-7.16"
       },
       {
-       "control-id": "si-13"
+       "control-id": "sa-9"
       },
       {
-       "control-id": "ra-5"
+       "control-id": "ia-9"
       },
       {
-       "control-id": "ac-3.7"
+       "control-id": "sc-12"
       },
       {
-       "control-id": "cm-2"
+       "control-id": "ia-2.6"
+      },
+      {
+       "control-id": "cm-3.6"
+      },
+      {
+       "control-id": "sa-8"
+      },
+      {
+       "control-id": "ia-5.7"
+      },
+      {
+       "control-id": "ia-2.12"
+      },
+      {
+       "control-id": "si-4.2"
       },
       {
        "control-id": "si-4.13"
@@ -1606,19 +1627,19 @@
        "control-id": "ac-3"
       },
       {
-       "control-id": "ac-6.3"
+       "control-id": "cm-3.2"
       },
       {
-       "control-id": "sa-11"
+       "control-id": "ra-5"
       },
       {
-       "control-id": "ac-1"
+       "control-id": "sa-11.4"
       },
       {
-       "control-id": "ia-2.6"
+       "control-id": "ac-3.13"
       },
       {
-       "control-id": "sc-7"
+       "control-id": "si-7.9"
       },
       {
        "control-id": "cm-3.4"
@@ -1627,71 +1648,50 @@
        "control-id": "sc-28"
       },
       {
-       "control-id": "ia-5.7"
-      },
-      {
-       "control-id": "si-4.2"
-      },
-      {
-       "control-id": "sc-8"
-      },
-      {
-       "control-id": "sa-8"
-      },
-      {
-       "control-id": "pl-1"
-      },
-      {
-       "control-id": "ac-3.13"
-      },
-      {
-       "control-id": "cm-3.2"
-      },
-      {
-       "control-id": "si-7"
-      },
-      {
-       "control-id": "si-7.9"
-      },
-      {
-       "control-id": "cm-3.7"
-      },
-      {
-       "control-id": "ia-2.1"
+       "control-id": "ac-1"
       },
       {
        "control-id": "ac-2.1"
       },
       {
-       "control-id": "cm-2.2"
+       "control-id": "ac-6"
       },
       {
-       "control-id": "au-2"
+       "control-id": "si-7"
       },
       {
        "control-id": "cm-7"
       },
       {
-       "control-id": "cm-3.6"
+       "control-id": "sc-8"
       },
       {
-       "control-id": "sa-9"
+       "control-id": "cm-2.2"
       },
       {
-       "control-id": "sc-12"
+       "control-id": "si-13"
       },
       {
-       "control-id": "ia-9"
+       "control-id": "au-2"
       },
       {
-       "control-id": "ia-2.12"
+       "control-id": "ac-6.3"
+      },
+      {
+       "control-id": "pl-1"
+      },
+      {
+       "control-id": "ia-2.1"
+      },
+      {
+       "control-id": "ac-3.7"
       }
      ]
     }
    ],
    "links": [
     {
-     "href": "#0d0730ea-d57e-4230-9760-6bacde0595e7",
+     "href": "#a8d7668e-c961-48ff-94e8-d95741755d9e",
      "rel": "includes-controls-from-source",
      "text": "The reviewed controls are derived from the linked OSCAL profile."
     }
@@ -1701,12 +1701,12 @@
    {
     "associated-activities": [
      {
-      "activity-uuid": "5598e612-6bb9-4ff5-a13f-93e419bfb503",
+      "activity-uuid": "9fd8129c-9f03-4ab0-8db8-bd2ddc9f8316",
       "subjects": [
        {
         "include-subjects": [
          {
-          "subject-uuid": "c1c79e31-902d-4798-8673-617c2c4943ad",
+          "subject-uuid": "ca4ed669-9c09-4569-8b4f-b991bc68aa15",
           "type": "component"
          }
         ],
@@ -1715,12 +1715,12 @@
       ]
      },
      {
-      "activity-uuid": "12016742-4594-42c2-a8cc-808b083cda05",
+      "activity-uuid": "a9767006-185f-4130-867d-2390f06d339e",
       "subjects": [
        {
         "include-subjects": [
          {
-          "subject-uuid": "c1c79e31-902d-4798-8673-617c2c4943ad",
+          "subject-uuid": "ca4ed669-9c09-4569-8b4f-b991bc68aa15",
           "type": "component"
          }
         ],
@@ -1729,12 +1729,12 @@
       ]
      },
      {
-      "activity-uuid": "3e381043-35c7-49ee-83e2-1894cc404b04",
+      "activity-uuid": "b933fa76-91b9-4ae0-be19-179e45815275",
       "subjects": [
        {
         "include-subjects": [
          {
-          "subject-uuid": "c1c79e31-902d-4798-8673-617c2c4943ad",
+          "subject-uuid": "ca4ed669-9c09-4569-8b4f-b991bc68aa15",
           "type": "component"
          }
         ],
@@ -1743,12 +1743,12 @@
       ]
      },
      {
-      "activity-uuid": "ee5f080f-6c05-42b2-b2a2-87091390d6a2",
+      "activity-uuid": "5ac7578a-419b-485c-9cd8-061ace139d1b",
       "subjects": [
        {
         "include-subjects": [
          {
-          "subject-uuid": "c1c79e31-902d-4798-8673-617c2c4943ad",
+          "subject-uuid": "ca4ed669-9c09-4569-8b4f-b991bc68aa15",
           "type": "component"
          }
         ],
@@ -1757,12 +1757,12 @@
       ]
      },
      {
-      "activity-uuid": "5385f5cc-c1c2-405a-a55d-b2c53d480391",
+      "activity-uuid": "8042bcf5-e5f4-4332-942d-b76e86648a79",
       "subjects": [
        {
         "include-subjects": [
          {
-          "subject-uuid": "c1c79e31-902d-4798-8673-617c2c4943ad",
+          "subject-uuid": "ca4ed669-9c09-4569-8b4f-b991bc68aa15",
           "type": "component"
          }
         ],
@@ -1771,12 +1771,12 @@
       ]
      },
      {
-      "activity-uuid": "08f65c0c-d830-436f-9289-b20dde0b3418",
+      "activity-uuid": "8c60a383-5057-46fe-9a1c-8e493be7cfde",
       "subjects": [
        {
         "include-subjects": [
          {
-          "subject-uuid": "c1c79e31-902d-4798-8673-617c2c4943ad",
+          "subject-uuid": "ca4ed669-9c09-4569-8b4f-b991bc68aa15",
           "type": "component"
          }
         ],
@@ -1785,12 +1785,12 @@
       ]
      },
      {
-      "activity-uuid": "ff2ea059-d155-4870-ba3a-9e5c934febb2",
+      "activity-uuid": "06257542-09a9-44ff-870c-ea390746bb77",
       "subjects": [
        {
         "include-subjects": [
          {
-          "subject-uuid": "c1c79e31-902d-4798-8673-617c2c4943ad",
+          "subject-uuid": "ca4ed669-9c09-4569-8b4f-b991bc68aa15",
           "type": "component"
          }
         ],
@@ -1799,12 +1799,12 @@
       ]
      },
      {
-      "activity-uuid": "28e348b1-a5e0-4d68-97be-9b31e9f9fa8b",
+      "activity-uuid": "07a37c47-19dd-4e27-bb74-685ae5eaf586",
       "subjects": [
        {
         "include-subjects": [
          {
-          "subject-uuid": "c1c79e31-902d-4798-8673-617c2c4943ad",
+          "subject-uuid": "ca4ed669-9c09-4569-8b4f-b991bc68aa15",
           "type": "component"
          }
         ],
@@ -1813,12 +1813,12 @@
       ]
      },
      {
-      "activity-uuid": "88d426cc-c607-4fcc-8db3-dfa434a41c38",
+      "activity-uuid": "30398d55-a472-42fe-99b8-775bcad85751",
       "subjects": [
        {
         "include-subjects": [
          {
-          "subject-uuid": "c1c79e31-902d-4798-8673-617c2c4943ad",
+          "subject-uuid": "ca4ed669-9c09-4569-8b4f-b991bc68aa15",
           "type": "component"
          }
         ],
@@ -1827,12 +1827,12 @@
       ]
      },
      {
-      "activity-uuid": "567700ec-adc0-4448-a7a9-082f2e16e64c",
+      "activity-uuid": "92f69630-a6cc-47b1-8d5c-3cab75b0257e",
       "subjects": [
        {
         "include-subjects": [
          {
-          "subject-uuid": "c1c79e31-902d-4798-8673-617c2c4943ad",
+          "subject-uuid": "ca4ed669-9c09-4569-8b4f-b991bc68aa15",
           "type": "component"
          }
         ],
@@ -1841,12 +1841,12 @@
       ]
      },
      {
-      "activity-uuid": "e9e29b2f-f90f-43c3-9e3a-3a5cd85d249f",
+      "activity-uuid": "62f99c53-c283-465a-ad59-c1be8228165b",
       "subjects": [
        {
         "include-subjects": [
          {
-          "subject-uuid": "c1c79e31-902d-4798-8673-617c2c4943ad",
+          "subject-uuid": "ca4ed669-9c09-4569-8b4f-b991bc68aa15",
           "type": "component"
          }
         ],
@@ -1855,12 +1855,12 @@
       ]
      },
      {
-      "activity-uuid": "2c841027-99af-4330-94b6-d9d452364a36",
+      "activity-uuid": "d8f911d2-9ba9-44c8-aef0-3af168d4fa81",
       "subjects": [
        {
         "include-subjects": [
          {
-          "subject-uuid": "c1c79e31-902d-4798-8673-617c2c4943ad",
+          "subject-uuid": "ca4ed669-9c09-4569-8b4f-b991bc68aa15",
           "type": "component"
          }
         ],
@@ -1869,12 +1869,12 @@
       ]
      },
      {
-      "activity-uuid": "ed1e7342-20e3-4897-8d01-0e9f7d740e74",
+      "activity-uuid": "4e5b64de-1301-4738-90cd-d8a017970870",
       "subjects": [
        {
         "include-subjects": [
          {
-          "subject-uuid": "c1c79e31-902d-4798-8673-617c2c4943ad",
+          "subject-uuid": "ca4ed669-9c09-4569-8b4f-b991bc68aa15",
           "type": "component"
          }
         ],
@@ -1883,12 +1883,12 @@
       ]
      },
      {
-      "activity-uuid": "f582a938-7408-4263-8472-bf872b3450ca",
+      "activity-uuid": "dd0bb18c-f504-42a1-9826-30a97c35c8e4",
       "subjects": [
        {
         "include-subjects": [
          {
-          "subject-uuid": "c1c79e31-902d-4798-8673-617c2c4943ad",
+          "subject-uuid": "ca4ed669-9c09-4569-8b4f-b991bc68aa15",
           "type": "component"
          }
         ],
@@ -1897,12 +1897,12 @@
       ]
      },
      {
-      "activity-uuid": "689e732c-f4c2-4446-90a6-98a142a84ad6",
+      "activity-uuid": "2ae938de-bfb4-4213-af05-a873216ff406",
       "subjects": [
        {
         "include-subjects": [
          {
-          "subject-uuid": "c1c79e31-902d-4798-8673-617c2c4943ad",
+          "subject-uuid": "ca4ed669-9c09-4569-8b4f-b991bc68aa15",
           "type": "component"
          }
         ],
@@ -1911,12 +1911,12 @@
       ]
      },
      {
-      "activity-uuid": "65a2455f-27cd-498c-b7f1-497a264075b1",
+      "activity-uuid": "2cdf52a4-36c5-4d2a-8121-6cd94225cbaa",
       "subjects": [
        {
         "include-subjects": [
          {
-          "subject-uuid": "c1c79e31-902d-4798-8673-617c2c4943ad",
+          "subject-uuid": "ca4ed669-9c09-4569-8b4f-b991bc68aa15",
           "type": "component"
          }
         ],
@@ -1925,12 +1925,12 @@
       ]
      },
      {
-      "activity-uuid": "19a606bb-f7b5-48bb-b6cb-0ddc49e959c2",
+      "activity-uuid": "87c0efab-b476-4a01-ac78-39a966168df2",
       "subjects": [
        {
         "include-subjects": [
          {
-          "subject-uuid": "c1c79e31-902d-4798-8673-617c2c4943ad",
+          "subject-uuid": "ca4ed669-9c09-4569-8b4f-b991bc68aa15",
           "type": "component"
          }
         ],
@@ -1939,12 +1939,12 @@
       ]
      },
      {
-      "activity-uuid": "b31455cb-5ec3-4e0c-bb68-99906c42885e",
+      "activity-uuid": "b1a2678c-05f6-4cc1-89fd-eac5778786de",
       "subjects": [
        {
         "include-subjects": [
          {
-          "subject-uuid": "c1c79e31-902d-4798-8673-617c2c4943ad",
+          "subject-uuid": "ca4ed669-9c09-4569-8b4f-b991bc68aa15",
           "type": "component"
          }
         ],
@@ -1953,12 +1953,12 @@
       ]
      },
      {
-      "activity-uuid": "496cfb48-a559-4839-bb20-1017971e112b",
+      "activity-uuid": "c8304859-78ad-49ca-9830-736f54ab07d1",
       "subjects": [
        {
         "include-subjects": [
          {
-          "subject-uuid": "c1c79e31-902d-4798-8673-617c2c4943ad",
+          "subject-uuid": "ca4ed669-9c09-4569-8b4f-b991bc68aa15",
           "type": "component"
          }
         ],
@@ -1967,12 +1967,12 @@
       ]
      },
      {
-      "activity-uuid": "e6a740f5-f9bd-4928-ac71-4b3d27568c3d",
+      "activity-uuid": "1a7a026e-2b94-4035-b1f0-ece7ef33934a",
       "subjects": [
        {
         "include-subjects": [
          {
-          "subject-uuid": "c1c79e31-902d-4798-8673-617c2c4943ad",
+          "subject-uuid": "ca4ed669-9c09-4569-8b4f-b991bc68aa15",
           "type": "component"
          }
         ],
@@ -1981,12 +1981,12 @@
       ]
      },
      {
-      "activity-uuid": "9474446d-b50d-4af0-9573-ec6e562559db",
+      "activity-uuid": "b492a493-a0a5-4d19-9c78-07bbc4b57cf5",
       "subjects": [
        {
         "include-subjects": [
          {
-          "subject-uuid": "c1c79e31-902d-4798-8673-617c2c4943ad",
+          "subject-uuid": "ca4ed669-9c09-4569-8b4f-b991bc68aa15",
           "type": "component"
          }
         ],
@@ -1995,12 +1995,12 @@
       ]
      },
      {
-      "activity-uuid": "492770a5-6cb7-41f2-a0a3-aa889b013739",
+      "activity-uuid": "d18e942a-f143-41e8-bcd0-3fe0cace3f5d",
       "subjects": [
        {
         "include-subjects": [
          {
-          "subject-uuid": "c1c79e31-902d-4798-8673-617c2c4943ad",
+          "subject-uuid": "ca4ed669-9c09-4569-8b4f-b991bc68aa15",
           "type": "component"
          }
         ],
@@ -2009,12 +2009,12 @@
       ]
      },
      {
-      "activity-uuid": "b6ead5a3-6036-47eb-8b5b-b078bcbb7fec",
+      "activity-uuid": "69f68772-1945-4b4a-b3b3-ff53c20b08f2",
       "subjects": [
        {
         "include-subjects": [
          {
-          "subject-uuid": "c1c79e31-902d-4798-8673-617c2c4943ad",
+          "subject-uuid": "ca4ed669-9c09-4569-8b4f-b991bc68aa15",
           "type": "component"
          }
         ],
@@ -2023,12 +2023,12 @@
       ]
      },
      {
-      "activity-uuid": "14ab01d6-55f5-451c-9514-689f6b1e8970",
+      "activity-uuid": "d8447f6f-acb2-4860-a3c9-8e6278b8a155",
       "subjects": [
        {
         "include-subjects": [
          {
-          "subject-uuid": "c1c79e31-902d-4798-8673-617c2c4943ad",
+          "subject-uuid": "ca4ed669-9c09-4569-8b4f-b991bc68aa15",
           "type": "component"
          }
         ],
@@ -2037,12 +2037,12 @@
       ]
      },
      {
-      "activity-uuid": "366cbf54-982c-41a0-bb92-3fe5cf0d8e15",
+      "activity-uuid": "4289a852-a415-4510-8f1b-9633f0563722",
       "subjects": [
        {
         "include-subjects": [
          {
-          "subject-uuid": "c1c79e31-902d-4798-8673-617c2c4943ad",
+          "subject-uuid": "ca4ed669-9c09-4569-8b4f-b991bc68aa15",
           "type": "component"
          }
         ],
@@ -2051,12 +2051,12 @@
       ]
      },
      {
-      "activity-uuid": "8f660458-040f-4de2-8a07-69196840e368",
+      "activity-uuid": "7d247d9d-b249-4585-99b6-b7a867235951",
       "subjects": [
        {
         "include-subjects": [
          {
-          "subject-uuid": "c1c79e31-902d-4798-8673-617c2c4943ad",
+          "subject-uuid": "ca4ed669-9c09-4569-8b4f-b991bc68aa15",
           "type": "component"
          }
         ],
@@ -2065,12 +2065,12 @@
       ]
      },
      {
-      "activity-uuid": "e5fc6a91-9290-4481-a7e4-73a12690081b",
+      "activity-uuid": "cc1cc8ec-b58a-4557-97b2-df1b85e93a75",
       "subjects": [
        {
         "include-subjects": [
          {
-          "subject-uuid": "c1c79e31-902d-4798-8673-617c2c4943ad",
+          "subject-uuid": "ca4ed669-9c09-4569-8b4f-b991bc68aa15",
           "type": "component"
          }
         ],
@@ -2079,12 +2079,12 @@
       ]
      },
      {
-      "activity-uuid": "31ba01be-6add-462a-85cd-43e13d0d44c6",
+      "activity-uuid": "7894613e-b0e7-409d-983b-e29ddbf60bff",
       "subjects": [
        {
         "include-subjects": [
          {
-          "subject-uuid": "c1c79e31-902d-4798-8673-617c2c4943ad",
+          "subject-uuid": "ca4ed669-9c09-4569-8b4f-b991bc68aa15",
           "type": "component"
          }
         ],
@@ -2093,12 +2093,12 @@
       ]
      },
      {
-      "activity-uuid": "6b72b732-940c-459d-8846-4e45c4607004",
+      "activity-uuid": "7a1b1ee2-043c-4711-8917-e224cffbddfe",
       "subjects": [
        {
         "include-subjects": [
          {
-          "subject-uuid": "c1c79e31-902d-4798-8673-617c2c4943ad",
+          "subject-uuid": "ca4ed669-9c09-4569-8b4f-b991bc68aa15",
           "type": "component"
          }
         ],
@@ -2107,12 +2107,12 @@
       ]
      },
      {
-      "activity-uuid": "d00113d6-1ecd-4b71-8cbc-06d6932192d8",
+      "activity-uuid": "1d50facf-d161-4edd-aee6-90f3616f69e1",
       "subjects": [
        {
         "include-subjects": [
          {
-          "subject-uuid": "c1c79e31-902d-4798-8673-617c2c4943ad",
+          "subject-uuid": "ca4ed669-9c09-4569-8b4f-b991bc68aa15",
           "type": "component"
          }
         ],
@@ -2121,12 +2121,12 @@
       ]
      },
      {
-      "activity-uuid": "07b9f923-fec6-4b40-a8d0-4308918d1853",
+      "activity-uuid": "14c581ce-d631-4c03-923e-4704b01a9359",
       "subjects": [
        {
         "include-subjects": [
          {
-          "subject-uuid": "c1c79e31-902d-4798-8673-617c2c4943ad",
+          "subject-uuid": "ca4ed669-9c09-4569-8b4f-b991bc68aa15",
           "type": "component"
          }
         ],
@@ -2135,12 +2135,12 @@
       ]
      },
      {
-      "activity-uuid": "9e23801d-e593-4095-8cc0-b967c5f8ffaa",
+      "activity-uuid": "79d53ce8-53bd-4d3f-bee9-21aca157c323",
       "subjects": [
        {
         "include-subjects": [
          {
-          "subject-uuid": "c1c79e31-902d-4798-8673-617c2c4943ad",
+          "subject-uuid": "ca4ed669-9c09-4569-8b4f-b991bc68aa15",
           "type": "component"
          }
         ],
@@ -2149,12 +2149,12 @@
       ]
      },
      {
-      "activity-uuid": "1b15fbc6-057f-400b-9458-216acc2c7c0e",
+      "activity-uuid": "eb5fe5b6-b994-44d0-bc32-31b1d139ad37",
       "subjects": [
        {
         "include-subjects": [
          {
-          "subject-uuid": "c1c79e31-902d-4798-8673-617c2c4943ad",
+          "subject-uuid": "ca4ed669-9c09-4569-8b4f-b991bc68aa15",
           "type": "component"
          }
         ],
@@ -2163,12 +2163,12 @@
       ]
      },
      {
-      "activity-uuid": "877a8050-9b02-4062-b0e9-76865aafdd38",
+      "activity-uuid": "e2e3b496-d806-4f10-93e0-aedd79096241",
       "subjects": [
        {
         "include-subjects": [
          {
-          "subject-uuid": "c1c79e31-902d-4798-8673-617c2c4943ad",
+          "subject-uuid": "ca4ed669-9c09-4569-8b4f-b991bc68aa15",
           "type": "component"
          }
         ],
@@ -2177,12 +2177,12 @@
       ]
      },
      {
-      "activity-uuid": "8e86fb46-7879-4948-a7a1-4f4409b721ae",
+      "activity-uuid": "2e7eb934-2a03-45a9-a9b6-9dd3a5db620a",
       "subjects": [
        {
         "include-subjects": [
          {
-          "subject-uuid": "c1c79e31-902d-4798-8673-617c2c4943ad",
+          "subject-uuid": "ca4ed669-9c09-4569-8b4f-b991bc68aa15",
           "type": "component"
          }
         ],
@@ -2191,12 +2191,12 @@
       ]
      },
      {
-      "activity-uuid": "8aa94482-f68f-4e87-8ef6-67ed531b5461",
+      "activity-uuid": "28c5c4f1-317d-43ac-985f-0681c28d5581",
       "subjects": [
        {
         "include-subjects": [
          {
-          "subject-uuid": "c1c79e31-902d-4798-8673-617c2c4943ad",
+          "subject-uuid": "ca4ed669-9c09-4569-8b4f-b991bc68aa15",
           "type": "component"
          }
         ],
@@ -2205,12 +2205,12 @@
       ]
      },
      {
-      "activity-uuid": "b906a706-1e38-46b4-a24d-9a2067a2c282",
+      "activity-uuid": "e99b1032-07a7-4bc9-bdf3-c6f4b5023fb8",
       "subjects": [
        {
         "include-subjects": [
          {
-          "subject-uuid": "c1c79e31-902d-4798-8673-617c2c4943ad",
+          "subject-uuid": "ca4ed669-9c09-4569-8b4f-b991bc68aa15",
           "type": "component"
          }
         ],
@@ -2219,12 +2219,12 @@
       ]
      },
      {
-      "activity-uuid": "7ccfca33-f604-4fc7-b271-7bcbefc1c0e0",
+      "activity-uuid": "93c8bd68-4567-4151-a074-d36861e8a771",
       "subjects": [
        {
         "include-subjects": [
          {
-          "subject-uuid": "c1c79e31-902d-4798-8673-617c2c4943ad",
+          "subject-uuid": "ca4ed669-9c09-4569-8b4f-b991bc68aa15",
           "type": "component"
          }
         ],
@@ -2233,12 +2233,12 @@
       ]
      },
      {
-      "activity-uuid": "a2af9f32-26df-4b38-b71d-f46a46f8bba8",
+      "activity-uuid": "a7c5a9e1-bb26-4842-9cd7-05d2213c0992",
       "subjects": [
        {
         "include-subjects": [
          {
-          "subject-uuid": "c1c79e31-902d-4798-8673-617c2c4943ad",
+          "subject-uuid": "ca4ed669-9c09-4569-8b4f-b991bc68aa15",
           "type": "component"
          }
         ],
@@ -2247,12 +2247,12 @@
       ]
      },
      {
-      "activity-uuid": "2b1ae232-b903-4a49-a31e-58be4b399a70",
+      "activity-uuid": "93f59c11-1639-4e20-9f52-abc36639e7b4",
       "subjects": [
        {
         "include-subjects": [
          {
-          "subject-uuid": "c1c79e31-902d-4798-8673-617c2c4943ad",
+          "subject-uuid": "ca4ed669-9c09-4569-8b4f-b991bc68aa15",
           "type": "component"
          }
         ],
@@ -2261,12 +2261,12 @@
       ]
      },
      {
-      "activity-uuid": "e87edc1f-cf84-43f1-b3f4-cff3c5ab02c8",
+      "activity-uuid": "afbdca1d-0ebd-48c5-9bb0-167a3d3cd6fc",
       "subjects": [
        {
         "include-subjects": [
          {
-          "subject-uuid": "c1c79e31-902d-4798-8673-617c2c4943ad",
+          "subject-uuid": "ca4ed669-9c09-4569-8b4f-b991bc68aa15",
           "type": "component"
          }
         ],
@@ -2275,12 +2275,12 @@
       ]
      },
      {
-      "activity-uuid": "7305f3ff-fd84-40c7-9e73-edca13bbea74",
+      "activity-uuid": "22e89983-74d5-49cd-8f8b-1cfd8ba9efa0",
       "subjects": [
        {
         "include-subjects": [
          {
-          "subject-uuid": "c1c79e31-902d-4798-8673-617c2c4943ad",
+          "subject-uuid": "ca4ed669-9c09-4569-8b4f-b991bc68aa15",
           "type": "component"
          }
         ],
@@ -2289,12 +2289,12 @@
       ]
      },
      {
-      "activity-uuid": "29ca537a-c00b-40fb-b010-2e85d96cde98",
+      "activity-uuid": "397cdedd-92db-4ac1-9c07-6ba87c57d456",
       "subjects": [
        {
         "include-subjects": [
          {
-          "subject-uuid": "c1c79e31-902d-4798-8673-617c2c4943ad",
+          "subject-uuid": "ca4ed669-9c09-4569-8b4f-b991bc68aa15",
           "type": "component"
          }
         ],
@@ -2308,7 +2308,7 @@
      {
       "include-subjects": [
        {
-        "subject-uuid": "c1c79e31-902d-4798-8673-617c2c4943ad",
+        "subject-uuid": "ca4ed669-9c09-4569-8b4f-b991bc68aa15",
         "type": "component"
        }
       ],
@@ -2317,9 +2317,9 @@
     ],
     "title": "Automated Assessment",
     "type": "action",
-    "uuid": "79c3f48f-31d9-4408-b1a7-181c73a4045f"
+    "uuid": "50297f5c-3122-4254-abc4-5737f5bc8e9d"
    }
   ],
-  "uuid": "30f83737-602b-4e38-b7f4-475a2bf43c5d"
+  "uuid": "8b055e0b-7d11-4211-96cb-5fff6d34dd9b"
  }
 }
