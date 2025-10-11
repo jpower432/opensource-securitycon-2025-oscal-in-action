@@ -73,5 +73,5 @@ service:
       exporters: [ debug ]
     logs:
       receivers: [ otlp ]
-      processors: [ attribute/env, transform, batch ]
+      processors: [ attributes/env, transform, batch ]
       exporters: [ debug, otlphttp/grafana_cloud ]
