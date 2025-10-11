@@ -64,13 +64,13 @@ service:
     [ basicauth/grafana_cloud ]
   pipelines:
     traces:
-      receivers: [otlp]
-      processors: [resource, batch]
-      exporters: [debug, otlphttp/grafana_cloud]  # Send to both debug and Grafana
+      receivers: [ otlp ]
+      processors: [ batch ]
+      exporters: [ debug ]
     metrics:
       receivers: [ otlp ]
-      processors: [ resource, batch ]
-      exporters: [ debug, otlphttp/grafana_cloud ]  # Send to both debug and Grafana
+      processors: [ batch ]
+      exporters: [ debug ]
     logs:
       receivers: [ otlp ]
       processors: [ attribute/env, transform, batch ]
