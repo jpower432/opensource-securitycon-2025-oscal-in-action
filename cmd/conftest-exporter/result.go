@@ -59,6 +59,7 @@ func (f ConftestFinding) ToOCSF(filename string) (proofwatch.Evidence, error) {
 		Severity:     &unknown,
 		SeverityId:   unknownID,
 		NumFiles:     &numFiles,
+		Message:      &f.Message, // Include the violation message from the finding
 		Metadata: ocsf.Metadata{
 			Uid: &uid,
 			Product: ocsf.Product{
