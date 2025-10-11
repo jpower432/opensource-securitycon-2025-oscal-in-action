@@ -26,7 +26,7 @@ processors:
       - context: log
         statements:
           - set(attributes["compliance.standards"], ["800-53"])
-          - set(attributes["compliance.status"], "Fail") where attributes["policy.evaluation.status"] == "fail"
+          - set(attributes["compliance.status"], "Fail") where attributes["policy.enforcement.status"] == "fail"
           - set(attributes["compliance.requirements"], ["SA-11(4)"]) where attributes["policy.id"] == "github_branch_protection"
 
 exporters:
@@ -73,5 +73,5 @@ service:
       exporters: [ debug, otlphttp/grafana_cloud ]  # Send to both debug and Grafana
     logs:
       receivers: [ otlp ]
-      processors: [ resource, batch ]
+      processors: [ attribute/env, transform, batch ]
       exporters: [ debug, otlphttp/grafana_cloud ]
