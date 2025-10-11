@@ -83,7 +83,3 @@ control-references:
           - Enable stale review dismissal to maintain review quality
           - Require review thread resolution for thorough review process
           - Ensure pull request rules exist for the main branch
-          
-          **Policy Implementation**: The GitHub branch protection policy is implemented in 
-          `checks/github_branch_protection/policy/github_branch_protection.rego` and enforces
-          these requirements through automated policy-as-code validation.
