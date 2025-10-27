@@ -51,7 +51,9 @@ func NewPlanCommand() *cobra.Command {
 				return err
 			}
 
-			builder = builder.AddTargetComponent(targetComponent, componentType, layer2Catalog)
+			parameters := make(component.Parameters)
+
+			builder = builder.AddTargetComponent(targetComponent, componentType, layer2Catalog, parameters)
 			builder = builder.AddValidationComponent(layer4Plan)
 
 			cleanedPolicyPath := filepath.Clean(policyPath)
@@ -60,9 +62,6 @@ func NewPlanCommand() *cobra.Command {
 				return err
 			}
 
-			for _, ref := range layer3Policy.ControlReferences {
-				builder = builder.AddParameterModifiers(ref.ReferenceId, ref.ParameterModifications)
-			}
 			compDef := builder.Build()
 
 			var found bool

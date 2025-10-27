@@ -11,29 +11,28 @@ receivers:
         endpoint: 0.0.0.0:4318
 
 processors:
-  batch:
-  attributes/pii-redact:
-    actions:
-      - key: github.event.pusher.email
-        action: delete
-  attributes/env:
-    actions:
-      - key: deployment.environment
-        value: prod
-        action: insert
+  # For adding the full set of compliance attributes
+  # truthbeam:
+  #    endpoint: "http://compass:8081"
+  #    tls:
+  #      insecure: true
   transform:
     log_statements:
       - context: log
         statements:
-          - set(attributes["compliance.standards"], ["800-53"])
-          - set(attributes["compliance.status"], "Fail") where attributes["policy.enforcement.status"] == "fail"
-          - set(attributes["compliance.requirements"], ["SA-11(4)"]) where attributes["policy.id"] == "github_branch_protection"
+          - set(attributes["compliance.frameworks"], ["800-53"])
+          - set(attributes["compliance.status"], "NON_COMPLIANT") where attributes["policy.evaluation.result"] == "Failed"
+          - set(attributes["compliance.requirements"], ["SA-11(4)"]) where attributes["policy.rule.id"] == "github_branch_protection"
 
 exporters:
   debug:
     verbosity: detailed
     sampling_initial: 5
     sampling_thereafter: 200
+  awss3/logs:
+    s3uploader:
+      region: 'us-east-1'
+      s3_bucket: 'otel-data-backup'
   otlphttp/grafana_cloud:
     endpoint: "${env:GRAFANA_CLOUD_OTLP_ENDPOINT}"
     auth:

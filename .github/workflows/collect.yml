@@ -9,7 +9,6 @@ jobs:
 
     services:
       otel-collector:
-        # Replace with beacon distro
         image: ghcr.io/jpower432/oscal-in-action-collector:latest
         ports:
           - 4317:4317

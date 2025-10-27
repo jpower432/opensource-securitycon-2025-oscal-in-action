@@ -12,6 +12,16 @@ metadata:
       version: "Rev. 5"
       description: "Security and Privacy Controls for Federal Information Systems"
       url: "https://csrc.nist.gov/publications/detail/sp/800-53/rev-5/final"
+    - id: 800-161
+      title: "NIST Special Publication 800-161"
+      version: "1.1"
+      description: "Cybersecurity Supply Chain Risk Management Practices for Systems and Organizations"
+      url: "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-161r1.pdf"
+    - id: PCIDSS
+      title: "Payment Card Industry Data Security Standard"
+      version: "4.0"
+      description: "Security standards for companies that accept, process, store or transmit credit card information"
+      url: "https://www.pcisecuritystandards.org/document_library/"
     - id: CNSCC
       title: Cloud Native Security Controls Catalog
       version: "1.0"
@@ -66,6 +76,13 @@ guidance-references:
   - reference-id: "800-53"
     in-scope:
       boundaries: ["United States"]
+  - reference-id: "800-161"
+    in-scope:
+      boundaries: ["United States"]
+  - reference-id: "PCIDSS"
+    in-scope:
+      boundaries: ["Global"]
+      technologies: ["Financial Services"]
 
 control-references:
   - reference-id: "CNSCC"
@@ -74,12 +91,16 @@ control-references:
       providers: ["GitHub"]
     assessment-requirement-modifications:
       - target-id: "CNSCC-SSC-09.01"
-        modification-type: "clarify"
-        modification-rationale: "Adjusted for projects with two maintainers - requires one reviewer to ensure author-approver separation"
+        modification-type: "reduce-strictness"
+        modification-rationale: |
+          For projects with limited maintainer resources (two or fewer maintainers), implement a modified 
+          peer review process that ensures code quality and security while remaining practical for small teams.
+        text: |
+          At least one qualified reviewer with equal or greater technical expertise than the author must 
+          thoroughly review and approve all pull requests before merging to protected branches. The reviewer 
+          must not be the same person as the author to maintain separation of duties and prevent self-approval 
+          of potentially problematic changes.
         recommendation: |
-          Configure GitHub branch protection rules to enforce proper code review practices:
-          - Require at least **one** reviewer with equal or greater expertise (adjusted for projects with two maintainers)
-          - Enable code owner review to ensure reviewers have appropriate expertise
-          - Enable stale review dismissal to maintain review quality
-          - Require review thread resolution for thorough review process
-          - Ensure pull request rules exist for the main branch
+          Configure your source code management platform (e.g., GitHub, GitLab) to enforce branch protection 
+          rules that require at least one reviewer approval for all pull requests targeting main or release 
+          branches.

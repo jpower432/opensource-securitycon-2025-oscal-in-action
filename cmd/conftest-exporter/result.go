@@ -75,18 +75,18 @@ func (f ConftestFinding) ToOCSF(filename string) (proofwatch.Evidence, error) {
 
 	policyData, err := json.Marshal(f)
 	if err != nil {
-		return proofwatch.Evidence{}, err
+		return proofwatch.OCSFEvidence{}, err
 	}
 	policyDataStr := string(policyData)
 
 	checkId, ok := f.Metadata["short_name"]
 	if !ok {
-		return proofwatch.Evidence{}, errors.New("expected short_name in metadata")
+		return proofwatch.OCSFEvidence{}, errors.New("expected short_name in metadata")
 	}
 
 	checkIdStr, ok := checkId.(string)
 	if !ok {
-		return proofwatch.Evidence{}, errors.New("expected short_name value to be a string")
+		return proofwatch.OCSFEvidence{}, errors.New("expected short_name value to be a string")
 	}
 
 	policy := ocsf.Policy{
@@ -94,7 +94,7 @@ func (f ConftestFinding) ToOCSF(filename string) (proofwatch.Evidence, error) {
 		Data: &policyDataStr,
 	}
 
-	evidenceEvent := proofwatch.Evidence{
+	evidenceEvent := proofwatch.OCSFEvidence{
 		ScanActivity: activity,
 		Policy:       policy,
 		Action:       &action,
