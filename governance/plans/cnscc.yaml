@@ -3,7 +3,19 @@ metadata:
   version: 0.1.0
   author:
     name: opa
-    uri: 1.6.0
+    version: 1.6.0
+  mapping-references:
+  - id: CNSCC
+    title: Cloud Native Security Controls Catalog
+    version: "1.0"
+    url: https://github.com/cloud-native-security-controls/controls-catalog/blob/main/controls/controls_catalog.csv
+    description: |
+      The controls catalog ensures the usability of CNCF deliverables by GRC professionals and Auditors of Cloud Native systems. 
+      The primary goal is to support quickly identifying the controls status of cloud-native environments, and 
+      methods to share the output of those assessments in machine readable formats (OSCAL, JSON, etc.).
+      These outputs should also map to existing frameworks and regulations (CSA, NIST, FedRAMP, SOX, GDPR, etc.), 
+      and provide guidance to properly validate and verify administrative and technical controls.
+
 plans:
   - control:
      reference-id: CNSCC
