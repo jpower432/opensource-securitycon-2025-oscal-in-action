@@ -1,14 +1,30 @@
 metadata:
   id: CNSSC-Plan
   version: 0.1.0
-  evaluator:
+  author:
     name: opa
-    uri: 1.6.0
+    version: 1.6.0
+  mapping-references:
+  - id: CNSCC
+    title: Cloud Native Security Controls Catalog
+    version: "1.0"
+    url: https://github.com/cloud-native-security-controls/controls-catalog/blob/main/controls/controls_catalog.csv
+    description: |
+      The controls catalog ensures the usability of CNCF deliverables by GRC professionals and Auditors of Cloud Native systems. 
+      The primary goal is to support quickly identifying the controls status of cloud-native environments, and 
+      methods to share the output of those assessments in machine readable formats (OSCAL, JSON, etc.).
+      These outputs should also map to existing frameworks and regulations (CSA, NIST, FedRAMP, SOX, GDPR, etc.), 
+      and provide guidance to properly validate and verify administrative and technical controls.
+
 plans:
-  - control-id: CNSCC-SSC-09
+  - control:
+     reference-id: CNSCC
+     entry-id: CNSCC-SSC-09
     assessments:
-      - requirement-id: CNSCC-SSC-09.01
+      - requirement:
+          entry-id: CNSCC-SSC-09.01
         procedures:
           - id: "github_branch_protection"
             name: "GitHub Branch Protection and Code Review Verification"
-            description: "The procedure performs an automated check of GitHub branch protection rules and pull request review requirements to ensure authors cannot approve their own requests and at least two reviewers with equal or greater expertise review and approve requests."
+            description: "The procedure performs an automated check of GitHub branch protection rules and pull request review requirements to ensure authors cannot approve their own requests and at least one reviewers with equal or greater expertise review and approve requests."
+            documentation: https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/managing-a-branch-protection-rule
