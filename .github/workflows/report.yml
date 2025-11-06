@@ -52,4 +52,4 @@ jobs:
       # Post summary on GitHub action summary
       - name: Summary
         run: |
-          c2pcli oscal2posture -c configs/c2p-config.yaml -r assessment-results.json -a "${AP}" --catalog ./compliance/catalog.json >> $GITHUB_STEP_SUMMARY
+          c2pcli oscal2posture -c configs/c2p-config.yaml -r assessment-results.json -a "${AP}" --catalog ./compliance/catalog.json --table >> $GITHUB_STEP_SUMMARY
