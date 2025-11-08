@@ -142,6 +142,8 @@ deny contains result if {
 - OSCAL Compass
 - Grafana Loki
 
-<!-- ### Where to Find Us -->
+### Where to Find Us
 
-<!-- - Community meeting placeholder -->
+- **[OpenSSF ORBIT Working Group](https://github.com/ossf/wg-orbit)**: Join development and maintenance efforts across the security domain
+- **[OpenSSF Gemara](https://github.com/ossf/gemara)**: Participate in bi-weekly community meetings and contribute to ongoing development.
+- **[CNCF OSCAL Compass](https://github.com/oscal-compass)**: Participate in bi-weekly community meetings and development efforts. 
