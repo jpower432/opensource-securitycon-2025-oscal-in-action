@@ -1,6 +1,6 @@
 # opensource-securitycon-2025-oscal-in-action
 
-This demo repository contains the official content for the OpenSource SecurityCon presentation - **OSCAL in Action:** Real World Examples of Automating Policy &amp; Compliance
+This demo repository contains the official content for the OpenSource SecurityCon presentation - [**OSCAL in Action:** Real World Examples of Automating Policy &amp; Compliance](https://github.com/jpower432/opensource-securitycon-2025-oscal-in-action/blob/main/assets/talk/OpenSource%20SecurityCon%20-%20OSCAL%20in%20Action-Revised.pdf)
 
 ## Key Concepts 
 
