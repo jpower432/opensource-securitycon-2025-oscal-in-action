@@ -5,16 +5,16 @@ go 1.24.6
 require (
 	github.com/Santiago-Labs/go-ocsf v0.1.1-0.20250729170529-8b19b43949a6
 	github.com/complytime/complybeacon/proofwatch v0.0.0-20251006214856-2974e0bfaedb
-	github.com/complytime/gemara2oscal v0.0.0-20251007230125-1632dd25a70c
+	github.com/complytime/gemara2oscal v0.0.0-20251205083852-9997fdc98ba6
 	github.com/defenseunicorns/go-oscal v0.7.0
 	github.com/go-viper/mapstructure/v2 v2.4.0
-	github.com/goccy/go-yaml v1.18.0
+	github.com/goccy/go-yaml v1.19.0
 	github.com/hashicorp/go-hclog v1.6.3
 	github.com/hashicorp/go-plugin v1.7.0
 	github.com/open-policy-agent/opa v1.7.1
 	github.com/oscal-compass/compliance-to-policy-go/v2 v2.0.0-alpha.4
-	github.com/oscal-compass/oscal-sdk-go v0.0.8
-	github.com/ossf/gemara v0.12.1
+	github.com/oscal-compass/oscal-sdk-go v0.0.9
+	github.com/ossf/gemara v0.14.0
 	github.com/otiai10/copy v1.14.1
 	github.com/spf13/cobra v1.10.1
 	go.opentelemetry.io/otel v1.38.0
@@ -84,5 +84,3 @@ require (
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 	sigs.k8s.io/yaml v1.6.0 // indirect
 )
-
-replace github.com/complytime/complybeacon/proofwatch => github.com/jpower432/complybeacon/proofwatch v0.0.0-20251025220139-6a28e31cefff
