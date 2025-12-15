@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"reflect"
+	"strings"
 
 	"github.com/complytime/gemara2oscal/component"
 	oscalTypes "github.com/defenseunicorns/go-oscal/src/types/oscal-1-1-3"
@@ -51,9 +53,11 @@ func NewPlanCommand() *cobra.Command {
 				return err
 			}
 
-			parameters := make(component.Parameters)
+			if strings.TrimSpace(targetComponent) == "" {
+				return fmt.Errorf("target-component is required: component is missing a title")
+			}
 
-			builder = builder.AddTargetComponent(targetComponent, componentType, layer2Catalog, parameters)
+			builder = builder.AddTargetComponent(targetComponent, componentType, layer2Catalog, nil)
 			builder = builder.AddValidationComponent(layer4Plan)
 
 			cleanedPolicyPath := filepath.Clean(policyPath)
@@ -61,8 +65,8 @@ func NewPlanCommand() *cobra.Command {
 			if err := layer3Policy.LoadFile(fmt.Sprintf("file://%s", cleanedPolicyPath)); err != nil {
 				return err
 			}
-
 			compDef := builder.Build()
+			compDef = removeEmptyProps(compDef)
 
 			var found bool
 			for _, guidance := range layer3Policy.GuidanceReferences {
@@ -71,6 +75,8 @@ func NewPlanCommand() *cobra.Command {
 					if err != nil {
 						return err
 					}
+					ap = removeEmptyPropsFromAssessmentPlan(ap)
+					ap = fillEmptyComponentTitles(ap)
 					oscalModels := oscalTypes.OscalModels{
 						AssessmentPlan: ap,
 					}
@@ -100,4 +106,164 @@ func NewPlanCommand() *cobra.Command {
 	flags.StringVarP(&policyPath, "policy-path", "p", "./governance/policy.yaml", "Path to Layer 3 policy")
 	flags.StringVarP(&guidanceRef, "guidance-reference", "r", "", "Guidance reference to tailor the plan to")
 	return command
+}
+
+// removeEmptyProps removes props with empty values from the component definition
+// to comply with OSCAL schema validation that requires prop values to match
+// the pattern '^\\S(.*\\S)?$' (non-empty, no leading/trailing whitespace)
+func removeEmptyProps(compDef oscalTypes.ComponentDefinition) oscalTypes.ComponentDefinition {
+	if compDef.Components == nil {
+		return compDef
+	}
+
+	components := *compDef.Components
+	for i := range components {
+		if components[i].Props == nil {
+			continue
+		}
+
+		props := *components[i].Props
+		if len(props) == 0 {
+			continue
+		}
+
+		// Use reflection to get the element type and create a new slice
+		propType := reflect.TypeOf(props[0])
+		filteredSlice := reflect.MakeSlice(reflect.SliceOf(propType), 0, len(props))
+
+		for _, prop := range props {
+			// Use reflection to access the Value field
+			propValue := reflect.ValueOf(prop)
+			valueField := propValue.FieldByName("Value")
+			if !valueField.IsValid() || valueField.Kind() != reflect.String {
+				// If we can't access Value, keep the prop
+				filteredSlice = reflect.Append(filteredSlice, propValue)
+				continue
+			}
+
+			strValue := valueField.String()
+			trimmedValue := strings.TrimSpace(strValue)
+			if trimmedValue != "" {
+				// Create a new prop with trimmed value
+				newProp := reflect.New(propType).Elem()
+				newProp.Set(propValue)
+				newProp.FieldByName("Value").SetString(trimmedValue)
+				filteredSlice = reflect.Append(filteredSlice, newProp)
+			}
+		}
+
+		// Props is already a pointer to slice, so we need to create a pointer to the filtered slice
+		filteredSliceValue := reflect.New(reflect.SliceOf(propType))
+		filteredSliceValue.Elem().Set(filteredSlice)
+		// Use unsafe pointer conversion or direct assignment via reflection
+		// Since we know the type matches, we can use a type assertion
+		components[i].Props = filteredSliceValue.Interface().(*[]oscalTypes.Property)
+	}
+	compDef.Components = &components
+
+	return compDef
+}
+
+// removeEmptyPropsFromAssessmentPlan removes props with empty values from assessment plan components
+// to comply with OSCAL schema validation that requires prop values to match
+// the pattern '^\\S(.*\\S)?$' (non-empty, no leading/trailing whitespace)
+func removeEmptyPropsFromAssessmentPlan(ap *oscalTypes.AssessmentPlan) *oscalTypes.AssessmentPlan {
+	if ap == nil || ap.AssessmentAssets == nil {
+		return ap
+	}
+
+	if ap.AssessmentAssets.Components == nil {
+		return ap
+	}
+
+	components := *ap.AssessmentAssets.Components
+	for i := range components {
+		if components[i].Props == nil {
+			continue
+		}
+
+		props := *components[i].Props
+		if len(props) == 0 {
+			continue
+		}
+
+		// Use reflection to get the element type and create a new slice
+		propType := reflect.TypeOf(props[0])
+		filteredSlice := reflect.MakeSlice(reflect.SliceOf(propType), 0, len(props))
+
+		for _, prop := range props {
+			// Use reflection to access the Value field
+			propValue := reflect.ValueOf(prop)
+			valueField := propValue.FieldByName("Value")
+			if !valueField.IsValid() || valueField.Kind() != reflect.String {
+				// If we can't access Value, keep the prop
+				filteredSlice = reflect.Append(filteredSlice, propValue)
+				continue
+			}
+
+			strValue := valueField.String()
+			trimmedValue := strings.TrimSpace(strValue)
+			if trimmedValue != "" {
+				// Create a new prop with trimmed value
+				newProp := reflect.New(propType).Elem()
+				newProp.Set(propValue)
+				newProp.FieldByName("Value").SetString(trimmedValue)
+				filteredSlice = reflect.Append(filteredSlice, newProp)
+			}
+		}
+
+		// Props is already a pointer to slice, so we need to create a pointer to the filtered slice
+		filteredSliceValue := reflect.New(reflect.SliceOf(propType))
+		filteredSliceValue.Elem().Set(filteredSlice)
+		// Use unsafe pointer conversion or direct assignment via reflection
+		// Since we know the type matches, we can use a type assertion
+		components[i].Props = filteredSliceValue.Interface().(*[]oscalTypes.Property)
+	}
+	ap.AssessmentAssets.Components = &components
+
+	return ap
+}
+
+// fillEmptyComponentTitles fills any empty component titles in the assessment plan with "REPLACE_ME"
+func fillEmptyComponentTitles(ap *oscalTypes.AssessmentPlan) *oscalTypes.AssessmentPlan {
+	if ap == nil {
+		return ap
+	}
+
+	// Fill empty titles in assessment-assets.components
+	if ap.AssessmentAssets != nil && ap.AssessmentAssets.Components != nil {
+		components := *ap.AssessmentAssets.Components
+		for i := range components {
+			if strings.TrimSpace(components[i].Title) == "" {
+				title := "REPLACE_ME"
+				components[i].Title = title
+			}
+		}
+		ap.AssessmentAssets.Components = &components
+	}
+
+	if ap.LocalDefinitions != nil && ap.LocalDefinitions.Components != nil {
+		components := *ap.LocalDefinitions.Components
+		for i := range components {
+			if strings.TrimSpace(components[i].Title) == "" {
+				title := "REPLACE_ME"
+				components[i].Title = title
+			}
+		}
+		ap.LocalDefinitions.Components = &components
+	}
+
+	// Fill empty titles in assessment-assets.assessment-platforms
+	if ap.AssessmentAssets != nil && ap.AssessmentAssets.AssessmentPlatforms != nil {
+		platforms := ap.AssessmentAssets.AssessmentPlatforms
+		for i := range platforms {
+			if strings.TrimSpace(platforms[i].Title) == "" {
+				title := "REPLACE_ME"
+				platforms[i].Title = title
+			}
+		}
+		ap.AssessmentAssets.AssessmentPlatforms = platforms
+	}
+
+	return ap
 }
