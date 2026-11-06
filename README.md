@@ -1,149 +1,52 @@
-# opensource-securitycon-2025-oscal-in-action
+# Conftest
 
-This demo repository contains the official content for the OpenSource SecurityCon presentation - **OSCAL in Action:** Real World Examples of Automating Policy &amp; Compliance
+[![Go Report Card](https://goreportcard.com/badge/open-policy-agent/opa)](https://goreportcard.com/report/open-policy-agent/conftest) [![Netlify](https://api.netlify.com/api/v1/badges/2d928746-3380-4123-b0eb-1fd74ba390db/deploy-status)](https://app.netlify.com/sites/vibrant-villani-65041c/deploys)
 
-## Key Concepts 
+Conftest helps you write tests against structured configuration data. Using Conftest you can
+write tests for your Kubernetes configuration, Tekton pipeline definitions, Terraform code,
+Serverless configs or any other config files.
 
-1. **Governance → OSCAL**: Control catalogs and assessment plans are transformed into structured OSCAL documentation
-2. **Policy → Validation**: OPA Rego policies validate against GitHub API data
-3. **Evidence Collection**: Plugin system gathers evidence from Loki and creates policy bundles
-4. **Evidence Processing**: Conftest exporter converts results to OCSF format for audit trails
-5. **Observability**: OpenTelemetry collects all evidence and provides continuous monitoring
+Conftest uses the Rego language from [Open Policy Agent](https://www.openpolicyagent.org/) for writing
+the assertions. You can read more about Rego in the [Policy Language](https://www.openpolicyagent.org/docs/policy-language)
+section in the Open Policy Agent documentation.
 
-This repository demonstrates a complete **compliance-as-code** implementation using industry standards (OSCAL, OPA, OpenTelemetry) to automate policy enforcement and evidence collection.
-![alt text](assets/img/demo-diagram.png) 
-
-## Component Workflow Description
-
-### 1. Governance `governance/`
-
-- **Control Catalogs (cnscc.yaml)**: Contains [Cloud Native Security Controls Catalog](https://docs.google.com/spreadsheets/d/1GUohOTlLw9FKUQ3O23X7ypvJLXN-B3veJGe6YE6JYfU/edit?gid=1938257679#gid=1938257679) with NIST 800-53 mappings
-
-**Example `governance/catalog` yaml**
-
-```yaml
-      - id: CNSCC-SSC-09
-        title: The author(s) of a request may not also be the approver of the request
-        objective: |
-          The author(s) of a request may not also be the approver of the request. At least two reviewers 
-          with equal or greater expertise should review & approve the request.
-        guideline-mappings:
-          - reference-id: 800-53
-            entries:
-              - reference-id: AC-6(3)
-        assessment-requirements:
-          - id: CNSCC-SSC-09.01
-            text: |
-              The author(s) of a request may not also be the approver of the request. At least two reviewers 
-              with equal or greater expertise should review & approve the request.
-            applicability:
-              - tlp_clear
-              - tlp_green
-              - tlp_amber
-              - tlp_red
-            recommendation: Configure branch protection with proper reviewer requirements
-```
-
-- **Assessment Plans (cnscc.yaml)**: Defines evaluation procedures and assessment requirements
-
-**Example `governance/plans` yaml**
-
-```yaml
-- control-id: CNSCC-SSC-09
-    assessments:
-      - requirement-id: CNSCC-SSC-09.01
-        procedures:
-          - id: "github_branch_protection"
-            name: "GitHub API Verifications for Branch Protection"
-            description: The procedure performs an automated check of the branch ruleset state in GitHub by creating a snapshot of the state from the API and checks the output with an OPA policy to ensure proper code review practices and author-approver separation.
-```
-
-- **Policy Definition (policy.yaml)**: Organization-specific policy rules and control modifications
-
-> Note: The organizational policy rules and control modifications map back to the definition of [Layer 3 Policy](https://github.com/ossf/gemara/tree/main?tab=readme-ov-file#layer-3-policy) in the OpenSSF `gemara` project.
-
-### 2. Policy Checks `checks/`
-
-- **OPA Rego Policies**: Implements policy validation logic (e.g., GitHub branch protection requirements)
-
-**Example `rego` policy checks for enforcement of organizational policy.**
+Here's a quick example. Save the following as `policy/deployment.rego`:
 
 ```rego
-deny contains result if {
-    not has_pull_request_rule
-    
-    chain := rego.metadata.chain()
-    annotations := chain[0].annotations
-    
-    result := {
-        "short_name": annotations.custom.short_name,
-        "msg": "Violation: A branch protection rule of type 'pull_request' is required but was not found. This is a prerequisite for enforcing proper code review practices."
-    }
+package main
+
+deny contains msg if {
+  input.kind == "Deployment"
+  not input.spec.template.spec.securityContext.runAsNonRoot
+
+  msg := "Containers must not run as root"
 }
 
-deny contains result if {
-    has_pull_request_rule
-    
-    some rule in input.values
-    rule.type == "pull_request"
-    not rule.parameters.require_code_owner_review
+deny contains msg if {
+  input.kind == "Deployment"
+  not input.spec.selector.matchLabels.app
 
-    chain := rego.metadata.chain()
-    annotations := chain[0].annotations
-    
-    result := {
-        "short_name": annotations.custom.short_name,
-        "msg": "Violation: Code owner review is required to ensure reviewers have equal or greater expertise for the code being changed."
-    }
+  msg := "Containers must provide app label for pod selectors"
 }
 ```
 
-- **Test Data (example.json)**: Sample GitHub API responses used for policy validation
+Assuming you have a Kubernetes deployment in `deployment.yaml` you can run Conftest like so:
 
-### 3. Transformer Kit `cmd/transformer-kit/`
+```console
+$ conftest test deployment.yaml
+FAIL - deployment.yaml - Containers must not run as root
+FAIL - deployment.yaml - Containers must provide app label for pod selectors
 
-- **OSCAL Transformer**: Converts Gemara governance artifacts to OSCAL Assessment Plans
-- **Generated Assessment Plan**: Outputs structured OSCAL-compliant assessment documentation
+2 tests, 0 passed, 0 warnings, 2 failures, 0 exceptions
+```
 
-### 4. Plugin System `cmd/plugin/`
+Conftest isn't specific to Kubernetes. It will happily let you write tests for any configuration files in a variety of different formats. See the [documentation](https://www.conftest.dev/) for [installation instructions](https://www.conftest.dev/install/) and
+more details about the features.
 
-- **OPA/Loki Plugin**: Creates policy bundles and collects evidence from [Loki](https://github.com/grafana/loki) logs
-- **Policy Bundle**: Compiled [OPA](https://www.openpolicyagent.org/) policies ready for deployment
-- **Loki Logs**: Centralized evidence storage with policy ID tracking
+## Want to contribute to Conftest?
 
-### 5. Conftest Exporter
+* See [DEVELOPMENT.md](DEVELOPMENT.md) to build and test Conftest itself.
+* See [CONTRIBUTING.md](CONTRIBUTING.md) to get started.
 
-- **Conftest Results**: Policy evaluation output in JSON format
-- **OCSF Evidence**: Structured evidence in Open Cybersecurity Schema Framework format
-- **[ProofWatch](https://github.com/complytime/complybeacon/tree/main/proofwatch)**: Evidence collection and audit trail management
-
-### 6. External Systems
-
-- **GitHub API**: Source of truth for repository configuration state
-- **OpenTelemetry**: Observability stack for metrics, traces, and logging
-
-## Key Workflows
-
-1. **Policy Definition**: Governance artifacts define controls and assessment procedures
-2. **Policy Implementation**: OPA Rego policies implement validation logic
-3. **Evidence Collection**: Plugin system gathers evidence from various sources (GitHub, Loki)
-4. **Policy Evaluation**: Conftest evaluates policies against collected evidence
-5. **Evidence Export**: Results are structured and exported via OpenTelemetry
-6. **OSCAL Generation**: Transformer kit creates OSCAL-compliant assessment plans
-
-![alt text](assets/img/mermaid-flow.png)
-
-## Relevant Links
-
-### Open Source Projects
-
-- Open Policy Agent
-- OpenTelemetry
-- OSCAL Compass
-- Grafana Loki
-
-### Where to Find Us
-
-- **[OpenSSF ORBIT Working Group](https://github.com/ossf/wg-orbit)**: Join development and maintenance efforts across the security domain
-- **[OpenSSF Gemara](https://github.com/ossf/gemara)**: Participate in bi-weekly community meetings and contribute to ongoing development.
-- **[CNCF OSCAL Compass](https://github.com/oscal-compass)**: Participate in bi-weekly community meetings and development efforts. 
+For discussions and questions join us on the [Open Policy Agent Slack](https://slack.openpolicyagent.org/)
+in the `#opa-conftest` channel.

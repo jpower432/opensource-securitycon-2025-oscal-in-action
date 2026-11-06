@@ -1,0 +1,195 @@
+{
+ "assessment-plan": {
+  "assessment-assets": {
+   "assessment-platforms": [
+    {
+     "title": "REPLACE_ME",
+     "uses-components": [
+      {
+       "component-uuid": "dba4f749-6796-4c9a-9112-e0ec98a4848e"
+      }
+     ],
+     "uuid": "f5849027-dbca-4cde-8477-af52136ccf8a"
+    }
+   ],
+   "components": [
+    {
+     "description": "",
+     "props": [
+      {
+       "name": "Rule_Id",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_0",
+       "value": "CNSCC-SSC-09.01"
+      },
+      {
+       "name": "Check_Id",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_0",
+       "value": "github_branch_protection"
+      },
+      {
+       "name": "Check_Description",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_0",
+       "value": "The procedure performs an automated check of GitHub branch protection rules and pull request review requirements to ensure authors cannot approve their own requests and at least one reviewers with equal or greater expertise review and approve requests."
+      }
+     ],
+     "status": {
+      "state": "operational"
+     },
+     "title": "opa",
+     "type": "validation",
+     "uuid": "dba4f749-6796-4c9a-9112-e0ec98a4848e"
+    }
+   ]
+  },
+  "assessment-subjects": [
+   {
+    "include-subjects": [
+     {
+      "subject-uuid": "c8d40b22-2d33-4cf1-8d7b-eebd57b9d656",
+      "type": "component"
+     }
+    ],
+    "type": "component"
+   }
+  ],
+  "back-matter": {
+   "resources": [
+    {
+     "description": "This publication provides a catalog of security and privacy controls for information systems and organizations to protect \norganizational operations and assets, individuals, other organizations, and the Nation from a diverse set of threats and risks, \nincluding hostile attacks, human errors, natural disasters, structural failures, foreign intelligence entities, and privacy risks.\n",
+     "rlinks": [
+      {
+       "href": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-53r5.pdf",
+       "media-type": "application/oscal+json"
+      }
+     ],
+     "title": "800-53",
+     "uuid": "1bddf07d-3d9a-4d07-8e84-6a622707d553"
+    }
+   ]
+  },
+  "import-ssp": {
+   "href": "REPLACE_ME"
+  },
+  "local-definitions": {
+   "activities": [
+    {
+     "description": "All code destined for production must undergo a manual review.\\nAt least two reviewers with equal or greater expertise should \\nreview and approve the changes. The author(s) of the code may not \\nalso be the final approver of the associated merge/pull request.\\n",
+     "props": [
+      {
+       "name": "method",
+       "value": "TEST"
+      }
+     ],
+     "related-controls": {
+      "control-selections": [
+       {
+        "include-controls": [
+         {
+          "control-id": "sa-11.4"
+         }
+        ]
+       }
+      ]
+     },
+     "steps": [
+      {
+       "description": "The procedure performs an automated check of GitHub branch protection rules and pull request review requirements to ensure authors cannot approve their own requests and at least one reviewers with equal or greater expertise review and approve requests.",
+       "title": "github_branch_protection",
+       "uuid": "21a2e10e-b110-4410-81a4-ca0e3df286c6"
+      }
+     ],
+     "title": "CNSCC-SSC-09.01",
+     "uuid": "79ca5a88-3b60-4ca1-96a7-6ba59604f921"
+    }
+   ],
+   "components": [
+    {
+     "description": "",
+     "props": [
+      {
+       "name": "Rule_Id",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_0",
+       "value": "CNSCC-SSC-09.01"
+      },
+      {
+       "name": "Rule_Description",
+       "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal",
+       "remarks": "rule_set_0",
+       "value": "All code destined for production must undergo a manual review.\\nAt least two reviewers with equal or greater expertise should \\nreview and approve the changes. The author(s) of the code may not \\nalso be the final approver of the associated merge/pull request.\\n"
+      }
+     ],
+     "status": {
+      "state": "operational"
+     },
+     "title": "GitHub Repository",
+     "type": "software",
+     "uuid": "c8d40b22-2d33-4cf1-8d7b-eebd57b9d656"
+    }
+   ]
+  },
+  "metadata": {
+   "last-modified": "2026-11-05T21:00:22.099774657Z",
+   "oscal-version": "1.1.3",
+   "title": "REPLACE_ME",
+   "version": "0.1.0"
+  },
+  "reviewed-controls": {
+   "control-selections": [
+    {
+     "include-controls": [
+      {
+       "control-id": "sa-11.4"
+      }
+     ]
+    }
+   ],
+   "links": [
+    {
+     "href": "#1bddf07d-3d9a-4d07-8e84-6a622707d553",
+     "rel": "includes-controls-from-source",
+     "text": "The reviewed controls are derived from the linked OSCAL profile."
+    }
+   ]
+  },
+  "tasks": [
+   {
+    "associated-activities": [
+     {
+      "activity-uuid": "79ca5a88-3b60-4ca1-96a7-6ba59604f921",
+      "subjects": [
+       {
+        "include-subjects": [
+         {
+          "subject-uuid": "c8d40b22-2d33-4cf1-8d7b-eebd57b9d656",
+          "type": "component"
+         }
+        ],
+        "type": "component"
+       }
+      ]
+     }
+    ],
+    "description": "Evaluation of defined rules for components.",
+    "subjects": [
+     {
+      "include-subjects": [
+       {
+        "subject-uuid": "c8d40b22-2d33-4cf1-8d7b-eebd57b9d656",
+        "type": "component"
+       }
+      ],
+      "type": "component"
+     }
+    ],
+    "title": "Automated Assessment",
+    "type": "action",
+    "uuid": "123cab96-4bb0-4670-8562-db382886fb79"
+   }
+  ],
+  "uuid": "424007b7-2db9-4a2b-a110-28c6af46a888"
+ }
+}
